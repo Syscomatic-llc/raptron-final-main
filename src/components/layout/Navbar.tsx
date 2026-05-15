@@ -172,7 +172,7 @@ export function Navbar() {
               </div>
             </div>
           </div>
-          <NavItem to="/about" label="About" />
+          <NavItem to="/about" label="About us" />
           <NavItem to="/case-studies" label="Case studies" />
           <NavItem to="/blog" label="Blog" />
           <NavItem to="/contact" label="Contact" />
@@ -186,7 +186,7 @@ export function Navbar() {
             <span className="absolute inset-0 bg-ink rounded-full" />
             <span className="absolute inset-0 bg-gradient-brand opacity-30 rounded-full group-hover:opacity-50 transition-opacity duration-500" />
             <span className="relative z-10 flex items-center gap-1.5">
-              Request demo
+              Book a free consultation
               <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
             </span>
           </Link>
@@ -239,7 +239,7 @@ export function Navbar() {
           </div>
           <MobileLink
             to="/about"
-            label="About"
+            label="About us"
             onClick={() => setOpen(false)}
           />
           <MobileLink
@@ -265,7 +265,7 @@ export function Navbar() {
             >
               <span className="absolute inset-0 bg-ink rounded-full" />
               <span className="absolute inset-0 bg-gradient-brand opacity-30 rounded-full group-hover:opacity-50 transition-opacity duration-500" />
-              <span className="relative z-10">Request demo</span>
+              <span className="relative z-10">Book a free consultation</span>
             </Link>
           </div>
         </div>
