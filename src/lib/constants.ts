@@ -216,10 +216,10 @@ export const INDUSTRIES = [
 ];
 
 export const STATS = [
-  { value: 50, suffix: "+", label: "Businesses Automated" },
-  { value: 98, suffix: "%", label: "Client Retention Rate" },
-  { value: 12, suffix: "+", label: "Industries Served" },
-  { value: 40, suffix: "%", label: "Avg. Efficiency Gain" },
+  { value: 50, suffix: "+", label: "Businesses automated" },
+  { value: 98, suffix: "%", label: "Client retention rate" },
+  { value: 12, suffix: "+", label: "Industries served" },
+  { value: 40, suffix: "%", label: "Avg. efficiency gain" },
 ];
 
 export const TESTIMONIALS = [

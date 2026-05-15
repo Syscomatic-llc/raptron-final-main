@@ -256,10 +256,10 @@ function ValuesBento() {
 
 function StatsSection() {
   const STATS = [
-    { value: 10, suffix: "+", label: "Years Experience" },
-    { value: 50, suffix: "+", label: "Enterprise Deployments" },
-    { value: 99, suffix: "%", label: "Client Retention" },
-    { value: 24, suffix: "/7", label: "System Uptime" },
+    { value: 10, suffix: "+", label: "Years experience" },
+    { value: 50, suffix: "+", label: "Enterprise deployments" },
+    { value: 99, suffix: "%", label: "Client retention" },
+    { value: 24, suffix: "/7", label: "System uptime" },
   ];
 
   return (

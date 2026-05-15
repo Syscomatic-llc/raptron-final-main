@@ -78,14 +78,14 @@ function Hero() {
 
           <h1 className="font-display font-bold leading-[1.1] text-ink mx-auto text-center">
             <span className="block text-4xl sm:text-5xl lg:text-[4rem] whitespace-nowrap">
-              <span className="text-brand">We automate</span> what slows you down
+              <span className="text-brand">We automate</span> what slows you
             </span>
-            <span className="block text-4xl sm:text-5xl lg:text-[4rem]">
-              <span className="text-ink">-</span> <span className="text-brand">in 4 weeks.</span>
+            <span className="block text-4xl sm:text-5xl lg:text-[4rem] whitespace-nowrap">
+              down <span className="text-brand">- in 4 weeks.</span>
             </span>
           </h1>
 
-          <p className="mt-6 text-xl sm:text-xl text-ink/70 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-6 text-xl sm:text-xl text-black max-w-3xl mx-auto leading-relaxed">
             We help business owners reduce manual work, improve visibility, and
             bring their daily activities into one connected, intelligent
             operating structure.
