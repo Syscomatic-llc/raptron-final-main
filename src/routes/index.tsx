@@ -123,7 +123,7 @@ function Hero() {
                 <Award className="text-brand" size={13} />
               </div>
               <span className="font-mono text-[11px] tracking-[0.2em] text-ink/40">
-                Serving You With
+                Serving you with
               </span>
             </div>
 
