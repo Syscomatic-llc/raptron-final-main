@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Calendar,
   ArrowRight,
@@ -72,16 +72,16 @@ function Hero() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand"></span>
             </span>
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-ink font-semibold">
-              The Future of Enterprise Tech
+              The future of enterprise tech
             </span>
           </div>
 
           <h1 className="font-display font-bold leading-[1.1] text-ink mx-auto text-center">
             <span className="block text-4xl sm:text-5xl lg:text-[4rem] whitespace-nowrap">
-              <span className="text-brand">We Automate</span> What Slows You Down
+              <span className="text-brand">We automate</span> what slows you down
             </span>
             <span className="block text-4xl sm:text-5xl lg:text-[4rem]">
-              <span className="text-ink">-</span> <span className="text-brand">in 4 Weeks.</span>
+              <span className="text-ink">-</span> <span className="text-brand">in 4 weeks.</span>
             </span>
           </h1>
 
