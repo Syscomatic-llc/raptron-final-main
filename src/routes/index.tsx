@@ -294,7 +294,7 @@ function ValueBento() {
                 className="mb-8 opacity-80 group-hover:opacity-100 transition-opacity"
                 size={40}
               />
-              <h3 className="font-display text-3xl font-bold">Code Quality</h3>
+              <h3 className="font-display text-3xl font-bold text-white">Code Quality</h3>
               <p className="mt-4 text-white/90 text-lg leading-relaxed">
                 Enterprise-grade architecture built to scale securely and
                 continuously.
