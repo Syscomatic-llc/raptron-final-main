@@ -347,11 +347,10 @@ function ServicesShowcase() {
                 <button
                   key={s.slug}
                   onClick={() => setActiveIdx(i)}
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border ${
-                    activeIdx === i
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border ${activeIdx === i
                       ? "bg-brand text-white border-brand shadow-[0_4px_20px_rgba(85,9,217,0.35)]"
                       : "bg-white text-ink/55 border-hairline hover:border-brand/30 hover:text-ink hover:shadow-sm"
-                  }`}
+                    }`}
                 >
                   <TabIcon size={14} />
                   {s.shortTitle}
@@ -429,17 +428,16 @@ function ServicesShowcase() {
                     className="bg-white/5 border border-white/8 rounded-xl px-4 py-3.5 flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`size-7 rounded-lg flex items-center justify-center ${
-                        i === 0 ? "bg-brand/30" :
-                        i === 1 ? "bg-brand-2/20" :
-                        i === 2 ? "bg-emerald-500/20" :
-                        i === 3 ? "bg-amber-500/20" : "bg-sky-500/20"
-                      }`}>
+                      <div className={`size-7 rounded-lg flex items-center justify-center ${i === 0 ? "bg-brand/30" :
+                          i === 1 ? "bg-brand-2/20" :
+                            i === 2 ? "bg-emerald-500/20" :
+                              i === 3 ? "bg-amber-500/20" : "bg-sky-500/20"
+                        }`}>
                         <Icon size={13} className={
                           i === 0 ? "text-brand-2" :
-                          i === 1 ? "text-brand-2" :
-                          i === 2 ? "text-emerald-400" :
-                          i === 3 ? "text-amber-400" : "text-sky-400"
+                            i === 1 ? "text-brand-2" :
+                              i === 2 ? "text-emerald-400" :
+                                i === 3 ? "text-amber-400" : "text-sky-400"
                         } />
                       </div>
                       <span className="text-sm text-white/65">{item}</span>
