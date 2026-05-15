@@ -173,6 +173,8 @@ export function Navbar() {
             </div>
           </div>
           <NavItem to="/about" label="About" />
+          <NavItem to="/case-studies" label="Case studies" />
+          <NavItem to="/blog" label="Blog" />
           <NavItem to="/contact" label="Contact" />
         </nav>
 
@@ -238,6 +240,16 @@ export function Navbar() {
           <MobileLink
             to="/about"
             label="About"
+            onClick={() => setOpen(false)}
+          />
+          <MobileLink
+            to="/case-studies"
+            label="Case studies"
+            onClick={() => setOpen(false)}
+          />
+          <MobileLink
+            to="/blog"
+            label="Blog"
             onClick={() => setOpen(false)}
           />
           <MobileLink
