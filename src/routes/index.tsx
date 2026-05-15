@@ -78,10 +78,10 @@ function Hero() {
 
           <h1 className="font-display font-bold leading-[1.1] text-ink mx-auto text-center">
             <span className="block text-4xl sm:text-5xl lg:text-[4rem] whitespace-nowrap">
-              <span className="text-brand">We automate</span> what slows you
+              <span className="text-brand">We automate</span> what slows
             </span>
             <span className="block text-4xl sm:text-5xl lg:text-[4rem] whitespace-nowrap">
-              down <span className="text-brand">in 4 weeks</span>
+              you down <span className="text-brand">in 4 weeks</span>
             </span>
           </h1>
 
