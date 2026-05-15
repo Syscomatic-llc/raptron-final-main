@@ -96,7 +96,7 @@ function Hero() {
               to="/book-consultation"
               className="inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full bg-gradient-brand text-white font-semibold text-lg shadow-card hover:shadow-glow transition-all hover:scale-105"
             >
-              <Calendar size={20} /> Book free consultation
+              <Calendar size={20} /> Book a free consultation
             </Link>
             <Link
               to="/request-demo"

@@ -57,7 +57,7 @@ function ServicePage() {
             to="/book-consultation"
             className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-gradient-brand text-white font-semibold shadow-card hover:shadow-glow transition"
           >
-            <Calendar size={16} /> Book free consultation
+            <Calendar size={16} /> Book a free consultation
           </Link>
           <Link
             to="/request-demo"

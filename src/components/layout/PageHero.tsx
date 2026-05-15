@@ -61,7 +61,7 @@ export function CTABanner() {
                 to="/book-consultation"
                 className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-ink text-white font-semibold hover:bg-black transition"
               >
-                <Calendar size={16} /> Book free consultation
+                <Calendar size={16} /> Book a free consultation
               </Link>
               <Link
                 to="/request-demo"
