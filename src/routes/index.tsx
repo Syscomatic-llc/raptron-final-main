@@ -139,7 +139,7 @@ function Hero() {
                     <div className="size-10 rounded-xl bg-brand/20 border border-brand/30 flex items-center justify-center group-hover:bg-brand/30 transition-colors duration-500">
                       <Workflow className="text-brand-2" size={18} />
                     </div>
-                    <span className="font-mono text-lg font-bold text-white/40 select-none">01</span>
+                    <span className="font-mono text-lg font-bold text-white/8 select-none">01</span>
                   </div>
                   <h3 className="text-white font-display text-sm font-bold mb-1.5">Operational Automation</h3>
                   <p className="text-white/45 text-xs leading-relaxed">
@@ -157,7 +157,7 @@ function Hero() {
                     <div className="size-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
                       <BarChart2 className="text-white" size={18} />
                     </div>
-                    <span className="font-mono text-lg font-bold text-white/40 select-none">02</span>
+                    <span className="font-mono text-lg font-bold text-white/20 select-none">02</span>
                   </div>
                   <h3 className="text-white font-display text-sm font-bold mb-1.5">Accounting &amp; Compliance</h3>
                   <p className="text-white/75 text-xs leading-relaxed">
@@ -176,7 +176,7 @@ function Hero() {
                     <div className="size-10 rounded-xl bg-brand/10 flex items-center justify-center group-hover:bg-brand/15 transition-colors duration-500">
                       <BrainCircuit className="text-brand" size={18} />
                     </div>
-                    <span className="font-mono text-lg font-bold text-ink/25 select-none">03</span>
+                    <span className="font-mono text-lg font-bold text-ink/8 select-none">03</span>
                   </div>
                   <h3 className="text-ink font-display text-sm font-bold mb-1.5">AI Agents</h3>
                   <p className="text-ink/50 text-xs leading-relaxed">
@@ -194,7 +194,7 @@ function Hero() {
                     <div className="size-10 rounded-xl bg-brand-2/20 border border-brand-2/30 flex items-center justify-center group-hover:bg-brand-2/30 transition-colors duration-500">
                       <TrendingUp className="text-brand-2" size={18} />
                     </div>
-                    <span className="font-mono text-lg font-bold text-white/40 select-none">04</span>
+                    <span className="font-mono text-lg font-bold text-white/8 select-none">04</span>
                   </div>
                   <h3 className="text-white font-display text-sm font-bold mb-1.5">Growth Strategy</h3>
                   <p className="text-white/45 text-xs leading-relaxed">
@@ -348,8 +348,8 @@ function ServicesShowcase() {
                   key={s.slug}
                   onClick={() => setActiveIdx(i)}
                   className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border ${activeIdx === i
-                      ? "bg-brand text-white border-brand shadow-[0_4px_20px_rgba(85,9,217,0.35)]"
-                      : "bg-white text-ink/55 border-hairline hover:border-brand/30 hover:text-ink hover:shadow-sm"
+                    ? "bg-brand text-white border-brand shadow-[0_4px_20px_rgba(85,9,217,0.35)]"
+                    : "bg-white text-ink/55 border-hairline hover:border-brand/30 hover:text-ink hover:shadow-sm"
                     }`}
                 >
                   <TabIcon size={14} />
@@ -429,9 +429,9 @@ function ServicesShowcase() {
                   >
                     <div className="flex items-center gap-3">
                       <div className={`size-7 rounded-lg flex items-center justify-center ${i === 0 ? "bg-brand/30" :
-                          i === 1 ? "bg-brand-2/20" :
-                            i === 2 ? "bg-emerald-500/20" :
-                              i === 3 ? "bg-amber-500/20" : "bg-sky-500/20"
+                        i === 1 ? "bg-brand-2/20" :
+                          i === 2 ? "bg-emerald-500/20" :
+                            i === 3 ? "bg-amber-500/20" : "bg-sky-500/20"
                         }`}>
                         <Icon size={13} className={
                           i === 0 ? "text-brand-2" :
