@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+﻿import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
   Menu,
@@ -71,7 +71,7 @@ export function Navbar() {
                 className={`transition ${servicesOpen ? "rotate-180" : ""}`}
               />
             </Link>
-            {/* Invisible bridge — must be >= the visual gap below the trigger */}
+            {/* Invisible bridge - must be >= the visual gap below the trigger */}
             <div className="absolute left-0 right-0 top-full h-4" />
             <div
               className={`absolute left-1/2 -translate-x-[40%] top-[calc(100%+0.5rem)] w-[900px] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top-left ${
@@ -116,12 +116,12 @@ export function Navbar() {
                   {/* Dot grid texture */}
                   <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px] opacity-30 mix-blend-overlay pointer-events-none" />
 
-                  {/* Animated orb 1 — top-right, slow drift */}
+                  {/* Animated orb 1 - top-right, slow drift */}
                   <div
                     className="absolute -top-20 -right-20 w-56 h-56 bg-brand/40 blur-[70px] rounded-full pointer-events-none"
                     style={{ animation: "orbDrift1 6s ease-in-out infinite alternate" }}
                   />
-                  {/* Animated orb 2 — bottom-left, offset phase */}
+                  {/* Animated orb 2 - bottom-left, offset phase */}
                   <div
                     className="absolute -bottom-20 -left-10 w-48 h-48 bg-brand-2/30 blur-[80px] rounded-full pointer-events-none"
                     style={{ animation: "orbDrift2 8s ease-in-out infinite alternate" }}

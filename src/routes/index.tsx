@@ -9,6 +9,12 @@ import {
   Zap,
   Database,
   Terminal,
+  BarChart2,
+  TrendingUp,
+  Award,
+  BadgeCheck,
+  Code2,
+  LineChart,
 } from "lucide-react";
 import {
   SERVICES,
@@ -70,14 +76,19 @@ function Hero() {
             </span>
           </div>
 
-          <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-[4.5rem] leading-[1.05] text-ink max-w-5xl mx-auto">
-            Architecting <span className="text-brand">Intelligent</span>{" "}
-            <br className="hidden sm:block" /> Business Systems.
+          <h1 className="font-display font-bold leading-[1.1] text-ink mx-auto text-center">
+            <span className="block text-4xl sm:text-5xl lg:text-[4rem] whitespace-nowrap">
+              <span className="text-brand">We Automate</span> What Slows You Down
+            </span>
+            <span className="block text-4xl sm:text-5xl lg:text-[4rem]">
+              <span className="text-ink">-</span> <span className="text-brand">in 4 Weeks.</span>
+            </span>
           </h1>
 
           <p className="mt-6 text-xl sm:text-xl text-ink/70 max-w-3xl mx-auto leading-relaxed">
-            We merge ERP consulting, AI automation, and custom software to build
-            the operational backbone of tomorrow's industry leaders.
+            We help business owners reduce manual work, improve visibility, and
+            bring their daily activities into one connected, intelligent
+            operating structure.
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -102,39 +113,102 @@ function Hero() {
           </div>
         </Reveal>
 
-        {/* Hero Visual Bento */}
+        {/* Hero Achievement Panel */}
         <Reveal>
-          <div className="mt-20 w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-[2rem] bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] text-left">
-            <div className="col-span-1 md:col-span-2 bg-ink rounded-2xl p-8 lg:p-10 relative overflow-hidden group">
-              <div className="absolute -top-32 -right-32 w-96 h-96 bg-brand/30 blur-[80px] rounded-full group-hover:scale-150 group-hover:bg-brand-2/40 transition-all duration-700" />
-              <div className="relative z-10">
-                <Workflow className="text-brand-2 mb-8" size={40} />
-                <h3 className="text-white font-display text-3xl font-bold mb-3">
-                  ERP Architecture
-                </h3>
-                <p className="text-white/60 text-base max-w-sm">
-                  Orchestrating complex enterprise resource planning deployments
-                  with zero downtime and total strategic alignment.
-                </p>
+          <div className="mt-20 w-full max-w-5xl mx-auto">
+
+            {/* Header */}
+            <div className="flex items-center gap-2.5 mb-5 px-1">
+              <div className="size-6 rounded-lg bg-brand/10 flex items-center justify-center">
+                <Award className="text-brand" size={13} />
               </div>
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/40">
+                Serving You With
+              </span>
             </div>
-            <div className="col-span-1 bg-gradient-brand rounded-2xl p-8 lg:p-10 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:20px_20px] opacity-50 mix-blend-overlay" />
-              <div className="relative z-10">
-                <BrainCircuit className="text-white mb-8" size={40} />
-                <h3 className="text-white font-display text-3xl font-bold mb-3">
-                  AI Agents
-                </h3>
-                <p className="text-white/80 text-base">
-                  Deploying autonomous intelligence into your core operational
-                  workflows.
-                </p>
+
+            {/* 4-across row */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 text-left">
+
+              {/* Card 01 â€” Operational Automation */}
+              <div className="bg-ink rounded-2xl p-5 relative overflow-hidden group hover:shadow-[0_0_40px_rgba(85,9,217,0.28)] transition-all duration-500 hover:-translate-y-1">
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-brand/30 blur-[50px] rounded-full group-hover:scale-150 transition-all duration-700" />
+                <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:16px_16px]" />
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="size-10 rounded-xl bg-brand/20 border border-brand/30 flex items-center justify-center group-hover:bg-brand/30 transition-colors duration-500">
+                      <Workflow className="text-brand-2" size={18} />
+                    </div>
+                    <span className="font-mono text-lg font-bold text-white/8 select-none">01</span>
+                  </div>
+                  <h3 className="text-white font-display text-sm font-bold mb-1.5">Operational Automation</h3>
+                  <p className="text-white/45 text-xs leading-relaxed">
+                    Automated workflows that improve speed, accuracy, and control.
+                  </p>
+                </div>
               </div>
+
+              {/* Card 02 â€” Accounting & Compliance */}
+              <div className="bg-gradient-brand rounded-2xl p-5 relative overflow-hidden group hover:shadow-[0_0_40px_rgba(163,54,255,0.45)] transition-all duration-500 hover:-translate-y-1">
+                <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:16px_16px]" />
+                <div className="absolute -bottom-8 -right-8 w-28 h-28 bg-white/10 blur-[30px] rounded-full group-hover:scale-125 transition-transform duration-700" />
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="size-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                      <BarChart2 className="text-white" size={18} />
+                    </div>
+                    <span className="font-mono text-lg font-bold text-white/20 select-none">02</span>
+                  </div>
+                  <h3 className="text-white font-display text-sm font-bold mb-1.5">Accounting &amp; Compliance</h3>
+                  <p className="text-white/75 text-xs leading-relaxed">
+                    VAT, corporate tax, audit readiness, and financial reporting.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 03 â€” AI Agents */}
+              <div className="bg-white border border-hairline rounded-2xl p-5 relative overflow-hidden group hover:shadow-card hover:-translate-y-1 transition-all duration-500">
+                <div className="absolute -bottom-6 -right-6 opacity-[0.04] group-hover:opacity-[0.07] transition-opacity duration-500">
+                  <BrainCircuit size={100} />
+                </div>
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="size-10 rounded-xl bg-brand/10 flex items-center justify-center group-hover:bg-brand/15 transition-colors duration-500">
+                      <BrainCircuit className="text-brand" size={18} />
+                    </div>
+                    <span className="font-mono text-lg font-bold text-ink/8 select-none">03</span>
+                  </div>
+                  <h3 className="text-ink font-display text-sm font-bold mb-1.5">AI Agents</h3>
+                  <p className="text-ink/50 text-xs leading-relaxed">
+                    AI assistants for sales, operations, and internal workflows.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 04 â€” Growth Strategy */}
+              <div className="bg-ink rounded-2xl p-5 relative overflow-hidden group hover:shadow-[0_0_40px_rgba(85,9,217,0.28)] transition-all duration-500 hover:-translate-y-1">
+                <div className="absolute -top-10 -left-10 w-32 h-32 bg-brand-2/20 blur-[50px] rounded-full group-hover:scale-150 transition-all duration-700" />
+                <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:16px_16px]" />
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="size-10 rounded-xl bg-brand-2/20 border border-brand-2/30 flex items-center justify-center group-hover:bg-brand-2/30 transition-colors duration-500">
+                      <TrendingUp className="text-brand-2" size={18} />
+                    </div>
+                    <span className="font-mono text-lg font-bold text-white/8 select-none">04</span>
+                  </div>
+                  <h3 className="text-white font-display text-sm font-bold mb-1.5">Growth Strategy</h3>
+                  <p className="text-white/45 text-xs leading-relaxed">
+                    Market positioning, operations improvement, and growth plans.
+                  </p>
+                </div>
+              </div>
+
             </div>
           </div>
         </Reveal>
       </div>
     </section>
+
   );
 }
 
@@ -248,97 +322,141 @@ function ValueBento() {
 
 function ServicesShowcase() {
   const [activeIdx, setActiveIdx] = useState(0);
+  const active = SERVICES[activeIdx];
+  const Icon = active.icon;
 
   return (
-    <section className="py-32 bg-ink text-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:16px_16px] opacity-40 mix-blend-overlay" />
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand/10 blur-[150px] rounded-full pointer-events-none" />
+    <section className="py-32 bg-mist relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(rgba(85,9,217,0.04)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <Reveal>
-          <div className="grid lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-5">
-              <div className="font-mono text-sm uppercase tracking-widest text-brand-2 mb-6">
-                Core Disciplines
+          {/* Header */}
+          <div className="text-center mb-10">
+            <div className="font-mono text-[11px] uppercase tracking-[0.25em] text-brand mb-3">What We Deliver</div>
+            <h2 className="font-display font-extrabold text-5xl lg:text-6xl tracking-tight text-ink">
+              Built to move your business forward.
+            </h2>
+          </div>
+
+          {/* Tab Bar */}
+          <div className="flex flex-wrap gap-2 justify-center mb-10">
+            {SERVICES.map((s, i) => {
+              const TabIcon = s.icon;
+              return (
+                <button
+                  key={s.slug}
+                  onClick={() => setActiveIdx(i)}
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border ${
+                    activeIdx === i
+                      ? "bg-brand text-white border-brand shadow-[0_4px_20px_rgba(85,9,217,0.35)]"
+                      : "bg-white text-ink/55 border-hairline hover:border-brand/30 hover:text-ink hover:shadow-sm"
+                  }`}
+                >
+                  <TabIcon size={14} />
+                  {s.shortTitle}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Two-Panel Content */}
+          <div className="grid lg:grid-cols-2 gap-5 items-stretch">
+
+            {/* Left â€” Info Card */}
+            <div className="bg-white rounded-[2rem] p-10 border border-hairline shadow-sm flex flex-col">
+              <div className="size-14 rounded-2xl bg-brand/10 flex items-center justify-center mb-6">
+                <Icon className="text-brand" size={26} />
               </div>
-              <h2 className="font-display font-extrabold text-5xl lg:text-6xl tracking-tight mb-12">
-                Precision <br /> capabilities.
-              </h2>
-              <div className="space-y-2">
-                {SERVICES.map((s, i) => (
-                  <div
-                    key={s.slug}
-                    className={`group cursor-pointer border-l-4 pl-6 py-4 transition-all duration-300 ${activeIdx === i ? "border-brand-2 bg-white/5 rounded-r-2xl" : "border-white/10 hover:border-white/30 hover:bg-white/5 rounded-r-2xl"}`}
-                    onClick={() => setActiveIdx(i)}
-                  >
-                    <h3
-                      className={`font-display text-2xl font-bold transition-colors ${activeIdx === i ? "text-white" : "text-white/40 group-hover:text-white/70"}`}
-                    >
-                      {s.title}
-                    </h3>
-                    <div
-                      className={`overflow-hidden transition-all duration-500 ease-in-out ${activeIdx === i ? "max-h-40 opacity-100 mt-4" : "max-h-0 opacity-0"}`}
-                    >
-                      <p className="text-white/60 mb-5 leading-relaxed">
-                        {s.tagline}
-                      </p>
-                      <Link
-                        to="/services/$slug"
-                        params={{ slug: s.slug }}
-                        className="inline-flex items-center gap-2 text-brand-2 text-sm font-semibold hover:text-white transition-colors"
-                      >
-                        Learn More <ArrowRight size={16} />
-                      </Link>
+              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand mb-3">
+                {active.shortTitle}
+              </div>
+              <h3 className="font-display text-3xl font-extrabold text-ink mb-4 leading-tight">
+                {active.headline}
+              </h3>
+              <div className="w-10 h-[3px] bg-brand rounded-full mb-5" />
+              <p className="text-ink/55 leading-relaxed mb-8 flex-1">{active.description}</p>
+
+              {/* 2Ã-2 feature pills */}
+              <div className="grid grid-cols-2 gap-3 mb-8">
+                {active.bullets.map((b) => (
+                  <div key={b} className="flex items-center gap-2.5 bg-mist border border-hairline rounded-xl px-4 py-3">
+                    <span className="size-2 rounded-full bg-brand shrink-0" />
+                    <span className="text-sm text-ink/70 font-medium leading-snug">{b}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                to="/services/$slug"
+                params={{ slug: active.slug }}
+                className="inline-flex items-center gap-2 text-brand text-sm font-semibold hover:gap-3 transition-all w-fit"
+              >
+                Explore this service <ArrowRight size={15} />
+              </Link>
+            </div>
+
+            {/* Right â€” Visual Card */}
+            <div className="bg-ink rounded-[2rem] p-8 relative overflow-hidden flex flex-col min-h-[480px]">
+              <div className="absolute -top-20 -right-20 w-72 h-72 bg-brand/25 blur-[80px] rounded-full pointer-events-none" />
+              <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:18px_18px] pointer-events-none" />
+
+              {/* Traffic lights */}
+              <div className="relative z-10 flex items-center gap-1.5 mb-8">
+                <span className="size-3 rounded-full bg-red-400/60" />
+                <span className="size-3 rounded-full bg-yellow-400/60" />
+                <span className="size-3 rounded-full bg-green-400/60" />
+              </div>
+
+              <div className="relative z-10 flex flex-col flex-1 gap-4">
+                {/* Active service highlight block */}
+                <div className="bg-brand/20 border border-brand/30 rounded-2xl p-5">
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-brand-2/60 mb-2">
+                    {active.tagline}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="size-9 rounded-xl bg-brand/30 border border-brand/40 flex items-center justify-center">
+                      <Icon className="text-brand-2" size={17} />
                     </div>
+                    <span className="font-display text-lg font-bold text-white">{active.title}</span>
+                  </div>
+                </div>
+
+                {/* What's included items */}
+                {active.whatsIncluded.slice(0, 5).map((item, i) => (
+                  <div
+                    key={item}
+                    className="bg-white/5 border border-white/8 rounded-xl px-4 py-3.5 flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`size-7 rounded-lg flex items-center justify-center ${
+                        i === 0 ? "bg-brand/30" :
+                        i === 1 ? "bg-brand-2/20" :
+                        i === 2 ? "bg-emerald-500/20" :
+                        i === 3 ? "bg-amber-500/20" : "bg-sky-500/20"
+                      }`}>
+                        <Icon size={13} className={
+                          i === 0 ? "text-brand-2" :
+                          i === 1 ? "text-brand-2" :
+                          i === 2 ? "text-emerald-400" :
+                          i === 3 ? "text-amber-400" : "text-sky-400"
+                        } />
+                      </div>
+                      <span className="text-sm text-white/65">{item}</span>
+                    </div>
+                    <CheckCircle2 size={14} className="text-brand-2/50 shrink-0" />
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="lg:col-span-7">
-              <div className="relative h-[650px] rounded-[2.5rem] border border-white/10 bg-white/5 overflow-hidden flex items-center justify-center p-12 shadow-2xl backdrop-blur-sm">
-                <div className="absolute inset-0 bg-gradient-mesh opacity-20 mix-blend-screen" />
-                {SERVICES.map((s, i) => {
-                  const Icon = s.icon;
-                  return (
-                    <div
-                      key={s.slug}
-                      className={`absolute inset-0 flex flex-col items-center justify-center p-12 text-center transition-all duration-700 transform ${activeIdx === i ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95 pointer-events-none"}`}
-                    >
-                      <div className="size-40 rounded-full bg-brand/20 flex items-center justify-center mb-10 border border-brand/30 shadow-[0_0_80px_rgba(85,9,217,0.5)] backdrop-blur-md">
-                        <Icon
-                          size={72}
-                          className="text-brand-2 drop-shadow-[0_0_15px_rgba(163,54,255,0.8)]"
-                        />
-                      </div>
-                      <h4 className="font-display text-4xl font-bold text-white mb-6 tracking-tight">
-                        {s.shortTitle}
-                      </h4>
-                      <ul className="space-y-4 text-left inline-block">
-                        {s.bullets.map((b) => (
-                          <li
-                            key={b}
-                            className="text-white/80 flex items-center gap-3 text-lg"
-                          >
-                            <CheckCircle2
-                              size={16}
-                              className="text-brand-2 shrink-0"
-                            />{" "}
-                            {b}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
           </div>
         </Reveal>
       </div>
     </section>
   );
 }
+
 
 function ProcessTimeline() {
   return (

@@ -1,11 +1,11 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 @source "../src";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 /* ---------------------------------------------------------------- */
-/* RAPTRON Digital Solutions — Premium Brand System                  */
+/* RAPTRON Digital Solutions - Premium Brand System                  */
 /* ---------------------------------------------------------------- */
 
 @theme inline {

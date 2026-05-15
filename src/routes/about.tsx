@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import {
   RefreshCw,
   ShieldCheck,
@@ -171,8 +171,9 @@ function MissionVision() {
                   Our Mission
                 </div>
                 <p className="font-display text-3xl lg:text-4xl leading-tight text-ink font-bold">
-                  To empower organizations through intelligent, scalable
-                  technology.
+                  We help business owners reduce manual work, improve
+                  visibility, and bring their daily activities into one
+                  connected, intelligent operating structure.
                 </p>
                 <div className="mt-8 inline-flex items-center gap-2 text-brand font-semibold group-hover:translate-x-2 transition-transform cursor-pointer">
                   Read our manifesto <ArrowRight size={18} />
@@ -188,8 +189,9 @@ function MissionVision() {
                   Our Vision
                 </div>
                 <p className="font-display text-3xl lg:text-4xl leading-tight font-bold">
-                  A world where every business operates at its full digital
-                  potential.
+                  To build RAPTRON into a trusted UAE-born technology company
+                  that helps businesses modernize, scale, and compete
+                  confidently in a digital future.
                 </p>
                 <div className="mt-8 inline-flex items-center gap-2 text-brand-2 font-semibold group-hover:translate-x-2 transition-transform cursor-pointer">
                   Explore our capabilities <ArrowRight size={18} />

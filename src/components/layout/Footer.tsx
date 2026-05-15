@@ -1,4 +1,4 @@
-﻿import { Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import {
   Linkedin,
   Twitter,
@@ -46,11 +46,11 @@ export function Footer() {
 
           {/* ── Brand Column ── */}
           <div className="lg:col-span-4 lg:pr-8">
-            <div className="-mt-2 mb-7">
+            <div className="-mt-2 mb-3">
               <img
                 src="/logo.png"
                 alt="Raptron Logo"
-                className="h-14 w-auto scale-[1.3] origin-left brightness-0 invert opacity-90 object-contain"
+                className="h-28 w-auto scale-[1.8] origin-left brightness-0 invert opacity-90 object-contain"
               />
             </div>
             <p className="text-sm text-white/55 leading-relaxed mb-8">
@@ -70,17 +70,10 @@ export function Footer() {
                 </a>
               ))}
             </div>
-
-            <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/4 border border-white/8">
-              <div className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-xs text-white/45 font-medium">
-                Serving clients across UAE &amp; beyond
-              </span>
-            </div>
           </div>
 
           {/* ── Services Column ── */}
-          <div className="lg:col-span-3 lg:col-start-6">
+          <div className="lg:col-span-3">
             <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35 mb-7 font-semibold">
               Services
             </h4>
@@ -136,22 +129,22 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/blog"
                   className="group inline-flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors duration-200"
                 >
                   <NavDot />
-                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">Careers</span>
-                </a>
+                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">Blog</span>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/case-studies"
                   className="group inline-flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors duration-200"
                 >
                   <NavDot />
-                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">Insights</span>
-                </a>
+                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">Case Studies</span>
+                </Link>
               </li>
             </ul>
           </div>
@@ -212,6 +205,13 @@ export function Footer() {
                 </div>
               </li>
             </ul>
+
+            <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/4 border border-white/8 mt-6">
+              <div className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs text-white/45 font-medium">
+                Serving clients across UAE &amp; beyond
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -258,10 +258,7 @@ export function Footer() {
               Let&apos;s architect your{" "}
               <span className="text-gradient">next breakthrough</span>
             </h2>
-            <p className="mt-4 text-base text-white/55 leading-relaxed max-w-lg">
-              From ERP strategy to AI-driven automation - we engineer intelligent
-              systems that scale with your ambition.
-            </p>
+
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">

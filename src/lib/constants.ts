@@ -1,26 +1,23 @@
 ﻿import type { LucideIcon } from "lucide-react";
 import {
-  Compass,
-  Layers,
-  Puzzle,
   Workflow,
   Code2,
   BrainCircuit,
+  LineChart,
+  TrendingUp,
   Factory,
   ShoppingBag,
   Building2,
-  LineChart,
   HardHat,
   Wrench,
 } from "lucide-react";
 
 export type ServiceSlug =
-  | "erp-consulting"
-  | "erp-implementation"
-  | "erp-customization"
-  | "business-process-improvement"
-  | "custom-software-development"
-  | "ai-consulting";
+  | "operational-automation"
+  | "finance-compliance"
+  | "ai-agents"
+  | "growth-strategy"
+  | "custom-software-development";
 
 export interface Service {
   slug: ServiceSlug;
@@ -38,230 +35,149 @@ export interface Service {
 
 export const SERVICES: Service[] = [
   {
-    slug: "erp-consulting",
-    title: "ERP Consulting & Strategy",
-    shortTitle: "ERP Consulting",
-    tagline: "Strategy first. Software second.",
-    headline: "Define Your Digital Future Before You Build It",
+    slug: "operational-automation",
+    title: "Operational Automation",
+    shortTitle: "Automation",
+    tagline: "Automate what slows you down.",
+    headline: "Stop Doing It Manually",
     description:
-      "Independent, vendor-neutral ERP advisory grounded in your operations, your goals, and your reality.",
-    icon: Compass,
-    bullets: [
-      "Vendor-neutral ERP selection",
-      "Digital transformation roadmap",
-      "Risk & gap analysis",
-    ],
-    whatsIncluded: [
-      "Requirement analysis (BRD / FRD)",
-      "ERP selection & solution architecture",
-      "Digital transformation roadmap",
-      "System audit & gap analysis",
-      "Total cost of ownership modeling",
-      "Stakeholder alignment workshops",
-    ],
-    process: [
-      {
-        title: "Discovery",
-        description: "Deep interviews across functions and operations.",
-      },
-      {
-        title: "Analysis",
-        description: "Map current-state inefficiencies and capability gaps.",
-      },
-      {
-        title: "Architecture",
-        description: "Design future-state systems and selection shortlist.",
-      },
-      {
-        title: "Roadmap",
-        description: "Phased plan with budgets, owners, and milestones.",
-      },
-    ],
-    outcomes: [
-      {
-        title: "Reduced implementation risk",
-        description: "Decisions backed by evidence, not vendor pressure.",
-      },
-      {
-        title: "Faster time-to-value",
-        description: "Roadmaps that prioritize quick operational wins.",
-      },
-      {
-        title: "Aligned investment",
-        description: "Technology spend matched to business outcomes.",
-      },
-    ],
-  },
-  {
-    slug: "erp-implementation",
-    title: "ERP Implementation",
-    shortTitle: "ERP Implementation",
-    tagline: "From kickoff to go-live, owned end-to-end.",
-    headline: "Go Live With Confidence",
-    description:
-      "Full lifecycle ERP rollouts - configuration, migration, training, and adoption - engineered to land safely and stick.",
-    icon: Layers,
-    bullets: [
-      "End-to-end deployment",
-      "Zero-loss data migration",
-      "User training & change management",
-    ],
-    whatsIncluded: [
-      "End-to-end ERP deployment",
-      "Module configuration & environment setup",
-      "Data migration & integrations",
-      "User training & change management",
-      "UAT and cutover planning",
-      "Hypercare & post-go-live support",
-    ],
-    process: [
-      {
-        title: "Plan",
-        description: "Project charter, RACI, and cutover strategy.",
-      },
-      {
-        title: "Build",
-        description: "Configure, integrate, and validate every module.",
-      },
-      { title: "Test", description: "UAT cycles with real-world scenarios." },
-      {
-        title: "Launch",
-        description: "Cutover, hypercare, and adoption tracking.",
-      },
-    ],
-    outcomes: [
-      {
-        title: "On-time go-live",
-        description: "Disciplined execution against clear milestones.",
-      },
-      {
-        title: "Zero-loss migration",
-        description: "Verified data quality across every cutover.",
-      },
-      {
-        title: "Adoption-ready teams",
-        description: "Trained, equipped, and confident from day one.",
-      },
-    ],
-  },
-  {
-    slug: "erp-customization",
-    title: "ERP Customization & Integration",
-    shortTitle: "ERP Customization",
-    tagline: "Bend the system to your business.",
-    headline: "Your ERP Should Work the Way You Do",
-    description:
-      "Custom modules, integrations, and automations that reshape your ERP around your real operating model.",
-    icon: Puzzle,
-    bullets: [
-      "Custom module engineering",
-      "Workflow automation",
-      "Third-party API integrations",
-    ],
-    whatsIncluded: [
-      "Custom module development",
-      "Workflow automation & process alignment",
-      "Third-party API integrations",
-      "Performance optimization",
-      "Custom reports and dashboards",
-      "Data sync between systems of record",
-    ],
-    process: [
-      {
-        title: "Scope",
-        description: "Translate operational gaps into engineering specs.",
-      },
-      {
-        title: "Design",
-        description: "Architect modules and integration patterns.",
-      },
-      {
-        title: "Develop",
-        description: "Build, test, and harden customizations.",
-      },
-      {
-        title: "Optimize",
-        description: "Tune performance and document the system.",
-      },
-    ],
-    outcomes: [
-      {
-        title: "Automated manual work",
-        description: "Eliminate friction across recurring workflows.",
-      },
-      {
-        title: "Unified system ecosystem",
-        description: "Single source of truth across applications.",
-      },
-      {
-        title: "Optimized performance",
-        description: "Systems engineered to scale with your data.",
-      },
-    ],
-  },
-  {
-    slug: "business-process-improvement",
-    title: "Business Process Improvement",
-    shortTitle: "Process Improvement",
-    tagline: "Engineer how the work actually flows.",
-    headline: "Eliminate Waste. Accelerate Output.",
-    description:
-      "We re-engineer operations using lean principles, measurable KPIs, and process intelligence - before software ever enters the room.",
+      "We design and deploy automated workflows that eliminate repetitive work, reduce errors, and give your team back the hours that matter.",
     icon: Workflow,
     bullets: [
-      "Process mapping & redesign",
-      "SOPs & operating standards",
-      "KPI & operational frameworks",
+      "Workflow design & automation",
+      "Process bottleneck elimination",
+      "Real-time operational visibility",
     ],
     whatsIncluded: [
-      "Process mapping & inefficiency analysis",
-      "SOP design & workflow restructuring",
-      "KPI framework & operational optimization",
-      "Lean transformation initiatives",
-      "Cross-functional process alignment",
-      "Continuous improvement governance",
+      "Business process mapping & analysis",
+      "Workflow automation design & deployment",
+      "System integration & data sync",
+      "SOP documentation",
+      "KPI dashboards & reporting",
+      "Ongoing optimisation planning",
     ],
     process: [
-      {
-        title: "Observe",
-        description: "Walk the process. Measure where time is lost.",
-      },
-      {
-        title: "Diagnose",
-        description: "Quantify bottlenecks and rework loops.",
-      },
-      {
-        title: "Redesign",
-        description: "Re-architect flows for speed and clarity.",
-      },
-      {
-        title: "Operationalize",
-        description: "Embed SOPs, KPIs, and review cadences.",
-      },
+      { title: "Observe", description: "Walk the process. Measure where time is lost." },
+      { title: "Redesign", description: "Re-architect flows for speed and clarity." },
+      { title: "Automate", description: "Deploy automations and integrations." },
+      { title: "Monitor", description: "Track gains and iterate continuously." },
     ],
     outcomes: [
-      {
-        title: "Productivity gains",
-        description: "Measurable lift in throughput per role.",
-      },
-      {
-        title: "Standardized operations",
-        description: "Consistent execution across teams and sites.",
-      },
-      {
-        title: "Data-driven decisions",
-        description: "Operating rhythm built on live KPIs.",
-      },
+      { title: "Hours saved per week", description: "Measurable reduction in manual, repetitive tasks." },
+      { title: "Fewer errors", description: "Automation removes human error from recurring processes." },
+      { title: "Full operational visibility", description: "See what's happening in real time - always." },
+    ],
+  },
+  {
+    slug: "finance-compliance",
+    title: "Finance & Compliance",
+    shortTitle: "Finance & Compliance",
+    tagline: "Structured finances. Confident compliance.",
+    headline: "Get Your Finances in Order - and Keep Them That Way",
+    description:
+      "We help businesses build structured accounting workflows, prepare for VAT and corporate tax obligations, and maintain audit-ready financial records year-round.",
+    icon: LineChart,
+    bullets: [
+      "VAT & corporate tax readiness",
+      "Structured accounting workflows",
+      "Audit preparation & financial reporting",
+    ],
+    whatsIncluded: [
+      "Accounting workflow design & implementation",
+      "VAT registration & filing support",
+      "Corporate tax readiness (UAE CT)",
+      "Financial reporting & dashboards",
+      "Audit preparation & documentation",
+      "Compliance calendar & controls",
+    ],
+    process: [
+      { title: "Assess", description: "Review current financial processes and compliance gaps." },
+      { title: "Structure", description: "Design accounting workflows and control frameworks." },
+      { title: "Implement", description: "Deploy tools and processes with your team." },
+      { title: "Maintain", description: "Ongoing compliance monitoring and reporting." },
+    ],
+    outcomes: [
+      { title: "Audit-ready records", description: "Accurate, organised financial documentation at all times." },
+      { title: "Tax compliance", description: "VAT and corporate tax obligations met with confidence." },
+      { title: "Financial clarity", description: "Real-time visibility into your business financial position." },
+    ],
+  },
+  {
+    slug: "ai-agents",
+    title: "AI Agents",
+    shortTitle: "AI Agents",
+    tagline: "Make your business work smarter.",
+    headline: "AI That Works For Your Business - Not Against It",
+    description:
+      "We build task-focused AI assistants that handle sales follow-ups, operations tasks, customer service, and internal reporting - so your team can focus on higher-value work.",
+    icon: BrainCircuit,
+    bullets: [
+      "Task-focused AI assistants",
+      "Sales & operations automation",
+      "Customer service intelligence",
+    ],
+    whatsIncluded: [
+      "AI use-case identification & scoping",
+      "Custom AI agent development",
+      "Sales & CRM AI automation",
+      "Customer service AI workflows",
+      "Internal operations AI tools",
+      "Reporting & insight automation",
+    ],
+    process: [
+      { title: "Identify", description: "Find the highest-ROI AI opportunities in your workflow." },
+      { title: "Design", description: "Spec the agent behaviour and integration points." },
+      { title: "Build", description: "Develop and test the AI agent in your environment." },
+      { title: "Deploy", description: "Launch, monitor, and refine for performance." },
+    ],
+    outcomes: [
+      { title: "Faster response times", description: "AI handles routine tasks instantly, 24/7." },
+      { title: "Reduced manual overhead", description: "Less admin work for your team every day." },
+      { title: "Smarter decisions", description: "AI-generated insights that drive action." },
+    ],
+  },
+  {
+    slug: "growth-strategy",
+    title: "Growth Strategy",
+    shortTitle: "Growth Strategy",
+    tagline: "Build momentum that compounds.",
+    headline: "Define Where You're Going - Then Build the Path",
+    description:
+      "We help business owners define their market position, improve operational structure, and build practical growth plans they can actually execute.",
+    icon: TrendingUp,
+    bullets: [
+      "Market positioning & strategy",
+      "Operational structure review",
+      "Actionable growth roadmapping",
+    ],
+    whatsIncluded: [
+      "Market positioning & competitive analysis",
+      "Business model review",
+      "Operational structure assessment",
+      "Growth roadmap development",
+      "Revenue strategy planning",
+      "Execution support & accountability",
+    ],
+    process: [
+      { title: "Assess", description: "Understand where you are and what's holding you back." },
+      { title: "Position", description: "Define your market edge and ideal customer." },
+      { title: "Plan", description: "Build a prioritised, practical growth roadmap." },
+      { title: "Execute", description: "Implement with support and track what moves the needle." },
+    ],
+    outcomes: [
+      { title: "Clear market position", description: "A defined edge that attracts the right clients." },
+      { title: "Operational leverage", description: "A structure that grows without breaking." },
+      { title: "Actionable roadmap", description: "A plan you can start executing next week." },
     ],
   },
   {
     slug: "custom-software-development",
     title: "Custom Software Development",
     shortTitle: "Custom Software",
-    tagline: "Software shaped to your business logic.",
-    headline: "Software Engineered for Your Exact Business Logic",
+    tagline: "Software shaped to your exact business logic.",
+    headline: "When Off-The-Shelf Doesn't Fit",
     description:
-      "When off-the-shelf doesn't fit, we build resilient, scalable, ownable systems - web, mobile, and cloud-native.",
+      "We build resilient, scalable, ownable systems - web, mobile, and cloud-native - engineered around your exact operational requirements.",
     icon: Code2,
     bullets: [
       "Web & SaaS platforms",
@@ -277,91 +193,15 @@ export const SERVICES: Service[] = [
       "DevOps, CI/CD, and observability",
     ],
     process: [
-      {
-        title: "Define",
-        description: "Translate goals into product specs and architecture.",
-      },
-      {
-        title: "Design",
-        description: "Wireframes, UX flows, and design systems.",
-      },
-      {
-        title: "Engineer",
-        description: "Iterative builds with production-grade quality bars.",
-      },
-      {
-        title: "Operate",
-        description: "Launch, monitor, and evolve in production.",
-      },
+      { title: "Define", description: "Translate goals into product specs and architecture." },
+      { title: "Design", description: "Wireframes, UX flows, and design systems." },
+      { title: "Engineer", description: "Iterative builds with production-grade quality bars." },
+      { title: "Operate", description: "Launch, monitor, and evolve in production." },
     ],
     outcomes: [
-      {
-        title: "Scalable custom systems",
-        description: "Architecture engineered for growth.",
-      },
-      {
-        title: "Cross-platform reach",
-        description: "Reach customers wherever they work.",
-      },
-      {
-        title: "Full ownership & IP",
-        description: "You own the code, the data, and the roadmap.",
-      },
-    ],
-  },
-  {
-    slug: "ai-consulting",
-    title: "AI Consulting & Intelligent Automation",
-    shortTitle: "AI Consulting",
-    tagline: "Make your business smarter, not just faster.",
-    headline: "Make Your Business Smarter, Not Just Faster",
-    description:
-      "Pragmatic AI strategy and integration - embedding predictive intelligence into the systems your business already runs on.",
-    icon: BrainCircuit,
-    bullets: [
-      "AI readiness & strategy",
-      "Predictive analytics",
-      "AI inside ERP & workflows",
-    ],
-    whatsIncluded: [
-      "AI readiness & strategy development",
-      "Use-case identification & ROI mapping",
-      "Predictive analytics & data intelligence",
-      "AI integration into ERP and business workflows",
-      "Document & process intelligence",
-      "Responsible AI governance",
-    ],
-    process: [
-      {
-        title: "Assess",
-        description: "Audit data maturity and identify high-ROI use cases.",
-      },
-      {
-        title: "Prototype",
-        description: "Validate value through targeted pilots.",
-      },
-      {
-        title: "Integrate",
-        description: "Embed AI into core systems and processes.",
-      },
-      {
-        title: "Scale",
-        description: "Productionize, monitor, and govern responsibly.",
-      },
-    ],
-    outcomes: [
-      {
-        title: "High-ROI AI opportunities",
-        description: "Backed by data, not hype.",
-      },
-      {
-        title: "Reduced operational overhead",
-        description: "Automate decisions, not just tasks.",
-      },
-      {
-        title: "Predictive business insights",
-        description: "See around corners with confidence.",
-      },
+      { title: "Scalable custom systems", description: "Architecture engineered for growth." },
+      { title: "Cross-platform reach", description: "Reach customers wherever they work." },
+      { title: "Full ownership & IP", description: "You own the code, the data, and the roadmap." },
     ],
   },
 ];
@@ -376,7 +216,7 @@ export const INDUSTRIES = [
 ];
 
 export const STATS = [
-  { value: 150, suffix: "+", label: "ERP Projects Delivered" },
+  { value: 50, suffix: "+", label: "Businesses Automated" },
   { value: 98, suffix: "%", label: "Client Retention Rate" },
   { value: 12, suffix: "+", label: "Industries Served" },
   { value: 40, suffix: "%", label: "Avg. Efficiency Gain" },
