@@ -1,4 +1,4 @@
-﻿import type { LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import {
   Workflow,
   Code2,
@@ -291,8 +291,8 @@ export const VALUES = [
 export const COMPANY = {
   name: "RAPTRON Digital Solutions LLC",
   email: "consult@raptron.com",
-  phone: "+971 50 6638260",
-  address: "DAMAC Lakeside, Dubai Production City, Dubai, United Arab Emirates",
+  phone: "+971 55 614 4097",
+  address: "Shop No. 40, Building 01, Al Aweer, Ras Al Khor, Dubai, UAE",
   shortDescription:
     "A premium technology consulting firm specializing in ERP, business process re-engineering, AI consulting, and custom software.",
 };
