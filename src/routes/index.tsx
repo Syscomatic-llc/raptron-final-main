@@ -85,7 +85,7 @@ function Hero() {
             </span>
           </h1>
 
-          <p className="mt-6 text-xl sm:text-xl text-black max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-6 text-lg sm:text-lg text-black max-w-3xl mx-auto leading-relaxed">
             We help business owners reduce manual work, improve visibility, and
             bring their daily activities into one connected, intelligent
             operating structure.
