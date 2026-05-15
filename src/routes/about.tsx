@@ -58,7 +58,7 @@ function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-2 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-2"></span>
             </span>
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-ink font-semibold">
+            <span className="text-xs font-mono tracking-[0.2em] text-ink font-semibold">
               About Raptron
             </span>
           </div>
@@ -167,7 +167,7 @@ function MissionVision() {
                 <Globe size={240} />
               </div>
               <div className="relative z-10">
-                <div className="font-mono text-[13px] uppercase tracking-[0.2em] text-brand font-semibold mb-6">
+                <div className="font-mono text-[13px] tracking-[0.2em] text-brand font-semibold mb-6">
                   Our Mission
                 </div>
                 <p className="font-display text-3xl lg:text-4xl leading-tight text-ink font-bold">
@@ -185,7 +185,7 @@ function MissionVision() {
               <div className="absolute inset-0 bg-gradient-brand opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
               <div className="absolute -top-20 -right-20 size-64 rounded-full bg-brand-2/30 blur-3xl group-hover:bg-brand-2/50 transition-colors duration-500" />
               <div className="relative z-10">
-                <div className="font-mono text-[13px] uppercase tracking-[0.2em] text-brand-2 font-semibold mb-6">
+                <div className="font-mono text-[13px] tracking-[0.2em] text-brand-2 font-semibold mb-6">
                   Our Vision
                 </div>
                 <p className="font-display text-3xl lg:text-4xl leading-tight font-bold">
@@ -213,7 +213,7 @@ function ValuesBento() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal>
           <div className="text-center mb-20 max-w-3xl mx-auto">
-            <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand mb-4">
+            <div className="font-mono text-[11px] tracking-[0.2em] text-brand mb-4">
               Core Values
             </div>
             <h2 className="font-display font-extrabold text-5xl lg:text-6xl tracking-tight text-ink">

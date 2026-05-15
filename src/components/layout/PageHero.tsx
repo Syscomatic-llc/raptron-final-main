@@ -20,7 +20,7 @@ export function PageHero({
       <div className="absolute inset-0 bg-dot-grid opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]" />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         {eyebrow && (
-          <div className="inline-flex items-center gap-2 px-3.5 h-8 rounded-full border border-hairline bg-white/70 backdrop-blur text-[11px] font-mono uppercase tracking-[0.18em] text-brand">
+          <div className="inline-flex items-center gap-2 px-3.5 h-8 rounded-full border border-hairline bg-white/70 backdrop-blur text-[11px] font-mono tracking-[0.18em] text-brand">
             <span className="size-1.5 rounded-full bg-brand animate-pulse-dot" />
             {eyebrow}
           </div>

@@ -79,7 +79,7 @@ function ServicePage() {
           <Reveal>
             <div className="grid lg:grid-cols-12 gap-10">
               <div className="reveal lg:col-span-4">
-                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand">
+                <div className="font-mono text-[11px] tracking-[0.18em] text-brand">
                   What's included
                 </div>
                 <h2 className="mt-3 font-display font-bold text-3xl lg:text-4xl">
@@ -116,8 +116,8 @@ function ServicePage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <Reveal>
             <div className="reveal max-w-2xl">
-              <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand">
-                How it works
+              <div className="font-mono text-[11px] tracking-[0.18em] text-brand">
+                How It Works
               </div>
               <h2 className="mt-3 font-display font-bold text-3xl lg:text-4xl">
                 Our delivery flow.
@@ -149,8 +149,8 @@ function ServicePage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <Reveal>
             <div className="reveal max-w-2xl">
-              <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand">
-                Business outcomes
+              <div className="font-mono text-[11px] tracking-[0.18em] text-brand">
+                Business Outcomes
               </div>
               <h2 className="mt-3 font-display font-bold text-3xl lg:text-4xl">
                 What changes when we engage.
@@ -181,8 +181,8 @@ function ServicePage() {
       <section className="bg-surface-tinted py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="max-w-2xl">
-            <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand">
-              Related services
+            <div className="font-mono text-[11px] tracking-[0.18em] text-brand">
+              Related Services
             </div>
             <h2 className="mt-3 font-display font-bold text-3xl lg:text-4xl">
               Continue exploring.

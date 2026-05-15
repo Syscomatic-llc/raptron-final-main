@@ -82,7 +82,7 @@ export function Navbar() {
             >
               <div className="rounded-[2.5rem] bg-white border border-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] overflow-hidden flex">
                 <div className="flex-1 p-8">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/40 font-semibold mb-6 px-3">
+                  <div className="font-mono text-[10px] tracking-[0.2em] text-ink/40 font-semibold mb-6 px-3">
                     Our Capabilities
                   </div>
                   <div className="grid grid-cols-2 gap-x-2 gap-y-1">

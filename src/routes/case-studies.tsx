@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   TrendingUp,
@@ -137,7 +137,7 @@ function Hero() {
         <Reveal>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/8 border border-white/12 mb-8">
             <BarChart2 size={13} className="text-brand-2" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/60 font-semibold">
+            <span className="font-mono text-[11px] tracking-[0.2em] text-white/60 font-semibold">
               Real Results
             </span>
           </div>
@@ -184,7 +184,7 @@ function FeaturedCaseStudy() {
       <div className="absolute inset-0 bg-[radial-gradient(rgba(85,9,217,0.04)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <Reveal>
-          <div className="font-mono text-[11px] uppercase tracking-[0.25em] text-brand mb-8">
+          <div className="font-mono text-[11px] tracking-[0.25em] text-brand mb-8">
             Featured Case Study
           </div>
           <div className="grid lg:grid-cols-12 gap-6 items-stretch">
@@ -225,7 +225,7 @@ function FeaturedCaseStudy() {
               <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:16px_16px]" />
 
               <div className="relative z-10">
-                <div className="font-mono text-[11px] uppercase tracking-widest text-white/35 mb-8">Outcomes</div>
+                <div className="font-mono text-[11px] tracking-widest text-white/35 mb-8">Outcomes</div>
                 <div className="space-y-6">
                   {cs.metrics.map((m) => (
                     <div key={m.label} className="border-b border-white/8 pb-6 last:border-0 last:pb-0">
@@ -257,7 +257,7 @@ function CaseStudyGrid() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal>
           <div className="mb-14">
-            <div className="font-mono text-[11px] uppercase tracking-[0.25em] text-brand mb-3">More Cases</div>
+            <div className="font-mono text-[11px] tracking-[0.25em] text-brand mb-3">More Cases</div>
             <h2 className="font-display font-extrabold text-5xl tracking-tight text-ink">
               More client stories.
             </h2>

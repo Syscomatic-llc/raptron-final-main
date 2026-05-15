@@ -9,7 +9,7 @@ import {
   ArrowRight,
   Zap,
 } from "lucide-react";
-import { SERVICES, COMPANY, INDUSTRIES } from "@/lib/constants";
+import { SERVICES, COMPANY } from "@/lib/constants";
 
 const SOCIALS = [
   { Icon: Linkedin, label: "LinkedIn", href: "#" },
@@ -74,7 +74,7 @@ export function Footer() {
 
           {/* ── Services Column ── */}
           <div className="lg:col-span-3">
-            <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35 mb-7 font-semibold">
+            <h4 className="font-mono text-[11px] tracking-[0.18em] text-white/35 mb-7 font-semibold">
               Services
             </h4>
             <ul className="space-y-3.5">
@@ -97,7 +97,7 @@ export function Footer() {
 
           {/* ── Company Column ── */}
           <div className="lg:col-span-2">
-            <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35 mb-7 font-semibold">
+            <h4 className="font-mono text-[11px] tracking-[0.18em] text-white/35 mb-7 font-semibold">
               Company
             </h4>
             <ul className="space-y-3.5">
@@ -151,8 +151,8 @@ export function Footer() {
 
           {/* ── Contact Column ── */}
           <div className="lg:col-span-3">
-            <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35 mb-7 font-semibold">
-              Get in Touch
+            <h4 className="font-mono text-[11px] tracking-[0.18em] text-white/35 mb-7 font-semibold">
+              Get In Touch
             </h4>
             <ul className="space-y-5">
               <li>
@@ -211,31 +211,6 @@ export function Footer() {
               <span className="text-xs text-white/45 font-medium">
                 Serving clients across UAE &amp; beyond
               </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Industries Marquee ─────────────────────────────────── */}
-      <div className="relative border-t border-white/5 overflow-hidden">
-        <div className="py-4 flex items-center">
-          <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.18em] text-white/22 px-6 lg:px-10 font-semibold border-r border-white/8 mr-8">
-            Industries
-          </span>
-          <div className="flex-1 overflow-hidden">
-            <div className="flex gap-10 animate-marquee whitespace-nowrap">
-              {[...INDUSTRIES, ...INDUSTRIES].map((ind, i) => (
-                <span key={i} className="inline-flex items-center gap-2.5 group">
-                  <ind.icon
-                    size={13}
-                    className="text-brand-2/35 group-hover:text-brand-2 transition-colors shrink-0"
-                  />
-                  <span className="text-sm font-medium text-white/32 group-hover:text-white/65 transition-colors">
-                    {ind.name}
-                  </span>
-                  <span className="text-white/12 ml-4">·</span>
-                </span>
-              ))}
             </div>
           </div>
         </div>

@@ -48,7 +48,7 @@ function Hero() {
           <Reveal>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ink/10 bg-white/50 backdrop-blur-md mb-8 shadow-sm">
               <LayoutGrid size={16} className="text-brand" />
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-ink font-bold">
+              <span className="text-xs font-mono tracking-[0.2em] text-ink font-bold">
                 Capabilities Matrix
               </span>
             </div>
@@ -185,7 +185,7 @@ function StackedServices() {
                     <div
                       className={`rounded-[2.5rem] p-8 lg:p-12 border ${isDark ? "bg-white/5 border-white/10" : "bg-white/50 border-hairline backdrop-blur-md shadow-sm"}`}
                     >
-                      <h4 className="font-mono text-sm uppercase tracking-widest mb-8 opacity-60">
+                      <h4 className="font-mono text-sm tracking-widest mb-8 opacity-60">
                         Architecture Specs
                       </h4>
                       <ul className="space-y-6">

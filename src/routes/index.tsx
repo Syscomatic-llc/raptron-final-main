@@ -71,8 +71,8 @@ function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand"></span>
             </span>
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-ink font-semibold">
-              The future of enterprise tech
+            <span className="text-xs font-mono tracking-[0.2em] text-ink font-semibold">
+              The Future Of Enterprise Tech
             </span>
           </div>
 
@@ -122,7 +122,7 @@ function Hero() {
               <div className="size-6 rounded-lg bg-brand/10 flex items-center justify-center">
                 <Award className="text-brand" size={13} />
               </div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/40">
+              <span className="font-mono text-[11px] tracking-[0.2em] text-ink/40">
                 Serving You With
               </span>
             </div>
@@ -217,7 +217,7 @@ function IndustriesTicker() {
     <div className="w-full border-b border-hairline bg-white py-8 overflow-hidden flex items-center relative z-20">
       {/* Left side overlay */}
       <div className="absolute left-0 top-0 bottom-0 z-20 flex items-center bg-white pl-6 lg:pl-10 pr-6">
-        <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/40">
+        <div className="font-mono text-[10px] tracking-[0.2em] text-ink/40">
           Trusted Across Sectors
         </div>
         <div className="absolute right-0 top-0 bottom-0 w-32 translate-x-full bg-gradient-to-r from-white to-transparent pointer-events-none" />
@@ -333,7 +333,7 @@ function ServicesShowcase() {
         <Reveal>
           {/* Header */}
           <div className="text-center mb-10">
-            <div className="font-mono text-[11px] uppercase tracking-[0.25em] text-brand mb-3">What We Deliver</div>
+            <div className="font-mono text-[11px] tracking-[0.25em] text-brand mb-3">What We Deliver</div>
             <h2 className="font-display font-extrabold text-5xl lg:text-6xl tracking-tight text-ink">
               Built to move your business forward.
             </h2>
@@ -604,7 +604,7 @@ function TestimonialMarquee() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center mb-20">
         <Reveal>
-          <div className="font-mono text-sm uppercase tracking-widest text-brand mb-4">
+          <div className="font-mono text-sm tracking-widest text-brand mb-4">
             Client Voices
           </div>
           <h2 className="font-display font-extrabold text-5xl lg:text-6xl text-ink">

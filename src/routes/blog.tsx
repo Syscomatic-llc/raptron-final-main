@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   BookOpen,
@@ -137,7 +137,7 @@ function Hero() {
         <Reveal>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/8 border border-white/12 mb-8">
             <BookOpen size={13} className="text-brand-2" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/60 font-semibold">
+            <span className="font-mono text-[11px] tracking-[0.2em] text-white/60 font-semibold">
               Insights & Ideas
             </span>
           </div>
@@ -185,7 +185,7 @@ function FeaturedPost() {
       <div className="absolute inset-0 bg-[radial-gradient(rgba(85,9,217,0.04)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <Reveal>
-          <div className="font-mono text-[11px] uppercase tracking-[0.25em] text-brand mb-8">
+          <div className="font-mono text-[11px] tracking-[0.25em] text-brand mb-8">
             Latest Article
           </div>
           <div className="bg-ink rounded-[2rem] overflow-hidden relative group hover:shadow-[0_0_80px_rgba(85,9,217,0.35)] transition-all duration-500">
@@ -225,8 +225,8 @@ function FeaturedPost() {
                 <div className="lg:col-span-5">
                   {/* Decorative article preview card */}
                   <div className="bg-white/6 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                    <div className="font-mono text-[10px] uppercase tracking-widest text-white/30 mb-4">
-                      In this article
+                    <div className="font-mono text-[10px] tracking-widest text-white/30 mb-4">
+                      In This Article
                     </div>
                     <ul className="space-y-3">
                       {[
@@ -262,7 +262,7 @@ function PostGrid() {
         <Reveal>
           <div className="flex items-end justify-between mb-14">
             <div>
-              <div className="font-mono text-[11px] uppercase tracking-[0.25em] text-brand mb-3">All Articles</div>
+              <div className="font-mono text-[11px] tracking-[0.25em] text-brand mb-3">All Articles</div>
               <h2 className="font-display font-extrabold text-5xl tracking-tight text-ink">
                 More to read.
               </h2>
@@ -320,7 +320,7 @@ function PostGrid() {
             <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:16px_16px]" />
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
               <div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand-2 mb-3">
+                <div className="font-mono text-[11px] tracking-[0.2em] text-brand-2 mb-3">
                   Newsletter
                 </div>
                 <h3 className="font-display text-3xl font-extrabold text-white mb-2">
