@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check, Calendar, TrendingUp } from "lucide-react";
 import { SERVICES, type ServiceSlug } from "@/lib/constants";
 import { CTABanner, PageHero } from "@/components/layout/PageHero";
@@ -57,13 +57,13 @@ function ServicePage() {
             to="/book-consultation"
             className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-gradient-brand text-white font-semibold shadow-card hover:shadow-glow transition"
           >
-            <Calendar size={16} /> Book Free Consultation
+            <Calendar size={16} /> Book free consultation
           </Link>
           <Link
             to="/request-demo"
             className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-ink/15 text-ink font-semibold hover:bg-white transition"
           >
-            Request a Demo <ArrowRight size={16} />
+            Request a demo <ArrowRight size={16} />
           </Link>
         </div>
         <div className="absolute right-10 bottom-10 hidden lg:block">

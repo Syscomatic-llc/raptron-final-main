@@ -96,7 +96,7 @@ function Hero() {
               to="/book-consultation"
               className="inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full bg-gradient-brand text-white font-semibold text-lg shadow-card hover:shadow-glow transition-all hover:scale-105"
             >
-              <Calendar size={20} /> Book Free Consultation
+              <Calendar size={20} /> Book free consultation
             </Link>
             <Link
               to="/request-demo"
@@ -106,7 +106,7 @@ function Hero() {
               <span className="absolute inset-0 bg-ink rounded-full" />
               <span className="absolute inset-0 bg-gradient-brand opacity-30 rounded-full group-hover:opacity-50 transition-opacity duration-500" />
               <span className="relative z-10 flex items-center gap-2">
-                Request Demo
+                Request demo
                 <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
               </span>
             </Link>

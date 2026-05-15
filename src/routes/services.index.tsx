@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   CheckCircle2,
@@ -72,7 +72,7 @@ function Hero() {
                 }
                 className="h-16 px-8 rounded-full bg-ink text-white font-semibold text-lg hover:scale-105 transition-transform flex items-center gap-3 shadow-lg hover:shadow-glow"
               >
-                Explore Services <ArrowRight size={20} />
+                Explore services <ArrowRight size={20} />
               </button>
             </div>
           </Reveal>

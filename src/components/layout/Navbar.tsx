@@ -1,4 +1,4 @@
-﻿import { Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
   Menu,
@@ -162,7 +162,7 @@ export function Navbar() {
                     className="relative z-10 w-full flex items-center justify-between p-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-colors group/btn"
                   >
                     <span className="font-semibold text-white text-sm">
-                      Book Consultation
+                      Book consultation
                     </span>
                     <div className="size-8 rounded-full bg-white text-ink flex items-center justify-center group-hover/btn:scale-110 transition-transform">
                       <ArrowRight size={14} />
@@ -184,7 +184,7 @@ export function Navbar() {
             <span className="absolute inset-0 bg-ink rounded-full" />
             <span className="absolute inset-0 bg-gradient-brand opacity-30 rounded-full group-hover:opacity-50 transition-opacity duration-500" />
             <span className="relative z-10 flex items-center gap-1.5">
-              Request Demo
+              Request demo
               <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
             </span>
           </Link>
@@ -253,7 +253,7 @@ export function Navbar() {
             >
               <span className="absolute inset-0 bg-ink rounded-full" />
               <span className="absolute inset-0 bg-gradient-brand opacity-30 rounded-full group-hover:opacity-50 transition-opacity duration-500" />
-              <span className="relative z-10">Request Demo</span>
+              <span className="relative z-10">Request demo</span>
             </Link>
           </div>
         </div>

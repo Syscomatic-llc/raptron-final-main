@@ -1,4 +1,4 @@
-﻿import { Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { Calendar, ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -61,13 +61,13 @@ export function CTABanner() {
                 to="/book-consultation"
                 className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-ink text-white font-semibold hover:bg-black transition"
               >
-                <Calendar size={16} /> Book Free Consultation
+                <Calendar size={16} /> Book free consultation
               </Link>
               <Link
                 to="/request-demo"
                 className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-white/40 text-white font-semibold hover:bg-white/10 transition"
               >
-                Request a Demo <ArrowRight size={16} />
+                Request a demo <ArrowRight size={16} />
               </Link>
             </div>
           </div>
