@@ -122,7 +122,7 @@ function Hero() {
               <div className="size-6 rounded-lg bg-brand/10 flex items-center justify-center">
                 <Award className="text-brand" size={13} />
               </div>
-              <span className="font-mono text-[11px] tracking-[0.2em] text-ink/40">
+              <span className="font-mono text-[11px] tracking-[0.2em] text-ink/70">
                 Serving you with
               </span>
             </div>
