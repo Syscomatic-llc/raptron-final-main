@@ -6,8 +6,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  ArrowRight,
-  Zap,
 } from "lucide-react";
 import { SERVICES, COMPANY } from "@/lib/constants";
 
@@ -212,47 +210,6 @@ export function Footer() {
                 Serving clients across UAE &amp; beyond
               </span>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── CTA Band ───────────────────────────────────────────── */}
-      <div className="relative border-t border-white/5">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 flex flex-col lg:flex-row items-center justify-between gap-10">
-          <div className="max-w-xl text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-2/10 border border-brand-2/20 mb-6">
-              <Zap size={12} className="text-brand-2 fill-brand-2" />
-              <span className="font-mono text-[11px] uppercase tracking-widest text-brand-2 font-semibold">
-                Ready to Transform?
-              </span>
-            </div>
-            <h2
-              className="text-4xl lg:text-5xl font-display font-bold text-white leading-[1.1] tracking-tight"
-              style={{ color: "white" }}
-            >
-              Let&apos;s architect your{" "}
-              <span className="text-gradient">next breakthrough</span>
-            </h2>
-
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
-            <Link
-              to="/book-consultation"
-              className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-brand to-brand-2 text-white font-semibold text-sm shadow-[0_8px_32px_rgba(85,9,217,0.4)] hover:shadow-[0_12px_40px_rgba(85,9,217,0.55)] hover:-translate-y-0.5 transition-all duration-300"
-            >
-              Book a Consultation
-              <ArrowRight
-                size={16}
-                className="group-hover:translate-x-1 transition-transform"
-              />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white/80 font-semibold text-sm hover:bg-white/10 hover:border-white/20 hover:text-white transition-all duration-300"
-            >
-              Get in Touch
-            </Link>
           </div>
         </div>
       </div>

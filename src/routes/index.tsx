@@ -72,7 +72,7 @@ function Hero() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand"></span>
             </span>
             <span className="text-xs font-mono tracking-[0.2em] text-ink font-semibold">
-              The Future Of Enterprise Tech
+              The future of enterprise tech
             </span>
           </div>
 
