@@ -21,8 +21,10 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { z } from "zod";
+import { isValidPhoneNumber } from "libphonenumber-js";
 import { SuccessState } from "./contact";
-import { INDUSTRIES } from "@/lib/constants";
+import { INDUSTRIES, COMPANY } from "@/lib/constants";
+import { PhoneInput } from "@/components/ui/PhoneInput";
 
 export const Route = createFileRoute("/request-demo")({
   head: () => ({
@@ -58,7 +60,14 @@ const schema = z.object({
   name: z.string().trim().min(1, "Required").max(100),
   website: z.string().trim().max(200).optional().or(z.literal("")),
   email: z.string().trim().email("Invalid email").max(255),
-  phone: z.string().trim().max(40).optional().or(z.literal("")),
+  phone: z.string().trim().max(40).optional().or(z.literal("")).refine((val) => {
+    if (!val) return true;
+    try {
+      return isValidPhoneNumber(val);
+    } catch {
+      return false;
+    }
+  }, "Invalid phone number"),
   industry: z.string().trim().max(100).optional().or(z.literal("")),
   size: z.string().trim().optional().or(z.literal("")),
   requirements: z.string().trim().max(2000).optional().or(z.literal("")),
@@ -262,13 +271,14 @@ function RequestDemoPage() {
                       error={errors.email}
                       required
                     />
-                    <IconField
+                    <PhoneInput
                       name="phone"
                       label="Phone number (optional)"
-                      type="tel"
-                      placeholder="+971 50 000 0000"
-                      icon={Phone}
+                      placeholder="(555) 000-0000"
                       error={errors.phone}
+                      labelClassName="block text-xs font-semibold text-ink/80 mb-1.5 transition-colors group-focus-within:text-brand"
+                      buttonClassName="bg-ink/5 hover:bg-ink/10 border-transparent h-12"
+                      inputClassName="bg-ink/5 hover:bg-ink/10 h-12 border-transparent"
                     />
 
                     <IconSelect

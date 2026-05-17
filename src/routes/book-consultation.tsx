@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   ChevronLeft,
@@ -15,7 +15,9 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { z } from "zod";
+import { isValidPhoneNumber } from "libphonenumber-js";
 import { Field, SuccessState } from "./contact";
+import { PhoneInput } from "@/components/ui/PhoneInput";
 
 export const Route = createFileRoute("/book-consultation")({
   head: () => ({
@@ -51,7 +53,13 @@ const schema = z.object({
   name: z.string().trim().min(1).max(100),
   company: z.string().trim().min(1).max(120),
   email: z.string().trim().email().max(255),
-  phone: z.string().trim().min(5).max(40),
+  phone: z.string().trim().min(1, "Required").refine((val) => {
+    try {
+      return isValidPhoneNumber(val);
+    } catch {
+      return false;
+    }
+  }, "Invalid phone number"),
   message: z.string().trim().max(2000).optional(),
 });
 
@@ -384,7 +392,15 @@ function BookConsultationPage() {
                     <IconField name="name" label="Full Name" icon={User} error={errors.name} />
                     <IconField name="company" label="Company Name" icon={Building2} error={errors.company} />
                     <IconField name="email" label="Work Email" type="email" icon={Mail} error={errors.email} />
-                    <IconField name="phone" label="Phone" type="tel" icon={Phone} error={errors.phone} />
+                    <PhoneInput
+                      name="phone"
+                      label="Phone"
+                      placeholder="(555) 000-0000"
+                      error={errors.phone}
+                      labelClassName="font-medium text-xs text-ink/60 uppercase tracking-widest font-mono mb-1.5 block"
+                      buttonClassName="bg-white border-hairline h-11"
+                      inputClassName="bg-white h-11 border-hairline"
+                    />
                   </div>
                   <IconField
                     name="message"

@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   Mail,
@@ -13,7 +13,9 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { z } from "zod";
+import { isValidPhoneNumber } from "libphonenumber-js";
 import { COMPANY } from "@/lib/constants";
+import { PhoneInput } from "@/components/ui/PhoneInput";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -33,7 +35,13 @@ const schema = z.object({
   name: z.string().trim().min(1, "Required").max(100),
   company: z.string().trim().min(1, "Required").max(120),
   email: z.string().trim().email("Invalid email").max(255),
-  phone: z.string().trim().min(5, "Required").max(40),
+  phone: z.string().trim().min(1, "Required").refine((val) => {
+    try {
+      return isValidPhoneNumber(val);
+    } catch {
+      return false;
+    }
+  }, "Invalid phone number"),
   subject: z.string().trim().min(1, "Required").max(150),
   message: z.string().trim().min(1, "Required").max(2000),
 });
@@ -186,12 +194,14 @@ function ContactPage() {
                       placeholder="john@example.com"
                       error={errors.email}
                     />
-                    <Field
+                    <PhoneInput
                       name="phone"
                       label="Phone Number"
-                      type="tel"
-                      placeholder="+1 (555) 000-0000"
+                      placeholder="(555) 000-0000"
                       error={errors.phone}
+                      labelClassName="block text-sm font-semibold text-ink/80 mb-2 transition-colors group-focus-within:text-brand"
+                      buttonClassName="bg-zinc-100 hover:bg-zinc-50 border-2 border-transparent text-ink placeholder:text-ink/30 h-14"
+                      inputClassName="bg-zinc-100 hover:bg-zinc-50 h-14"
                     />
 
                     <div className="sm:col-span-2">
