@@ -186,7 +186,7 @@ export function Navbar() {
             <span className="absolute inset-0 bg-ink rounded-full" />
             <span className="absolute inset-0 bg-gradient-brand opacity-30 rounded-full group-hover:opacity-50 transition-opacity duration-500" />
             <span className="relative z-10 flex items-center gap-1.5">
-              Request demo
+              Request ERP demo
               <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
             </span>
           </Link>
@@ -265,7 +265,7 @@ export function Navbar() {
             >
               <span className="absolute inset-0 bg-ink rounded-full" />
               <span className="absolute inset-0 bg-gradient-brand opacity-30 rounded-full group-hover:opacity-50 transition-opacity duration-500" />
-              <span className="relative z-10">Request demo</span>
+              <span className="relative z-10">Request ERP demo</span>
             </Link>
           </div>
         </div>

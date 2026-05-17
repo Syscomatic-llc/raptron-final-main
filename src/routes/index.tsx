@@ -45,6 +45,7 @@ function HomePage() {
   return (
     <main className="w-full bg-white overflow-x-hidden">
       <Hero />
+      <HeroCards />
       <IndustriesTicker />
       <ValueBento />
       <ServicesShowcase />
@@ -58,7 +59,7 @@ function HomePage() {
 
 function Hero() {
   return (
-    <section className="relative min-h-[95vh] flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden bg-mist">
+    <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-mist">
       {/* Dynamic Background */}
       <div className="absolute inset-0 bg-gradient-mesh opacity-50 mix-blend-multiply" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[800px] h-[400px] bg-brand/15 blur-[120px] rounded-full pointer-events-none" />
@@ -106,26 +107,31 @@ function Hero() {
               <span className="absolute inset-0 bg-ink rounded-full" />
               <span className="absolute inset-0 bg-gradient-brand opacity-30 rounded-full group-hover:opacity-50 transition-opacity duration-500" />
               <span className="relative z-10 flex items-center gap-2">
-                Request demo
+                Request ERP demo
                 <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
               </span>
             </Link>
           </div>
         </Reveal>
+      </div>
+    </section>
+  );
+}
 
-        {/* Hero Achievement Panel */}
+function HeroCards() {
+  return (
+    <section className="relative bg-mist pb-20 pt-6 overflow-hidden">
+      <div className="relative z-20 w-full max-w-7xl px-6 lg:px-10 mx-auto">
         <Reveal>
-          <div className="mt-20 w-full max-w-5xl mx-auto">
-
-            {/* Header */}
-            <div className="flex items-center gap-2.5 mb-5 px-1">
-              <div className="size-6 rounded-lg bg-brand/10 flex items-center justify-center">
-                <Award className="text-brand" size={13} />
-              </div>
-              <span className="font-mono text-[11px] tracking-[0.2em] text-ink/70">
-                Serving you with
-              </span>
+          {/* Header */}
+          <div className="flex items-center gap-2.5 mb-5 px-1">
+            <div className="size-6 rounded-lg bg-brand/10 flex items-center justify-center">
+              <Award className="text-brand" size={13} />
             </div>
+            <span className="font-mono text-[11px] tracking-[0.2em] text-ink/70">
+              Serving you with
+            </span>
+          </div>
 
             {/* 4-across row */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 text-left">
@@ -203,12 +209,10 @@ function Hero() {
                 </div>
               </div>
 
-            </div>
           </div>
         </Reveal>
       </div>
     </section>
-
   );
 }
 

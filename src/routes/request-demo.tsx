@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   User,
@@ -11,6 +11,14 @@ import {
   ArrowRight,
   PlayCircle,
   ShieldCheck,
+  Info,
+  Workflow,
+  LineChart,
+  Package,
+  Users,
+  BarChart3,
+  Receipt,
+  AlertCircle,
 } from "lucide-react";
 import { z } from "zod";
 import { SuccessState } from "./contact";
@@ -19,31 +27,48 @@ import { INDUSTRIES } from "@/lib/constants";
 export const Route = createFileRoute("/request-demo")({
   head: () => ({
     meta: [
-      { title: "Request a Demo - RAPTRON" },
+      { title: "Request an ERP One Demo - RAPTRON" },
       {
         name: "description",
         content:
-          "See how RAPTRON transforms your business vision into reality. Request a demo today.",
+          "See RAPTRON ERP One in action. Request a personalized demo tailored to your industry and business workflows.",
       },
     ],
   }),
   component: RequestDemoPage,
 });
 
+const ERP_MODULES = [
+  { id: "accounting", label: "Accounting & Finance", icon: Receipt },
+  { id: "inventory", label: "Inventory & Warehousing", icon: Package },
+  { id: "hr-payroll", label: "HR & Payroll", icon: Users },
+  { id: "crm", label: "CRM & Sales", icon: Workflow },
+  { id: "reporting", label: "Reports & Dashboards", icon: BarChart3 },
+  { id: "compliance", label: "VAT & Compliance", icon: LineChart },
+];
+
+const NON_DEMO_SERVICES = [
+  "Operational Automation",
+  "AI Agents",
+  "Growth Strategy",
+  "Custom Software Development",
+];
+
 const schema = z.object({
   name: z.string().trim().min(1, "Required").max(100),
-  website: z.string().trim().min(1, "Required").max(200),
+  website: z.string().trim().max(200).optional().or(z.literal("")),
   email: z.string().trim().email("Invalid email").max(255),
-  phone: z.string().trim().min(5, "Required").max(40),
-  industry: z.string().trim().min(1, "Required").max(100),
-  size: z.string().trim().min(1, "Select an option"),
-  requirements: z.string().trim().min(1, "Required").max(2000),
+  phone: z.string().trim().max(40).optional().or(z.literal("")),
+  industry: z.string().trim().max(100).optional().or(z.literal("")),
+  size: z.string().trim().optional().or(z.literal("")),
+  requirements: z.string().trim().max(2000).optional().or(z.literal("")),
 });
 
 function RequestDemoPage() {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedModules, setSelectedModules] = useState<string[]>([]);
 
   // Simple math captcha
   const captcha = useMemo(() => {
@@ -53,6 +78,12 @@ function RequestDemoPage() {
   }, []);
   const [captchaInput, setCaptchaInput] = useState("");
   const [captchaError, setCaptchaError] = useState("");
+
+  const toggleModule = (id: string) => {
+    setSelectedModules((prev) =>
+      prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id]
+    );
+  };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,8 +119,31 @@ function RequestDemoPage() {
   return (
     <div className="min-h-screen bg-background pt-20 lg:pt-24 pb-20 lg:pb-28 px-4 sm:px-6">
       <div className="mx-auto max-w-6xl">
+        {/* Non-demo notice banner */}
+        <div className="mb-6 bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4 flex gap-3 items-start shadow-sm">
+          <AlertCircle size={18} className="text-amber-500 shrink-0 mt-0.5" />
+          <div>
+            <p className="text-sm font-semibold text-amber-800 mb-0.5">
+              Demo available for ERP One only
+            </p>
+            <p className="text-xs text-amber-700 leading-relaxed">
+              Live demos are currently offered exclusively for{" "}
+              <strong>RAPTRON ERP One</strong>. Our other services —{" "}
+              {NON_DEMO_SERVICES.join(", ")} — are delivered through a
+              structured{" "}
+              <Link
+                to="/book-consultation"
+                className="underline hover:text-amber-900 transition-colors font-semibold"
+              >
+                free consultation
+              </Link>
+              , not a product demo.
+            </p>
+          </div>
+        </div>
+
         <div className="bg-white rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl border border-hairline overflow-hidden flex flex-col lg:flex-row items-stretch">
-          {/* Left panel: Immersive Brand Experience */}
+          {/* Left panel: ERP One Brand Experience */}
           <div className="relative overflow-hidden bg-brand-deep text-white flex flex-col w-full lg:w-5/12 xl:w-[45%] shrink-0">
             {/* Background Effects */}
             <div className="absolute inset-0 bg-gradient-brand opacity-20 mix-blend-screen pointer-events-none"></div>
@@ -110,35 +164,35 @@ function RequestDemoPage() {
               <div className="flex-1 flex flex-col justify-center">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-mono uppercase tracking-widest mb-6 w-max">
                   <PlayCircle size={14} className="text-brand-2" />
-                  <span>Personalized Walkthrough</span>
+                  <span>ERP One — Live Demo</span>
                 </div>
 
                 <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6 text-white">
-                  See RAPTRON <br />
+                  See ERP One <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-mist to-brand-2">
                     in action.
                   </span>
                 </h1>
                 <p className="text-xl text-white/90 italic font-medium mb-6">
-                  An ERP, unlike any other.
+                  One system. Every function. Zero compromise.
                 </p>
                 <p className="text-white/70 text-lg max-w-md font-sans leading-relaxed">
-                  Experience how RAPTRON transforms your business vision into
-                  reality. Designed to evolve with your operations today and
-                  tomorrow.
+                  RAPTRON ERP One unifies your accounting, operations,
+                  inventory, HR, and compliance into a single intelligent
+                  platform — built for UAE businesses.
                 </p>
               </div>
 
               <div className="mt-12 bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-8">
                 <div className="font-mono text-[11px] uppercase tracking-widest text-white mb-6">
-                  How we approach the demo
+                  What your demo covers
                 </div>
                 <ul className="space-y-4">
                   {[
-                    "Grounded in your business goals and workflows",
-                    "Adapted to your industry and stage of growth",
-                    "Focused on how everything works together, end to end",
-                    "Covers our full solution stack comprehensively",
+                    "Tailored to your industry and company size",
+                    "Live walkthrough of ERP One modules relevant to you",
+                    "Real workflows — not slide decks",
+                    "Q&A with an ERP specialist at the end",
                   ].map((b, i) => (
                     <li
                       key={i}
@@ -166,13 +220,17 @@ function RequestDemoPage() {
                 </div>
               ) : (
                 <div className="relative z-10 flex-1 flex flex-col justify-center animate-in fade-in slide-in-from-bottom-8 duration-700">
-                  <div className="mb-6">
+                  <div className="mb-5">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand/8 border border-brand/15 text-brand text-xs font-semibold mb-3">
+                      <Info size={12} />
+                      ERP One Demo Request
+                    </div>
                     <h2 className="font-display text-2xl lg:text-3xl font-bold text-ink mb-2">
-                      Request your Demo
+                      Book your personalized walkthrough
                     </h2>
                     <p className="text-ink/60 text-sm lg:text-base">
-                      Tell us about your organization and requirements, and
-                      we'll tailor the experience.
+                      Tell us a bit about your business and we'll prepare a demo
+                      focused on what matters most to you.
                     </p>
                   </div>
 
@@ -186,10 +244,11 @@ function RequestDemoPage() {
                       placeholder="John Doe"
                       icon={User}
                       error={errors.name}
+                      required
                     />
                     <IconField
                       name="website"
-                      label="Company website"
+                      label="Company website (optional)"
                       placeholder="acme.com"
                       icon={Globe}
                       error={errors.website}
@@ -201,36 +260,73 @@ function RequestDemoPage() {
                       placeholder="john@acme.com"
                       icon={Mail}
                       error={errors.email}
+                      required
                     />
                     <IconField
                       name="phone"
-                      label="Phone number"
+                      label="Phone number (optional)"
                       type="tel"
-                      placeholder="+1 (555) 000-0000"
+                      placeholder="+971 50 000 0000"
                       icon={Phone}
                       error={errors.phone}
                     />
 
                     <IconSelect
                       name="industry"
-                      label="Industry"
+                      label="Your industry (optional)"
                       icon={Building2}
                       error={errors.industry}
                       options={[...INDUSTRIES.map((i) => i.name), "Other"]}
                     />
                     <IconSelect
                       name="size"
-                      label="Company size"
+                      label="Company size (optional)"
                       icon={Building2}
                       error={errors.size}
                       options={["1–10", "11–50", "51–200", "201–500", "500+"]}
                     />
 
+                    {/* ERP Module Selector */}
+                    <div className="sm:col-span-2">
+                      <span className="block text-xs font-semibold text-ink/80 mb-2">
+                        Which ERP modules interest you most?{" "}
+                        <span className="text-ink/40 font-normal">
+                          (select all that apply)
+                        </span>
+                      </span>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        {ERP_MODULES.map(({ id, label, icon: Icon }) => {
+                          const active = selectedModules.includes(id);
+                          return (
+                            <button
+                              key={id}
+                              type="button"
+                              onClick={() => toggleModule(id)}
+                              className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-semibold transition-all duration-200 text-left ${
+                                active
+                                  ? "bg-brand text-white border-brand shadow-sm"
+                                  : "bg-ink/5 border-transparent text-ink/70 hover:bg-ink/10 hover:text-ink"
+                              }`}
+                            >
+                              <Icon size={13} className="shrink-0" />
+                              <span className="leading-tight">{label}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                      {/* Hidden input to carry selected modules */}
+                      <input
+                        type="hidden"
+                        name="modules"
+                        value={selectedModules.join(", ")}
+                      />
+                    </div>
+
                     <div className="sm:col-span-2">
                       <IconField
                         name="requirements"
-                        label="Describe your requirements"
-                        placeholder="What specific challenges are you looking to solve?"
+                        label="Anything specific you'd like to see? (optional)"
+                        placeholder="e.g. multi-branch inventory, payroll for 80 staff, UAE VAT filing…"
                         icon={Pencil}
                         textarea
                         error={errors.requirements}
@@ -247,7 +343,7 @@ function RequestDemoPage() {
                         </div>
                         <div>
                           <span className="block text-[13px] font-bold uppercase tracking-wider text-ink mb-0.5">
-                            Security Check
+                            Security check
                           </span>
                           <span className="block text-sm text-ink/60 font-medium">
                             Please solve:{" "}
@@ -274,10 +370,10 @@ function RequestDemoPage() {
                     </div>
 
                     <div className="sm:col-span-2 mt-2 pt-4 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4">
-                      <p className="text-xs text-ink/50 max-w-[200px] text-center sm:text-left">
+                      <p className="text-xs text-ink/50 max-w-[220px] text-center sm:text-left">
                         By clicking Request Demo, you agree to our{" "}
                         <a
-                          href="#"
+                          href="/privacy-policy"
                           className="underline hover:text-brand transition-colors"
                         >
                           Privacy Policy
@@ -292,7 +388,7 @@ function RequestDemoPage() {
                       >
                         <div className="absolute inset-0 bg-gradient-brand opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <span className="relative z-10 flex items-center gap-2 text-sm">
-                          {isSubmitting ? "Submitting..." : "Request Demo"}
+                          {isSubmitting ? "Submitting…" : "Request ERP Demo"}
                           {!isSubmitting && (
                             <ArrowRight
                               size={16}
@@ -308,6 +404,18 @@ function RequestDemoPage() {
             </div>
           </div>
         </div>
+
+        {/* Bottom info strip */}
+        <div className="mt-6 text-center text-xs text-ink/45 leading-relaxed">
+          Looking for a consultation on Operational Automation, AI Agents,
+          Growth Strategy, or Custom Software?{" "}
+          <Link
+            to="/book-consultation"
+            className="text-brand font-semibold hover:underline"
+          >
+            Book a free consultation instead →
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -321,6 +429,7 @@ function IconField({
   type = "text",
   textarea,
   error,
+  required,
 }: {
   name: string;
   label: string;
@@ -329,6 +438,7 @@ function IconField({
   type?: string;
   textarea?: boolean;
   error?: string;
+  required?: boolean;
 }) {
   const baseClasses =
     "w-full rounded-2xl bg-ink/5 border-2 border-transparent pl-11 pr-4 text-sm text-ink placeholder:text-ink/40 outline-none transition-all duration-300 focus:bg-white focus:border-brand focus:ring-4 focus:ring-brand/10 hover:bg-ink/10";
@@ -338,7 +448,7 @@ function IconField({
   return (
     <label className="block relative group">
       <span className="block text-xs font-semibold text-ink/80 mb-1.5 transition-colors group-focus-within:text-brand">
-        {label}
+        {label}{required && <span className="text-brand ml-0.5">*</span>}
       </span>
       <div className="relative">
         <Icon

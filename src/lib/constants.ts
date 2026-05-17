@@ -84,8 +84,8 @@ export const SERVICES: Service[] = [
     ],
     whatsIncluded: [
       "Accounting workflow design & implementation",
-      "VAT registration & filing support",
-      "Corporate tax readiness (UAE CT)",
+      "VAT software configuration & reporting setup",
+      "Corporate Tax (UAE CT) software readiness",
       "Financial reporting & dashboards",
       "Audit preparation & documentation",
       "Compliance calendar & controls",

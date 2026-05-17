@@ -223,18 +223,18 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-1">
             {[
-              { label: "Privacy Policy", href: "#" },
-              { label: "Terms of Service", href: "#" },
-              { label: "Cookie Settings", href: "#" },
+              { label: "Privacy Policy", to: "/privacy-policy" as const },
+              { label: "Terms of Service", to: "/terms-of-service" as const },
+              { label: "Cookie Policy", to: "/cookie-policy" as const },
             ].map((link, i) => (
               <span key={link.label} className="flex items-center gap-1">
                 {i > 0 && <span className="text-white/15 text-xs select-none">·</span>}
-                <a
-                  href={link.href}
+                <Link
+                  to={link.to}
                   className="text-xs text-white/28 hover:text-white/65 transition-colors px-2 py-1"
                 >
                   {link.label}
-                </a>
+                </Link>
               </span>
             ))}
           </div>

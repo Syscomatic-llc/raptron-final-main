@@ -67,7 +67,7 @@ export function CTABanner() {
                 to="/request-demo"
                 className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-white/40 text-white font-semibold hover:bg-white/10 transition"
               >
-                Request a demo <ArrowRight size={16} />
+                Request ERP demo <ArrowRight size={16} />
               </Link>
             </div>
           </div>

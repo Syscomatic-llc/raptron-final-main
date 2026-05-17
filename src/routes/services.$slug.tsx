@@ -63,7 +63,7 @@ function ServicePage() {
             to="/request-demo"
             className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-ink/15 text-ink font-semibold hover:bg-white transition"
           >
-            Request a demo <ArrowRight size={16} />
+            Request ERP demo <ArrowRight size={16} />
           </Link>
         </div>
         <div className="absolute right-10 bottom-10 hidden lg:block">
@@ -94,7 +94,7 @@ function ServicePage() {
                 className="reveal lg:col-span-8 grid sm:grid-cols-2 gap-3"
                 style={{ transitionDelay: "100ms" }}
               >
-                {service.whatsIncluded.map((item) => (
+                {service.whatsIncluded.map((item: string) => (
                   <div
                     key={item}
                     className="flex items-start gap-3 rounded-xl border border-hairline p-4 bg-white"
@@ -124,7 +124,7 @@ function ServicePage() {
               </h2>
             </div>
             <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {service.process.map((step, i) => (
+              {service.process.map((step: { title: string; description: string }, i: number) => (
                 <div
                   key={step.title}
                   className="reveal rounded-2xl bg-white border border-hairline p-6 hover-lift"
@@ -157,7 +157,7 @@ function ServicePage() {
               </h2>
             </div>
             <div className="mt-12 grid md:grid-cols-3 gap-6">
-              {service.outcomes.map((o, i) => (
+              {service.outcomes.map((o: { title: string; description: string }, i: number) => (
                 <div
                   key={o.title}
                   className="reveal rounded-2xl border border-hairline p-7 bg-white shadow-card"
