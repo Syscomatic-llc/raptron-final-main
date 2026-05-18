@@ -15,6 +15,7 @@ import {
   BadgeCheck,
   Code2,
   LineChart,
+  ShieldCheck,
 } from "lucide-react";
 import {
   SERVICES,
@@ -43,7 +44,7 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   return (
-    <main className="w-full bg-white overflow-x-hidden">
+    <main className="w-full bg-white">
       <Hero />
       <HeroCards />
       <IndustriesTicker />
@@ -249,73 +250,106 @@ function IndustriesTicker() {
 
 function ValueBento() {
   return (
-    <section className="py-28 lg:py-36 bg-white relative">
+    <section className="py-24 lg:py-36 bg-mist relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal>
-          <div className="text-center mb-20">
-            <h2 className="font-display font-extrabold text-5xl sm:text-6xl tracking-tight text-ink">
+          {/* Header */}
+          <div className="flex flex-col items-center text-center mb-16 lg:mb-20">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand/5 border border-brand/10 mb-6">
+              <BadgeCheck className="text-brand" size={14} />
+              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand font-semibold mt-0.5">
+                The Raptron Advantage
+              </span>
+            </div>
+            <h2 className="font-display font-extrabold text-4xl lg:text-5xl xl:text-6xl tracking-tight text-ink mb-6">
               Beyond Implementation.
             </h2>
-            <p className="mt-6 text-xl text-ink/60">
-              We engineer unfair competitive advantages.
+            <p className="text-lg lg:text-xl text-ink/60 max-w-2xl leading-relaxed">
+              We don't just deliver projects. We engineer unfair competitive advantages that scale with your business.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 auto-rows-[320px]">
+          {/* Grid */}
+          <div className="grid lg:grid-cols-3 gap-5 lg:gap-6 auto-rows-[280px] lg:auto-rows-[320px]">
             {/* Box 1 */}
-            <div className="md:col-span-2 rounded-[2rem] border border-hairline bg-surface-tinted p-12 relative overflow-hidden group hover:shadow-card transition-all duration-500 hover:-translate-y-1">
-              <div className="absolute -right-10 -bottom-10 opacity-5 group-hover:opacity-10 group-hover:scale-110 transition-all duration-700">
-                <Database size={300} />
+            <div className="lg:col-span-2 rounded-3xl border border-hairline bg-white shadow-sm p-8 lg:p-12 relative overflow-hidden group hover:shadow-card transition-all duration-500 hover:-translate-y-1">
+              <div className="absolute top-0 right-0 w-3/4 h-full bg-[radial-gradient(ellipse_at_top_right,rgba(85,9,217,0.08),transparent_70%)] pointer-events-none transition-opacity group-hover:opacity-100 opacity-60" />
+              <div className="absolute -right-12 -bottom-12 opacity-5 group-hover:opacity-10 group-hover:scale-110 transition-all duration-700">
+                <Database size={250} />
               </div>
-              <div className="relative z-10">
-                <h3 className="font-display text-4xl font-bold text-ink">
-                  Data Supremacy
-                </h3>
-                <p className="mt-4 text-ink/65 max-w-md text-lg leading-relaxed">
-                  We don't just migrate data; we structure it to feed predictive
-                  AI models, automate reporting, and power real-time executive
-                  dashboards.
-                </p>
+              <div className="flex flex-col h-full justify-between relative z-10 max-w-xl">
+                <div className="size-14 rounded-2xl bg-brand/10 flex items-center justify-center">
+                  <Database className="text-brand" size={26} />
+                </div>
+                <div>
+                  <h3 className="font-display text-3xl lg:text-4xl font-extrabold text-ink mb-4">
+                    Data Supremacy
+                  </h3>
+                  <p className="text-ink/65 text-base lg:text-lg leading-relaxed">
+                    We don't just migrate data; we structure it to feed predictive
+                    AI models, automate reporting, and power real-time executive
+                    dashboards.
+                  </p>
+                </div>
               </div>
             </div>
+
             {/* Box 2 */}
-            <div className="md:col-span-1 rounded-[2rem] border border-hairline bg-ink p-12 relative overflow-hidden group hover:shadow-glow transition-all duration-500 hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-brand opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
-              <div className="relative z-10">
-                <Zap className="text-brand-2 mb-8" size={40} />
-                <h3 className="font-display text-3xl font-bold text-white">
-                  Velocity
-                </h3>
-                <p className="mt-4 text-white/60 text-lg leading-relaxed">
-                  Shipping custom modules 4x faster with our proprietary
-                  enterprise frameworks.
-                </p>
+            <div className="lg:col-span-1 rounded-3xl border border-hairline bg-ink p-8 lg:p-12 relative overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-brand/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-2/20 blur-[50px] rounded-full pointer-events-none" />
+              <div className="flex flex-col h-full justify-between relative z-10">
+                <div className="size-14 rounded-2xl bg-white/10 flex items-center justify-center border border-white/5">
+                  <Zap className="text-brand-2" size={26} />
+                </div>
+                <div>
+                  <h3 className="font-display text-2xl lg:text-3xl font-extrabold text-white mb-3">
+                    Velocity
+                  </h3>
+                  <p className="text-white/60 text-sm lg:text-base leading-relaxed">
+                    Shipping custom modules 4x faster with our proprietary
+                    enterprise frameworks and AI-assisted workflows.
+                  </p>
+                </div>
               </div>
             </div>
+
             {/* Box 3 */}
-            <div className="md:col-span-1 rounded-[2rem] border border-hairline bg-gradient-brand p-12 text-white hover:scale-[1.02] transition-transform duration-500 group">
-              <Terminal
-                className="mb-8 opacity-80 group-hover:opacity-100 transition-opacity"
-                size={40}
-              />
-              <h3 className="font-display text-3xl font-bold text-white">Code Quality</h3>
-              <p className="mt-4 text-white/90 text-lg leading-relaxed">
-                Enterprise-grade architecture built to scale securely and
-                continuously.
-              </p>
-            </div>
-            {/* Box 4 */}
-            <div className="md:col-span-2 rounded-[2rem] border border-hairline bg-white shadow-sm p-12 relative overflow-hidden group hover:shadow-card transition-all duration-500 hover:-translate-y-1">
-              <div className="flex flex-col justify-center h-full max-w-xl relative z-10">
-                <h3 className="font-display text-4xl font-bold text-ink">
-                  Total Ownership
-                </h3>
-                <p className="mt-4 text-ink/65 text-lg leading-relaxed">
-                  From initial process audit to post-go-live optimization. One
-                  accountable team, zero handoffs, absolute transparency.
-                </p>
+            <div className="lg:col-span-1 rounded-3xl border border-brand/20 bg-gradient-to-br from-brand to-[#7010e0] p-8 lg:p-12 text-white hover:shadow-lg hover:shadow-brand/25 transition-all duration-500 group relative overflow-hidden hover:-translate-y-1">
+              <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.2)_1px,transparent_1px)] bg-[size:16px_16px] opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+              <div className="flex flex-col h-full justify-between relative z-10">
+                <div className="size-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-inner">
+                  <Terminal className="text-white" size={26} />
+                </div>
+                <div>
+                  <h3 className="font-display text-2xl lg:text-3xl font-extrabold text-white mb-3">
+                    Code Quality
+                  </h3>
+                  <p className="text-white/90 text-sm lg:text-base leading-relaxed">
+                    Enterprise-grade architecture built to scale securely and
+                    evolve continuously without technical debt.
+                  </p>
+                </div>
               </div>
-              <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-dot-grid opacity-30 [mask-image:linear-gradient(to_left,black,transparent)] group-hover:opacity-50 transition-opacity duration-700" />
+            </div>
+
+            {/* Box 4 */}
+            <div className="lg:col-span-2 rounded-3xl border border-hairline bg-surface-tinted shadow-sm p-8 lg:p-12 relative overflow-hidden group hover:shadow-card transition-all duration-500 hover:-translate-y-1">
+              <div className="absolute right-0 top-0 bottom-0 w-2/3 bg-[radial-gradient(rgba(85,9,217,0.1)_1px,transparent_1px)] bg-[size:16px_16px] [mask-image:linear-gradient(to_left,black,transparent)] opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="flex flex-col h-full justify-between relative z-10 max-w-xl">
+                <div className="size-14 rounded-2xl bg-white border border-hairline shadow-sm flex items-center justify-center">
+                  <ShieldCheck className="text-brand" size={26} />
+                </div>
+                <div>
+                  <h3 className="font-display text-3xl lg:text-4xl font-extrabold text-ink mb-4">
+                    Total Ownership
+                  </h3>
+                  <p className="text-ink/65 text-base lg:text-lg leading-relaxed">
+                    From initial process audit to post-go-live optimization. One
+                    accountable team, zero handoffs, absolute transparency, and guaranteed outcomes.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </Reveal>
@@ -326,134 +360,196 @@ function ValueBento() {
 
 function ServicesShowcase() {
   const [activeIdx, setActiveIdx] = useState(0);
-  const active = SERVICES[activeIdx];
-  const Icon = active.icon;
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const numServices = SERVICES.length;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const { top, height } = containerRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      const maxScroll = height - viewportHeight;
+      const currentScroll = -top;
+      
+      if (currentScroll <= 0) {
+        setScrollProgress(0);
+        setActiveIdx(0);
+      } else if (currentScroll >= maxScroll) {
+        setScrollProgress(1);
+        setActiveIdx(numServices - 1);
+      } else {
+        const progress = currentScroll / maxScroll;
+        setScrollProgress(progress);
+        const newIdx = Math.round(progress * (numServices - 1));
+        setActiveIdx(Math.min(numServices - 1, newIdx));
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [numServices]);
+
+  const scrollToIdx = (idx: number) => {
+    if (!containerRef.current) return;
+    const viewportHeight = window.innerHeight;
+    const rect = containerRef.current.getBoundingClientRect();
+    const absoluteTop = window.scrollY + rect.top;
+    const maxScroll = rect.height - viewportHeight;
+    const targetScroll = (idx / (numServices - 1)) * maxScroll;
+    window.scrollTo({ top: absoluteTop + targetScroll, behavior: 'smooth' });
+  };
 
   return (
-    <section className="py-32 bg-mist relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(rgba(85,9,217,0.04)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
+    <section ref={containerRef} className="relative bg-mist" style={{ height: `${numServices * 80}vh` }}>
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden w-full px-2">
+        <div className="absolute inset-0 bg-[radial-gradient(rgba(85,9,217,0.04)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
-        <Reveal>
-          {/* Header */}
-          <div className="text-center mb-10">
-            <div className="font-mono text-[11px] tracking-[0.25em] text-brand mb-3">What We Deliver</div>
-            <h2 className="font-display font-extrabold text-5xl lg:text-6xl tracking-tight text-ink">
-              Built to move your business forward.
-            </h2>
-          </div>
-
-          {/* Tab Bar */}
-          <div className="flex flex-wrap gap-2 justify-center mb-10">
-            {SERVICES.map((s, i) => {
-              const TabIcon = s.icon;
-              return (
-                <button
-                  key={s.slug}
-                  onClick={() => setActiveIdx(i)}
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border ${activeIdx === i
-                    ? "bg-brand text-white border-brand shadow-[0_4px_20px_rgba(85,9,217,0.35)]"
-                    : "bg-white text-ink/55 border-hairline hover:border-brand/30 hover:text-ink hover:shadow-sm"
-                    }`}
-                >
-                  <TabIcon size={14} />
-                  {s.shortTitle}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Two-Panel Content */}
-          <div className="grid lg:grid-cols-2 gap-5 items-stretch">
-
-            {/* Left â€” Info Card */}
-            <div className="bg-white rounded-[2rem] p-10 border border-hairline shadow-sm flex flex-col">
-              <div className="size-14 rounded-2xl bg-brand/10 flex items-center justify-center mb-6">
-                <Icon className="text-brand" size={26} />
+        <div className="max-w-7xl mx-auto px-4 lg:px-10 relative z-10 w-full">
+          <Reveal>
+            {/* Header */}
+            <div className="flex flex-col items-center text-center mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand/5 border border-brand/10 mb-3">
+                <BadgeCheck className="text-brand" size={14} />
+                <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand font-semibold mt-0.5">
+                  What We Deliver
+                </span>
               </div>
-              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand mb-3">
-                {active.shortTitle}
-              </div>
-              <h3 className="font-display text-3xl font-extrabold text-ink mb-4 leading-tight">
-                {active.headline}
-              </h3>
-              <div className="w-10 h-[3px] bg-brand rounded-full mb-5" />
-              <p className="text-ink/55 leading-relaxed mb-8 flex-1">{active.description}</p>
-
-              {/* 2Ã-2 feature pills */}
-              <div className="grid grid-cols-2 gap-3 mb-8">
-                {active.bullets.map((b) => (
-                  <div key={b} className="flex items-center gap-2.5 bg-mist border border-hairline rounded-xl px-4 py-3">
-                    <span className="size-2 rounded-full bg-brand shrink-0" />
-                    <span className="text-sm text-ink/70 font-medium leading-snug">{b}</span>
-                  </div>
-                ))}
-              </div>
-
-              <Link
-                to="/services/$slug"
-                params={{ slug: active.slug }}
-                className="inline-flex items-center gap-2 text-brand text-sm font-semibold hover:gap-3 transition-all w-fit"
-              >
-                Explore this service <ArrowRight size={15} />
-              </Link>
+              <h2 className="font-display font-extrabold text-3xl lg:text-4xl xl:text-5xl tracking-tight text-ink">
+                Built to move your business forward.
+              </h2>
             </div>
 
-            {/* Right â€” Visual Card */}
-            <div className="bg-ink rounded-[2rem] p-8 relative overflow-hidden flex flex-col min-h-[480px]">
-              <div className="absolute -top-20 -right-20 w-72 h-72 bg-brand/25 blur-[80px] rounded-full pointer-events-none" />
-              <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:18px_18px] pointer-events-none" />
-
-              {/* Traffic lights */}
-              <div className="relative z-10 flex items-center gap-1.5 mb-8">
-                <span className="size-3 rounded-full bg-red-400/60" />
-                <span className="size-3 rounded-full bg-yellow-400/60" />
-                <span className="size-3 rounded-full bg-green-400/60" />
-              </div>
-
-              <div className="relative z-10 flex flex-col flex-1 gap-4">
-                {/* Active service highlight block */}
-                <div className="bg-brand/20 border border-brand/30 rounded-2xl p-5">
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-brand-2/60 mb-2">
-                    {active.tagline}
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="size-9 rounded-xl bg-brand/30 border border-brand/40 flex items-center justify-center">
-                      <Icon className="text-brand-2" size={17} />
-                    </div>
-                    <span className="font-display text-lg font-bold text-white">{active.title}</span>
-                  </div>
-                </div>
-
-                {/* What's included items */}
-                {active.whatsIncluded.slice(0, 5).map((item, i) => (
-                  <div
-                    key={item}
-                    className="bg-white/5 border border-white/8 rounded-xl px-4 py-3.5 flex items-center justify-between"
+            {/* Tab Bar */}
+            <div className="flex flex-wrap gap-2 justify-center mb-6">
+              {SERVICES.map((s, i) => {
+                const TabIcon = s.icon;
+                return (
+                  <button
+                    key={s.slug}
+                    onClick={() => scrollToIdx(i)}
+                    className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 border ${activeIdx === i
+                      ? "bg-brand text-white border-brand shadow-[0_4px_20px_rgba(85,9,217,0.35)]"
+                      : "bg-white text-ink/55 border-hairline hover:border-brand/30 hover:text-ink hover:shadow-sm"
+                      }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className={`size-7 rounded-lg flex items-center justify-center ${i === 0 ? "bg-brand/30" :
-                        i === 1 ? "bg-brand-2/20" :
-                          i === 2 ? "bg-emerald-500/20" :
-                            i === 3 ? "bg-amber-500/20" : "bg-sky-500/20"
-                        }`}>
-                        <Icon size={13} className={
-                          i === 0 ? "text-brand-2" :
-                            i === 1 ? "text-brand-2" :
-                              i === 2 ? "text-emerald-400" :
-                                i === 3 ? "text-amber-400" : "text-sky-400"
-                        } />
-                      </div>
-                      <span className="text-sm text-white/65">{item}</span>
-                    </div>
-                    <CheckCircle2 size={14} className="text-brand-2/50 shrink-0" />
-                  </div>
-                ))}
-              </div>
+                    <TabIcon size={12} />
+                    {s.shortTitle}
+                  </button>
+                );
+              })}
             </div>
 
-          </div>
-        </Reveal>
+            {/* Horizontal Track */}
+            <div className="overflow-hidden w-full pb-2">
+              <div 
+                className="flex items-stretch transition-transform duration-[400ms] ease-out will-change-transform"
+                style={{ 
+                  width: `${numServices * 100}%`, 
+                  transform: `translateX(-${scrollProgress * (100 - 100/numServices)}%)` 
+                }}
+              >
+                {SERVICES.map((s) => {
+                  const Icon = s.icon;
+                  return (
+                    <div 
+                      key={s.slug} 
+                      className="w-full flex-shrink-0 px-2 lg:px-4" 
+                      style={{ width: `${100 / numServices}%` }}
+                    >
+                      <div className="bg-white rounded-3xl border border-hairline shadow-sm grid lg:grid-cols-2 overflow-hidden h-full min-h-[420px]">
+                        {/* Left — Info Section */}
+                        <div className="p-5 lg:p-8 flex flex-col">
+                          <div className="size-10 rounded-xl bg-brand/10 flex items-center justify-center mb-3">
+                            <Icon className="text-brand" size={20} />
+                          </div>
+                          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand mb-2">
+                            {s.shortTitle}
+                          </div>
+                          <h3 className="font-display text-xl lg:text-3xl font-extrabold text-ink mb-3 leading-tight">
+                            {s.headline}
+                          </h3>
+                          <div className="w-8 h-0.5 bg-brand rounded-full mb-3" />
+                          <p className="text-ink/60 leading-relaxed mb-4 flex-1 text-xs lg:text-sm">{s.description}</p>
+
+                          <div className="grid grid-cols-2 gap-2 mb-4">
+                            {s.bullets.map((b) => (
+                              <div key={b} className="flex items-center gap-2 bg-mist border border-hairline rounded-lg px-2.5 py-1.5">
+                                <span className="size-1.5 rounded-full bg-brand shrink-0" />
+                                <span className="text-[11px] lg:text-xs text-ink/75 font-medium leading-snug">{b}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          <Link
+                            to="/services/$slug"
+                            params={{ slug: s.slug }}
+                            className="inline-flex items-center gap-1.5 text-brand text-xs font-semibold hover:gap-2 transition-all w-fit mt-auto"
+                          >
+                            Explore this service <ArrowRight size={13} />
+                          </Link>
+                        </div>
+
+                        {/* Right — Visual Section */}
+                        <div className="bg-ink p-5 lg:p-8 relative overflow-hidden flex flex-col">
+                          <div className="absolute -top-20 -right-20 w-56 h-56 bg-brand/25 blur-[60px] rounded-full pointer-events-none" />
+                          <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
+
+                          <div className="relative z-10 flex items-center gap-1.5 mb-4">
+                            <span className="size-2.5 rounded-full bg-red-400/60" />
+                            <span className="size-2.5 rounded-full bg-yellow-400/60" />
+                            <span className="size-2.5 rounded-full bg-green-400/60" />
+                          </div>
+
+                          <div className="relative z-10 flex flex-col flex-1 gap-2">
+                            <div className="bg-brand/20 border border-brand/30 rounded-xl p-3 mb-1">
+                              <div className="font-mono text-[9px] uppercase tracking-widest text-brand-2/70 mb-1">
+                                {s.tagline}
+                              </div>
+                              <div className="flex items-center gap-2.5">
+                                <div className="size-7 rounded-lg bg-brand/30 border border-brand/40 flex items-center justify-center">
+                                  <Icon className="text-brand-2" size={14} />
+                                </div>
+                                <span className="font-display text-sm lg:text-base font-bold text-white">{s.title}</span>
+                              </div>
+                            </div>
+
+                            {s.whatsIncluded.slice(0, 5).map((item, i) => (
+                              <div
+                                key={item}
+                                className="bg-white/5 border border-white/8 rounded-lg px-3 py-2 flex items-center justify-between"
+                              >
+                                <div className="flex items-center gap-2.5">
+                                  <div className={`size-5 rounded-md flex items-center justify-center ${
+                                    i === 0 ? "bg-brand/30" :
+                                    i === 1 ? "bg-brand-2/20" :
+                                    i === 2 ? "bg-emerald-500/20" :
+                                    i === 3 ? "bg-amber-500/20" : "bg-sky-500/20"
+                                  }`}>
+                                    <Icon size={10} className={
+                                      i === 0 ? "text-brand-2" :
+                                      i === 1 ? "text-brand-2" :
+                                      i === 2 ? "text-emerald-400" :
+                                      i === 3 ? "text-amber-400" : "text-sky-400"
+                                    } />
+                                  </div>
+                                  <span className="text-[11px] lg:text-xs text-white/70">{item}</span>
+                                </div>
+                                <CheckCircle2 size={12} className="text-brand-2/50 shrink-0" />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
@@ -480,7 +576,7 @@ function ProcessTimeline() {
             {/* Horizontal Line */}
             <div className="absolute top-0 left-[5%] right-[5%] h-1 bg-gradient-to-r from-transparent via-brand/40 to-transparent hidden md:block" />
 
-            <div className="grid md:grid-cols-5 gap-10 md:gap-4 relative z-10">
+            <div className="grid md:grid-cols-5 gap-10 md:gap-6 relative z-10">
               {PROCESS_STEPS.map((step, i) => (
                 <div
                   key={step.title}
@@ -495,14 +591,14 @@ function ProcessTimeline() {
                   <div
                     className={`mt-8 md:mt-0 md:pt-12 transition-all duration-500 md:group-hover:-translate-y-2 w-full ${i % 2 !== 0 ? "md:pt-32" : ""}`}
                   >
-                    <div className="bg-white p-8 rounded-3xl shadow-sm border border-hairline group-hover:shadow-card transition-all relative overflow-hidden text-left md:text-center h-full">
-                      <div className="font-mono text-5xl font-bold text-ink/5 absolute -top-2 -right-2 group-hover:text-brand/10 transition-colors pointer-events-none select-none">
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-hairline group-hover:shadow-card transition-all relative text-left md:text-center h-full">
+                      <div className="font-mono text-4xl font-bold text-ink/5 absolute top-3 right-4 group-hover:text-brand/10 transition-colors pointer-events-none select-none">
                         0{i + 1}
                       </div>
-                      <h4 className="font-display font-bold text-2xl mb-3 text-ink relative z-10">
+                      <h4 className="font-display font-bold text-xl mb-2 mt-7 text-ink relative z-10">
                         {step.title}
                       </h4>
-                      <p className="text-base text-ink/65 relative z-10 leading-relaxed">
+                      <p className="text-sm text-ink/65 relative z-10 leading-relaxed">
                         {step.description}
                       </p>
                     </div>
