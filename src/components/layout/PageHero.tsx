@@ -41,33 +41,71 @@ export function PageHero({
 
 export function CTABanner() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-20 lg:py-28">
-        <div className="relative rounded-3xl bg-gradient-brand animate-gradient overflow-hidden p-10 lg:p-16">
-          {/* particle dots */}
-          <div className="absolute inset-0 opacity-30 bg-dot-grid animate-drift" />
-          <div className="absolute -top-20 -right-20 size-72 rounded-full bg-white/10 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 size-72 rounded-full bg-brand-deep/40 blur-3xl" />
-          <div className="relative max-w-3xl">
-            <h2 className="font-display font-bold text-white text-3xl sm:text-4xl lg:text-5xl leading-tight">
-              Ready to rethink your business technology?
-            </h2>
-            <p className="mt-4 text-white/85 text-lg max-w-xl">
-              Let's design the next phase of your operations - together. Start
-              with a free 45-minute strategy session.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+        <div className="relative rounded-[2.5rem] bg-ink overflow-hidden">
+          {/* Background glows */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_90%_at_0%_50%,rgba(85,9,217,0.45),transparent)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_70%_at_100%_20%,rgba(163,54,255,0.25),transparent)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:20px_20px]" />
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-2/10 blur-[120px] rounded-full pointer-events-none" />
+
+          <div className="relative z-10 grid lg:grid-cols-[1fr_auto] items-center gap-10 p-10 lg:p-16">
+            {/* Left: copy */}
+            <div>
+              {/* Live badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+                </span>
+                <span className="text-[10px] font-mono tracking-[0.18em] text-white/50 font-semibold uppercase">
+                  Now taking new clients - Dubai & UAE
+                </span>
+              </div>
+
+              <h2 className="font-display font-extrabold text-white text-3xl sm:text-4xl lg:text-5xl leading-[1.06] tracking-tight">
+                Ready to rethink your{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-2 via-violet-400 to-brand-2">
+                  business technology?
+                </span>
+              </h2>
+              <p className="mt-4 text-white/50 text-base lg:text-lg max-w-2xl leading-relaxed">
+                Let's design the next phase of your operations - together. Start
+                with a free 45-minute strategy session.
+              </p>
+
+              {/* Trust pills */}
+              <div className="mt-5 flex flex-wrap gap-2">
+                {[
+                  "No long-term contract",
+                  "Live in 4 weeks",
+                  "UAE-registered team",
+                ].map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/8 text-[11px] font-mono text-white/40"
+                  >
+                    <span className="size-1 rounded-full bg-emerald-400/70" />
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: CTAs */}
+            <div className="flex flex-col gap-3 shrink-0">
               <Link
                 to="/book-consultation"
-                className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-ink text-white font-semibold hover:bg-black transition"
+                className="btn-lucrative inline-flex items-center justify-center gap-2.5 h-14 px-8 rounded-full text-white font-semibold text-base whitespace-nowrap"
               >
-                <Calendar size={16} /> Book a free consultation
+                <Calendar size={17} /> Book a free consultation
               </Link>
               <Link
                 to="/request-demo"
-                className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-white/40 text-white font-semibold hover:bg-white/10 transition"
+                className="inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full border border-white/15 bg-white/5 text-white font-semibold text-base hover:bg-white/10 hover:border-white/25 hover:scale-105 transition-all duration-300 whitespace-nowrap"
               >
-                Request ERP demo <ArrowRight size={16} />
+                Request ERP demo <ArrowRight size={15} />
               </Link>
             </div>
           </div>

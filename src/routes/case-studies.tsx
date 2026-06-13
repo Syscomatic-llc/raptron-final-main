@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   TrendingUp,
-  Clock,
   BarChart2,
   Workflow,
   BrainCircuit,
@@ -155,20 +154,25 @@ function Hero() {
           </p>
 
           <div className="mt-12 flex flex-wrap gap-4">
-            {["All", "Automation", "Finance", "AI Agents", "Strategy", "Software"].map(
-              (cat, i) => (
-                <button
-                  key={cat}
-                  className={`px-5 py-2.5 rounded-full text-sm font-semibold border transition-all duration-200 ${
-                    i === 0
-                      ? "bg-brand text-white border-brand"
-                      : "bg-white/5 text-white/55 border-white/10 hover:bg-white/10 hover:text-white"
-                  }`}
-                >
-                  {cat}
-                </button>
-              )
-            )}
+            {[
+              "All",
+              "Automation",
+              "Finance",
+              "AI Agents",
+              "Strategy",
+              "Software",
+            ].map((cat, i) => (
+              <button
+                key={cat}
+                className={`px-5 py-2.5 rounded-full text-sm font-semibold border transition-all duration-200 ${
+                  i === 0
+                    ? "bg-brand text-white border-brand"
+                    : "bg-white/5 text-white/55 border-white/10 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
         </Reveal>
       </div>
@@ -188,7 +192,6 @@ function FeaturedCaseStudy() {
             Featured Case Study
           </div>
           <div className="grid lg:grid-cols-12 gap-6 items-stretch">
-
             {/* Left - Story */}
             <div className="lg:col-span-7 bg-white rounded-[2rem] p-12 border border-hairline shadow-sm flex flex-col">
               <div className="flex items-center gap-3 mb-8">
@@ -196,17 +199,25 @@ function FeaturedCaseStudy() {
                   <Icon size={18} className="text-brand" />
                 </div>
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-brand">{cs.tag}</div>
-                  <div className="text-sm text-ink/50 font-medium">{cs.industry}</div>
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-brand">
+                    {cs.tag}
+                  </div>
+                  <div className="text-sm text-ink/50 font-medium">
+                    {cs.industry}
+                  </div>
                 </div>
               </div>
 
-              <div className="font-mono text-[11px] uppercase tracking-widest text-ink/35 mb-3">{cs.company}</div>
+              <div className="font-mono text-[11px] uppercase tracking-widest text-ink/35 mb-3">
+                {cs.company}
+              </div>
               <h2 className="font-display text-4xl font-extrabold text-ink leading-tight mb-6">
                 {cs.headline}
               </h2>
               <div className="w-10 h-[3px] bg-brand rounded-full mb-6" />
-              <p className="text-ink/60 leading-relaxed flex-1 text-lg">{cs.description}</p>
+              <p className="text-ink/60 leading-relaxed flex-1 text-lg">
+                {cs.description}
+              </p>
 
               <div className="mt-10">
                 <Link
@@ -214,7 +225,10 @@ function FeaturedCaseStudy() {
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-ink text-white font-semibold text-sm hover:bg-brand transition-colors duration-300 group"
                 >
                   Read Full Case Study
-                  <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight
+                    size={15}
+                    className="group-hover:translate-x-0.5 transition-transform"
+                  />
                 </Link>
               </div>
             </div>
@@ -225,14 +239,21 @@ function FeaturedCaseStudy() {
               <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:16px_16px]" />
 
               <div className="relative z-10">
-                <div className="font-mono text-[11px] tracking-widest text-white/35 mb-8">Outcomes</div>
+                <div className="font-mono text-[11px] tracking-widest text-white/35 mb-8">
+                  Outcomes
+                </div>
                 <div className="space-y-6">
                   {cs.metrics.map((m) => (
-                    <div key={m.label} className="border-b border-white/8 pb-6 last:border-0 last:pb-0">
+                    <div
+                      key={m.label}
+                      className="border-b border-white/8 pb-6 last:border-0 last:pb-0"
+                    >
                       <div className="font-display text-5xl font-extrabold text-white mb-1 tracking-tight">
                         {m.value}
                       </div>
-                      <div className="text-white/45 text-sm font-medium">{m.label}</div>
+                      <div className="text-white/45 text-sm font-medium">
+                        {m.label}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -243,7 +264,6 @@ function FeaturedCaseStudy() {
                 Verified client outcome
               </div>
             </div>
-
           </div>
         </Reveal>
       </div>
@@ -257,7 +277,9 @@ function CaseStudyGrid() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal>
           <div className="mb-14">
-            <div className="font-mono text-[11px] tracking-[0.25em] text-brand mb-3">More Cases</div>
+            <div className="font-mono text-[11px] tracking-[0.25em] text-brand mb-3">
+              More Cases
+            </div>
             <h2 className="font-display font-extrabold text-5xl tracking-tight text-ink">
               More client stories.
             </h2>
@@ -266,7 +288,8 @@ function CaseStudyGrid() {
           <div className="grid md:grid-cols-2 gap-6">
             {CASE_STUDIES.slice(1).map((cs) => {
               const Icon = cs.tagIcon;
-              const isDark = cs.accent === "bg-ink" || cs.accent === "bg-gradient-brand";
+              const isDark =
+                cs.accent === "bg-ink" || cs.accent === "bg-gradient-brand";
               return (
                 <div
                   key={cs.id}
@@ -280,30 +303,65 @@ function CaseStudyGrid() {
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-8">
                       <div className="flex items-center gap-3">
-                        <div className={`size-10 rounded-xl flex items-center justify-center ${isDark ? "bg-white/10 border border-white/15" : "bg-brand/10"}`}>
-                          <Icon size={17} className={isDark ? "text-brand-2" : "text-brand"} />
+                        <div
+                          className={`size-10 rounded-xl flex items-center justify-center ${isDark ? "bg-white/10 border border-white/15" : "bg-brand/10"}`}
+                        >
+                          <Icon
+                            size={17}
+                            className={isDark ? "text-brand-2" : "text-brand"}
+                          />
                         </div>
                         <div>
-                          <div className={`font-mono text-[10px] uppercase tracking-widest ${isDark ? "text-brand-2" : "text-brand"}`}>{cs.tag}</div>
-                          <div className={`text-xs font-medium ${isDark ? "text-white/40" : "text-ink/40"}`}>{cs.industry}</div>
+                          <div
+                            className={`font-mono text-[10px] uppercase tracking-widest ${isDark ? "text-brand-2" : "text-brand"}`}
+                          >
+                            {cs.tag}
+                          </div>
+                          <div
+                            className={`text-xs font-medium ${isDark ? "text-white/40" : "text-ink/40"}`}
+                          >
+                            {cs.industry}
+                          </div>
                         </div>
                       </div>
-                      <ChevronRight size={18} className={`${isDark ? "text-white/20" : "text-ink/20"} group-hover:translate-x-1 transition-transform`} />
+                      <ChevronRight
+                        size={18}
+                        className={`${isDark ? "text-white/20" : "text-ink/20"} group-hover:translate-x-1 transition-transform`}
+                      />
                     </div>
 
-                    <div className={`font-mono text-[10px] uppercase tracking-widest mb-2 ${isDark ? "text-white/30" : "text-ink/35"}`}>{cs.company}</div>
-                    <h3 className={`font-display text-xl font-bold mb-4 leading-snug ${isDark ? "text-white" : "text-ink"}`}>
+                    <div
+                      className={`font-mono text-[10px] uppercase tracking-widest mb-2 ${isDark ? "text-white/30" : "text-ink/35"}`}
+                    >
+                      {cs.company}
+                    </div>
+                    <h3
+                      className={`font-display text-xl font-bold mb-4 leading-snug ${isDark ? "text-white" : "text-ink"}`}
+                    >
                       {cs.headline}
                     </h3>
-                    <p className={`text-sm leading-relaxed mb-8 line-clamp-3 ${isDark ? "text-white/50" : "text-ink/55"}`}>
+                    <p
+                      className={`text-sm leading-relaxed mb-8 line-clamp-3 ${isDark ? "text-white/50" : "text-ink/55"}`}
+                    >
                       {cs.description}
                     </p>
 
                     <div className="grid grid-cols-3 gap-3">
                       {cs.metrics.map((m) => (
-                        <div key={m.label} className={`rounded-xl p-3 ${isDark ? "bg-white/6 border border-white/8" : "bg-mist border border-hairline"}`}>
-                          <div className={`font-display text-2xl font-extrabold ${isDark ? "text-white" : "text-ink"}`}>{m.value}</div>
-                          <div className={`text-[10px] mt-0.5 leading-tight ${isDark ? "text-white/40" : "text-ink/45"}`}>{m.label}</div>
+                        <div
+                          key={m.label}
+                          className={`rounded-xl p-3 ${isDark ? "bg-white/6 border border-white/8" : "bg-mist border border-hairline"}`}
+                        >
+                          <div
+                            className={`font-display text-2xl font-extrabold ${isDark ? "text-white" : "text-ink"}`}
+                          >
+                            {m.value}
+                          </div>
+                          <div
+                            className={`text-[10px] mt-0.5 leading-tight ${isDark ? "text-white/40" : "text-ink/45"}`}
+                          >
+                            {m.label}
+                          </div>
                         </div>
                       ))}
                     </div>

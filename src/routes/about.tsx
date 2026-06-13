@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  RefreshCw,
   ShieldCheck,
-  TrendingUp,
   Handshake,
   Target,
   Globe,
@@ -10,6 +8,9 @@ import {
   Workflow,
   Crosshair,
   ArrowRight,
+  Users2,
+  Sparkles,
+  CheckCircle2,
 } from "lucide-react";
 import { CTABanner } from "@/components/layout/PageHero";
 import { Reveal } from "@/components/Reveal";
@@ -205,50 +206,120 @@ function MissionVision() {
   );
 }
 
-function ValuesBento() {
-  const VALUE_ICONS = [Handshake, ShieldCheck, RefreshCw, TrendingUp];
+const VALUE_CONFIG = [
+  {
+    icon: Users2,
+    accent: "from-violet-500 to-purple-700",
+    glow: "bg-violet-500/20",
+    border: "hover:border-violet-400/40",
+    num: "01",
+  },
+  {
+    icon: ShieldCheck,
+    accent: "from-blue-500 to-indigo-700",
+    glow: "bg-blue-500/20",
+    border: "hover:border-blue-400/40",
+    num: "02",
+  },
+  {
+    icon: Sparkles,
+    accent: "from-emerald-500 to-teal-700",
+    glow: "bg-emerald-500/20",
+    border: "hover:border-emerald-400/40",
+    num: "03",
+  },
+  {
+    icon: Handshake,
+    accent: "from-amber-500 to-orange-600",
+    glow: "bg-amber-500/20",
+    border: "hover:border-amber-400/40",
+    num: "04",
+  },
+];
 
+function ValuesBento() {
   return (
-    <section className="py-28 lg:py-36 bg-white relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section className="py-28 lg:py-40 bg-ink relative overflow-hidden">
+      {/* Ambient background glows */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-brand-2/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+        {/* Header */}
         <Reveal>
           <div className="text-center mb-20 max-w-3xl mx-auto">
-            <div className="font-mono text-[11px] tracking-[0.2em] text-brand mb-4">
-              Core Values
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur mb-6">
+              <CheckCircle2 size={13} className="text-brand-2" />
+              <span className="font-mono text-[11px] tracking-[0.2em] text-brand-2 uppercase">
+                Core Values
+              </span>
             </div>
-            <h2 className="font-display font-extrabold text-5xl lg:text-6xl tracking-tight text-ink">
-              The things we won't compromise on.
+            <h2 className="font-display font-extrabold text-5xl lg:text-6xl tracking-tight text-white leading-[1.08]">
+              The things we won&apos;t{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand via-brand-2 to-violet-400">
+                compromise on.
+              </span>
             </h2>
           </div>
+        </Reveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {VALUES.map((v, i) => {
-              const Icon = VALUE_ICONS[i % VALUE_ICONS.length];
-              return (
+        {/* Cards grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+          {VALUES.map((v, i) => {
+            const cfg = VALUE_CONFIG[i % VALUE_CONFIG.length];
+            const Icon = cfg.icon;
+            return (
+              <Reveal key={v.title} delay={i * 80} className="h-full">
                 <div
-                  key={v.title}
-                  className="group relative rounded-[2rem] border border-hairline bg-surface-tinted p-8 overflow-hidden hover:shadow-card transition-all duration-500 hover:-translate-y-2"
+                  className={`group relative rounded-[1.75rem] border border-white/8 bg-white/4 backdrop-blur-md p-8 overflow-hidden h-full min-h-[280px]
+                    hover:bg-white/7 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)] ${cfg.border} cursor-default`}
                 >
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute -top-10 -right-10 text-mist/30 group-hover:text-mist/60 transition-colors duration-500">
-                    <Icon size={180} />
+                  {/* Glow orb */}
+                  <div
+                    className={`absolute -top-12 -right-12 w-48 h-48 rounded-full blur-3xl ${cfg.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}
+                  />
+
+                  {/* Large ghost icon */}
+                  <div className="absolute -bottom-6 -right-4 text-white/4 group-hover:text-white/7 transition-colors duration-500 pointer-events-none">
+                    <Icon size={160} strokeWidth={0.8} />
                   </div>
-                  <div className="relative z-10">
-                    <div className="size-14 rounded-xl bg-gradient-brand text-white flex items-center justify-center shadow-md mb-8 group-hover:scale-110 transition-transform duration-500">
-                      <Icon size={24} />
+
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Number badge */}
+                    <div className="mb-6 flex items-center justify-between">
+                      <span className="font-mono text-[11px] tracking-[0.2em] text-white/25 font-semibold">
+                        {cfg.num}
+                      </span>
+                      {/* Icon chip */}
+                      <div
+                        className={`size-11 rounded-xl bg-gradient-to-br ${cfg.accent} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-500`}
+                      >
+                        <Icon
+                          size={20}
+                          className="text-white"
+                          strokeWidth={2}
+                        />
+                      </div>
                     </div>
-                    <h4 className="font-display font-bold text-2xl text-ink mb-4">
+
+                    <h4 className="font-display font-bold text-xl text-white mb-3 leading-snug">
                       {v.title}
                     </h4>
-                    <p className="text-ink/65 leading-relaxed">
+                    <p className="text-white/50 text-[15px] leading-relaxed group-hover:text-white/70 transition-colors duration-300">
                       {v.description}
                     </p>
+
+                    {/* Bottom accent line */}
+                    <div
+                      className={`mt-8 h-px bg-gradient-to-r ${cfg.accent} opacity-0 group-hover:opacity-40 transition-opacity duration-500`}
+                    />
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </Reveal>
+              </Reveal>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

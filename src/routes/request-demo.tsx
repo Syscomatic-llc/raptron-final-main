@@ -4,7 +4,6 @@ import {
   User,
   Globe,
   Mail,
-  Phone,
   Building2,
   Pencil,
   Check,
@@ -23,7 +22,7 @@ import {
 import { z } from "zod";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { SuccessState } from "./contact";
-import { INDUSTRIES, COMPANY } from "@/lib/constants";
+import { INDUSTRIES } from "@/lib/constants";
 import { PhoneInput } from "@/components/ui/PhoneInput";
 
 export const Route = createFileRoute("/request-demo")({
@@ -58,16 +57,23 @@ const NON_DEMO_SERVICES = [
 
 const schema = z.object({
   name: z.string().trim().min(1, "Required").max(100),
+  company: z.string().trim().min(1, "Required").max(120),
   website: z.string().trim().max(200).optional().or(z.literal("")),
   email: z.string().trim().email("Invalid email").max(255),
-  phone: z.string().trim().max(40).optional().or(z.literal("")).refine((val) => {
-    if (!val) return true;
-    try {
-      return isValidPhoneNumber(val);
-    } catch {
-      return false;
-    }
-  }, "Invalid phone number"),
+  phone: z
+    .string()
+    .trim()
+    .max(40)
+    .optional()
+    .or(z.literal(""))
+    .refine((val) => {
+      if (!val) return true;
+      try {
+        return isValidPhoneNumber(val);
+      } catch {
+        return false;
+      }
+    }, "Invalid phone number"),
   industry: z.string().trim().max(100).optional().or(z.literal("")),
   size: z.string().trim().optional().or(z.literal("")),
   requirements: z.string().trim().max(2000).optional().or(z.literal("")),
@@ -78,6 +84,7 @@ function RequestDemoPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedModules, setSelectedModules] = useState<string[]>([]);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Simple math captcha
   const captcha = useMemo(() => {
@@ -90,7 +97,7 @@ function RequestDemoPage() {
 
   const toggleModule = (id: string) => {
     setSelectedModules((prev) =>
-      prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id],
     );
   };
 
@@ -116,13 +123,47 @@ function RequestDemoPage() {
     }
 
     setErrors({});
+    setSubmitError(null);
     setIsSubmitting(true);
 
-    // Simulate API delay
-    await new Promise((r) => setTimeout(r, 1200));
+    try {
+      const payload = {
+        ...result.data,
+        modules: selectedModules
+          .map((m) => {
+            const mod = ERP_MODULES.find((em) => em.id === m);
+            return mod ? mod.label : m;
+          })
+          .join(", "),
+      };
 
-    setIsSubmitting(false);
-    setSubmitted(true);
+      console.log("Demo request form submitting:", payload);
+      const response = await fetch("/api/request-demo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(
+          errorData.error || `Server responded with status ${response.status}`,
+        );
+      }
+
+      setSubmitted(true);
+    } catch (err: unknown) {
+      console.error("Submission error:", err);
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong submitting your request. Please try again or contact us directly.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -137,8 +178,8 @@ function RequestDemoPage() {
             </p>
             <p className="text-xs text-amber-700 leading-relaxed">
               Live demos are currently offered exclusively for{" "}
-              <strong>RAPTRON ERP One</strong>. Our other services —{" "}
-              {NON_DEMO_SERVICES.join(", ")} — are delivered through a
+              <strong>RAPTRON ERP One</strong>. Our other services -{" "}
+              {NON_DEMO_SERVICES.join(", ")} - are delivered through a
               structured{" "}
               <Link
                 to="/book-consultation"
@@ -173,7 +214,7 @@ function RequestDemoPage() {
               <div className="flex-1 flex flex-col justify-center">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-mono uppercase tracking-widest mb-6 w-max">
                   <PlayCircle size={14} className="text-brand-2" />
-                  <span>ERP One — Live Demo</span>
+                  <span>ERP One - Live Demo</span>
                 </div>
 
                 <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6 text-white">
@@ -188,7 +229,7 @@ function RequestDemoPage() {
                 <p className="text-white/70 text-lg max-w-md font-sans leading-relaxed">
                   RAPTRON ERP One unifies your accounting, operations,
                   inventory, HR, and compliance into a single intelligent
-                  platform — built for UAE businesses.
+                  platform - built for UAE businesses.
                 </p>
               </div>
 
@@ -200,7 +241,7 @@ function RequestDemoPage() {
                   {[
                     "Tailored to your industry and company size",
                     "Live walkthrough of ERP One modules relevant to you",
-                    "Real workflows — not slide decks",
+                    "Real workflows - not slide decks",
                     "Q&A with an ERP specialist at the end",
                   ].map((b, i) => (
                     <li
@@ -253,6 +294,14 @@ function RequestDemoPage() {
                       placeholder="John Doe"
                       icon={User}
                       error={errors.name}
+                      required
+                    />
+                    <IconField
+                      name="company"
+                      label="Company name"
+                      placeholder="Acme Corp"
+                      icon={Building2}
+                      error={errors.company}
                       required
                     />
                     <IconField
@@ -379,34 +428,42 @@ function RequestDemoPage() {
                       </div>
                     </div>
 
-                    <div className="sm:col-span-2 mt-2 pt-4 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4">
-                      <p className="text-xs text-ink/50 max-w-[220px] text-center sm:text-left">
-                        By clicking Request Demo, you agree to our{" "}
-                        <a
-                          href="/privacy-policy"
-                          className="underline hover:text-brand transition-colors"
-                        >
-                          Privacy Policy
-                        </a>
-                        .
-                      </p>
+                    <div className="sm:col-span-2 mt-2 pt-4 border-t border-hairline flex flex-col gap-3">
+                      {submitError && (
+                        <div className="flex items-start gap-3 p-4 rounded-2xl bg-destructive/5 border border-destructive/20 text-destructive text-sm animate-in fade-in slide-in-from-top-2 duration-300">
+                          <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                          <span>{submitError}</span>
+                        </div>
+                      )}
+                      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <p className="text-xs text-ink/50 max-w-[220px] text-center sm:text-left">
+                          By clicking Request Demo, you agree to our{" "}
+                          <a
+                            href="/privacy-policy"
+                            className="underline hover:text-brand transition-colors"
+                          >
+                            Privacy Policy
+                          </a>
+                          .
+                        </p>
 
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-ink text-white font-semibold overflow-hidden transition-all hover:shadow-glow disabled:opacity-70 disabled:cursor-not-allowed shrink-0"
-                      >
-                        <div className="absolute inset-0 bg-gradient-brand opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <span className="relative z-10 flex items-center gap-2 text-sm">
-                          {isSubmitting ? "Submitting…" : "Request ERP Demo"}
-                          {!isSubmitting && (
-                            <ArrowRight
-                              size={16}
-                              className="group-hover:translate-x-1 transition-transform"
-                            />
-                          )}
-                        </span>
-                      </button>
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-ink text-white font-semibold overflow-hidden transition-all hover:shadow-glow disabled:opacity-70 disabled:cursor-not-allowed shrink-0"
+                        >
+                          <div className="absolute inset-0 bg-gradient-brand opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <span className="relative z-10 flex items-center gap-2 text-sm">
+                            {isSubmitting ? "Submitting…" : "Request ERP Demo"}
+                            {!isSubmitting && (
+                              <ArrowRight
+                                size={16}
+                                className="group-hover:translate-x-1 transition-transform"
+                              />
+                            )}
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   </form>
                 </div>
@@ -458,7 +515,8 @@ function IconField({
   return (
     <label className="block relative group">
       <span className="block text-xs font-semibold text-ink/80 mb-1.5 transition-colors group-focus-within:text-brand">
-        {label}{required && <span className="text-brand ml-0.5">*</span>}
+        {label}
+        {required && <span className="text-brand ml-0.5">*</span>}
       </span>
       <div className="relative">
         <Icon

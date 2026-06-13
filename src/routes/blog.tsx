@@ -8,7 +8,6 @@ import {
   LineChart,
   TrendingUp,
   Code2,
-  Tag,
   ChevronRight,
 } from "lucide-react";
 import { CTABanner } from "@/components/layout/PageHero";
@@ -28,7 +27,14 @@ export const Route = createFileRoute("/blog")({
   component: BlogPage,
 });
 
-const CATEGORIES = ["All", "Automation", "Finance & Tax", "AI", "Strategy", "Software"];
+const CATEGORIES = [
+  "All",
+  "Automation",
+  "Finance & Tax",
+  "AI",
+  "Strategy",
+  "Software",
+];
 
 const POSTS = [
   {
@@ -178,7 +184,8 @@ function Hero() {
 function FeaturedPost() {
   const post = POSTS[0];
   const Icon = post.categoryIcon;
-  const colorClass = CATEGORY_COLORS[post.category] ?? "text-brand bg-brand/10 border-brand/20";
+  const colorClass =
+    CATEGORY_COLORS[post.category] ?? "text-brand bg-brand/10 border-brand/20";
 
   return (
     <section className="py-20 bg-mist relative overflow-hidden">
@@ -196,11 +203,15 @@ function FeaturedPost() {
               <div className="grid lg:grid-cols-12 gap-12 items-center">
                 <div className="lg:col-span-7">
                   <div className="flex items-center gap-3 mb-8">
-                    <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border ${colorClass}`}>
+                    <div
+                      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border ${colorClass}`}
+                    >
                       <Icon size={12} />
                       {post.category}
                     </div>
-                    <span className="text-white/30 text-xs font-mono">{post.date}</span>
+                    <span className="text-white/30 text-xs font-mono">
+                      {post.date}
+                    </span>
                     <span className="flex items-center gap-1.5 text-white/30 text-xs font-mono">
                       <Clock size={11} /> {post.readTime}
                     </span>
@@ -218,7 +229,10 @@ function FeaturedPost() {
                     className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-brand to-brand-2 text-white font-semibold text-sm shadow-[0_8px_32px_rgba(85,9,217,0.4)] hover:shadow-[0_12px_40px_rgba(85,9,217,0.55)] hover:-translate-y-0.5 transition-all duration-300 group"
                   >
                     Read Article
-                    <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight
+                      size={15}
+                      className="group-hover:translate-x-0.5 transition-transform"
+                    />
                   </Link>
                 </div>
 
@@ -236,7 +250,10 @@ function FeaturedPost() {
                         "ROI calculation template (free)",
                         "Common pitfalls to avoid",
                       ].map((item, i) => (
-                        <li key={item} className="flex items-start gap-3 text-sm text-white/60">
+                        <li
+                          key={item}
+                          className="flex items-start gap-3 text-sm text-white/60"
+                        >
                           <span className="font-mono text-[10px] text-brand-2/60 shrink-0 mt-0.5">
                             0{i + 1}
                           </span>
@@ -262,7 +279,9 @@ function PostGrid() {
         <Reveal>
           <div className="flex items-end justify-between mb-14">
             <div>
-              <div className="font-mono text-[11px] tracking-[0.25em] text-brand mb-3">All Articles</div>
+              <div className="font-mono text-[11px] tracking-[0.25em] text-brand mb-3">
+                All Articles
+              </div>
               <h2 className="font-display font-extrabold text-5xl tracking-tight text-ink">
                 More to read.
               </h2>
@@ -288,11 +307,16 @@ function PostGrid() {
                   className="group bg-white border border-hairline rounded-[1.75rem] p-8 hover:shadow-card hover:-translate-y-1 transition-all duration-400 flex flex-col"
                 >
                   <div className="flex items-center justify-between mb-6">
-                    <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border ${colorClass}`}>
+                    <div
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border ${colorClass}`}
+                    >
                       <Icon size={11} />
                       {post.category}
                     </div>
-                    <ChevronRight size={16} className="text-ink/20 group-hover:text-brand group-hover:translate-x-0.5 transition-all" />
+                    <ChevronRight
+                      size={16}
+                      className="text-ink/20 group-hover:text-brand group-hover:translate-x-0.5 transition-all"
+                    />
                   </div>
 
                   <h3 className="font-display text-xl font-bold text-ink leading-snug mb-3 flex-1">
@@ -307,7 +331,9 @@ function PostGrid() {
                       <Clock size={11} /> {post.readTime}
                     </div>
                     <span className="text-ink/20 text-xs">·</span>
-                    <span className="text-ink/35 text-xs font-mono">{post.date}</span>
+                    <span className="text-ink/35 text-xs font-mono">
+                      {post.date}
+                    </span>
                   </div>
                 </Link>
               );
@@ -327,7 +353,8 @@ function PostGrid() {
                   One insight. Every two weeks.
                 </h3>
                 <p className="text-white/50 max-w-md">
-                  No fluff. We send one practical article on automation, AI, or business operations - only when it's worth your time.
+                  No fluff. We send one practical article on automation, AI, or
+                  business operations - only when it's worth your time.
                 </p>
               </div>
               <div className="flex items-center gap-3 shrink-0 w-full lg:w-auto">

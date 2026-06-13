@@ -6,25 +6,37 @@ import tsConfigPaths from "vite-tsconfig-paths";
 
 import path from "path";
 
-export default defineConfig({
-  plugins: [
-    TanStackRouterVite({ autoCodeSplitting: true }),
-    tailwindcss(),
-    tsConfigPaths({ projects: ["./tsconfig.json"] }),
-    viteReact(),
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-    dedupe: [
-      "react",
-      "react-dom",
-      "react/jsx-runtime",
-      "react/jsx-dev-runtime",
-      "@tanstack/react-query",
-      "@tanstack/query-core",
+export default defineConfig(() => {
+  return {
+    plugins: [
+      TanStackRouterVite({ autoCodeSplitting: true }),
+      tailwindcss(),
+      tsConfigPaths({ projects: ["./tsconfig.json"] }),
+      viteReact(),
     ],
-  },
-  server: { host: "::", port: 8080 },
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
+      dedupe: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react/jsx-dev-runtime",
+        "@tanstack/react-query",
+        "@tanstack/query-core",
+      ],
+    },
+    server: {
+      host: "::",
+      port: 8080,
+      proxy: {
+        "/api": {
+          target: "http://localhost:5000",
+          changeOrigin: true,
+          secure: false,
+        },
+      },
+    },
+  };
 });

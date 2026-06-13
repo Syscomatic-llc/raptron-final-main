@@ -57,15 +57,36 @@ export const SERVICES: Service[] = [
       "Ongoing optimisation planning",
     ],
     process: [
-      { title: "Observe", description: "Walk the process. Measure where time is lost." },
-      { title: "Redesign", description: "Re-architect flows for speed and clarity." },
-      { title: "Automate", description: "Deploy automations and integrations." },
-      { title: "Monitor", description: "Track gains and iterate continuously." },
+      {
+        title: "Observe",
+        description: "Walk the process. Measure where time is lost.",
+      },
+      {
+        title: "Redesign",
+        description: "Re-architect flows for speed and clarity.",
+      },
+      {
+        title: "Automate",
+        description: "Deploy automations and integrations.",
+      },
+      {
+        title: "Monitor",
+        description: "Track gains and iterate continuously.",
+      },
     ],
     outcomes: [
-      { title: "Hours saved per week", description: "Measurable reduction in manual, repetitive tasks." },
-      { title: "Fewer errors", description: "Automation removes human error from recurring processes." },
-      { title: "Full operational visibility", description: "See what's happening in real time - always." },
+      {
+        title: "Hours saved per week",
+        description: "Measurable reduction in manual, repetitive tasks.",
+      },
+      {
+        title: "Fewer errors",
+        description: "Automation removes human error from recurring processes.",
+      },
+      {
+        title: "Full operational visibility",
+        description: "See what's happening in real time - always.",
+      },
     ],
   },
   {
@@ -91,15 +112,38 @@ export const SERVICES: Service[] = [
       "Compliance calendar & controls",
     ],
     process: [
-      { title: "Assess", description: "Review current financial processes and compliance gaps." },
-      { title: "Structure", description: "Design accounting workflows and control frameworks." },
-      { title: "Implement", description: "Deploy tools and processes with your team." },
-      { title: "Maintain", description: "Ongoing compliance monitoring and reporting." },
+      {
+        title: "Assess",
+        description: "Review current financial processes and compliance gaps.",
+      },
+      {
+        title: "Structure",
+        description: "Design accounting workflows and control frameworks.",
+      },
+      {
+        title: "Implement",
+        description: "Deploy tools and processes with your team.",
+      },
+      {
+        title: "Maintain",
+        description: "Ongoing compliance monitoring and reporting.",
+      },
     ],
     outcomes: [
-      { title: "Audit-ready records", description: "Accurate, organised financial documentation at all times." },
-      { title: "Tax compliance", description: "VAT and corporate tax obligations met with confidence." },
-      { title: "Financial clarity", description: "Real-time visibility into your business financial position." },
+      {
+        title: "Audit-ready records",
+        description:
+          "Accurate, organised financial documentation at all times.",
+      },
+      {
+        title: "Tax compliance",
+        description: "VAT and corporate tax obligations met with confidence.",
+      },
+      {
+        title: "Financial clarity",
+        description:
+          "Real-time visibility into your business financial position.",
+      },
     ],
   },
   {
@@ -125,15 +169,36 @@ export const SERVICES: Service[] = [
       "Reporting & insight automation",
     ],
     process: [
-      { title: "Identify", description: "Find the highest-ROI AI opportunities in your workflow." },
-      { title: "Design", description: "Spec the agent behaviour and integration points." },
-      { title: "Build", description: "Develop and test the AI agent in your environment." },
-      { title: "Deploy", description: "Launch, monitor, and refine for performance." },
+      {
+        title: "Identify",
+        description: "Find the highest-ROI AI opportunities in your workflow.",
+      },
+      {
+        title: "Design",
+        description: "Spec the agent behaviour and integration points.",
+      },
+      {
+        title: "Build",
+        description: "Develop and test the AI agent in your environment.",
+      },
+      {
+        title: "Deploy",
+        description: "Launch, monitor, and refine for performance.",
+      },
     ],
     outcomes: [
-      { title: "Faster response times", description: "AI handles routine tasks instantly, 24/7." },
-      { title: "Reduced manual overhead", description: "Less admin work for your team every day." },
-      { title: "Smarter decisions", description: "AI-generated insights that drive action." },
+      {
+        title: "Faster response times",
+        description: "AI handles routine tasks instantly, 24/7.",
+      },
+      {
+        title: "Reduced manual overhead",
+        description: "Less admin work for your team every day.",
+      },
+      {
+        title: "Smarter decisions",
+        description: "AI-generated insights that drive action.",
+      },
     ],
   },
   {
@@ -159,15 +224,36 @@ export const SERVICES: Service[] = [
       "Execution support & accountability",
     ],
     process: [
-      { title: "Assess", description: "Understand where you are and what's holding you back." },
-      { title: "Position", description: "Define your market edge and ideal customer." },
-      { title: "Plan", description: "Build a prioritised, practical growth roadmap." },
-      { title: "Execute", description: "Implement with support and track what moves the needle." },
+      {
+        title: "Assess",
+        description: "Understand where you are and what's holding you back.",
+      },
+      {
+        title: "Position",
+        description: "Define your market edge and ideal customer.",
+      },
+      {
+        title: "Plan",
+        description: "Build a prioritised, practical growth roadmap.",
+      },
+      {
+        title: "Execute",
+        description: "Implement with support and track what moves the needle.",
+      },
     ],
     outcomes: [
-      { title: "Clear market position", description: "A defined edge that attracts the right clients." },
-      { title: "Operational leverage", description: "A structure that grows without breaking." },
-      { title: "Actionable roadmap", description: "A plan you can start executing next week." },
+      {
+        title: "Clear market position",
+        description: "A defined edge that attracts the right clients.",
+      },
+      {
+        title: "Operational leverage",
+        description: "A structure that grows without breaking.",
+      },
+      {
+        title: "Actionable roadmap",
+        description: "A plan you can start executing next week.",
+      },
     ],
   },
   {
@@ -193,15 +279,36 @@ export const SERVICES: Service[] = [
       "DevOps, CI/CD, and observability",
     ],
     process: [
-      { title: "Define", description: "Translate goals into product specs and architecture." },
-      { title: "Design", description: "Wireframes, UX flows, and design systems." },
-      { title: "Engineer", description: "Iterative builds with production-grade quality bars." },
-      { title: "Operate", description: "Launch, monitor, and evolve in production." },
+      {
+        title: "Define",
+        description: "Translate goals into product specs and architecture.",
+      },
+      {
+        title: "Design",
+        description: "Wireframes, UX flows, and design systems.",
+      },
+      {
+        title: "Engineer",
+        description: "Iterative builds with production-grade quality bars.",
+      },
+      {
+        title: "Operate",
+        description: "Launch, monitor, and evolve in production.",
+      },
     ],
     outcomes: [
-      { title: "Scalable custom systems", description: "Architecture engineered for growth." },
-      { title: "Cross-platform reach", description: "Reach customers wherever they work." },
-      { title: "Full ownership & IP", description: "You own the code, the data, and the roadmap." },
+      {
+        title: "Scalable custom systems",
+        description: "Architecture engineered for growth.",
+      },
+      {
+        title: "Cross-platform reach",
+        description: "Reach customers wherever they work.",
+      },
+      {
+        title: "Full ownership & IP",
+        description: "You own the code, the data, and the roadmap.",
+      },
     ],
   },
 ];
@@ -225,24 +332,45 @@ export const STATS = [
 export const TESTIMONIALS = [
   {
     quote:
-      "RAPTRON treated our ERP rollout like an operations problem first and a software project second. That's why it actually worked.",
-    name: "Lorem Ipsum",
-    title: "VP Operations",
-    company: "Placeholder Manufacturing Co.",
+      "RAPTRON helped us simplify our credit sales and customer due management with an easy and reliable solution. Their solution improved our billing, inventory, and credit tracking operations efficiently.",
+    name: "Mohammed Mominul Islam",
+    title: "Owner",
+    company: "Al Fukhar Foodstuff Trd",
   },
   {
     quote:
-      "They rebuilt processes we'd lived with for a decade. The new flow is faster, cleaner, and finally measurable.",
-    name: "Dolor Sit",
-    title: "Chief Operating Officer",
-    company: "Placeholder Logistics Group",
+      "RAPTRON provided a reliable platform for managing our daily sales, inventory, and credit customers efficiently. Their team also implemented an eCommerce-based platform that helped us improve our online business presence and operations.",
+    name: "Saif Ahmed Salem Al Kaabi",
+    title: "Owner",
+    company: "Al Garshoub Foodstuff Trd",
   },
   {
     quote:
-      "Their AI consulting cut through the hype. We shipped two production use-cases in a quarter - both already paying for themselves.",
-    name: "Amet Consectetur",
-    title: "Director, Digital Strategy",
-    company: "Placeholder Retail Holdings",
+      "RAPTRON delivered a simple and effective solution that improved our service and workshop management. The implementation process was professional, smooth, and well-supported by the RAPTRON team.",
+    name: "Mohamed Mahmud Hafez",
+    title: "Owner",
+    company: "Muzairah Motorcycle Repairing",
+  },
+  {
+    quote:
+      "RAPTRON helped us keep our work records and daily operations more organized. The solution was practical and easy for our team to use.",
+    name: "Saif Ahmed Salem Al Kaabi",
+    title: "Owner",
+    company: "Al Garshoub Electrical Ins. Repairing",
+  },
+  {
+    quote:
+      "RAPTRON helped us build custom reports for lot-wise profitability, stock movement, and inventory forecasting. It made it easier for us to supervise the business and understand our daily performance.",
+    name: "Mohamed Nurul Absar",
+    title: "Owner",
+    company: "Mohammed Nurul Absar Fruits & Vegetables",
+  },
+  {
+    quote:
+      "RAPTRON provided a practical solution for tracking inventory, forecasting stock needs, and reviewing lot-wise profit. The reports helped us monitor the business more clearly and make better decisions.",
+    name: "Mohamed Nurul Anwar",
+    title: "Owner",
+    company: "Sama Al Aweer Fruits and Vegetable Market",
   },
 ];
 
@@ -292,7 +420,8 @@ export const COMPANY = {
   name: "RAPTRON Digital Solutions LLC",
   email: "consult@raptron.com",
   phone: "+971 55 614 4097",
-  address: "Dubai Food District, Shop No. 40, Building 01, Al Aweer, Ras Al Khor, Dubai, UAE",
+  address:
+    "Dubai Food District, Shop No. 40, Building 01, Al Aweer, Ras Al Khor, Dubai, UAE",
   shortDescription:
     "A premium technology consulting firm specializing in ERP, business process re-engineering, AI consulting, and custom software.",
 };

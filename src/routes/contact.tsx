@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
+  AlertTriangle,
   Mail,
   Phone,
   MapPin,
@@ -8,7 +9,6 @@ import {
   Twitter,
   Facebook,
   Check,
-  Send,
   MessageCircle,
   ArrowRight,
 } from "lucide-react";
@@ -35,13 +35,17 @@ const schema = z.object({
   name: z.string().trim().min(1, "Required").max(100),
   company: z.string().trim().min(1, "Required").max(120),
   email: z.string().trim().email("Invalid email").max(255),
-  phone: z.string().trim().min(1, "Required").refine((val) => {
-    try {
-      return isValidPhoneNumber(val);
-    } catch {
-      return false;
-    }
-  }, "Invalid phone number"),
+  phone: z
+    .string()
+    .trim()
+    .min(1, "Required")
+    .refine((val) => {
+      try {
+        return isValidPhoneNumber(val);
+      } catch {
+        return false;
+      }
+    }, "Invalid phone number"),
   subject: z.string().trim().min(1, "Required").max(150),
   message: z.string().trim().min(1, "Required").max(2000),
 });
@@ -50,11 +54,28 @@ function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  // Simple math captcha
+  const captcha = useMemo(() => {
+    const a = Math.floor(Math.random() * 8) + 2;
+    const b = Math.floor(Math.random() * 8) + 1;
+    return { a, b, answer: a + b };
+  }, []);
+  const [captchaInput, setCaptchaInput] = useState("");
+  const [captchaError, setCaptchaError] = useState("");
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const data = Object.fromEntries(fd.entries());
+
+    if (Number(captchaInput) !== captcha.answer) {
+      setCaptchaError("Please answer the verification correctly.");
+      return;
+    }
+    setCaptchaError("");
+
     const result = schema.safeParse(data);
 
     if (!result.success) {
@@ -67,13 +88,37 @@ function ContactPage() {
     }
 
     setErrors({});
+    setSubmitError(null);
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((r) => setTimeout(r, 1200));
+    try {
+      console.log("Contact form submitting:", result.data);
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(result.data),
+      });
 
-    setIsSubmitting(false);
-    setSubmitted(true);
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(
+          errorData.error || `Server responded with status ${response.status}`,
+        );
+      }
+
+      setSubmitted(true);
+    } catch (err: unknown) {
+      console.error("Submission error:", err);
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong submitting your message. Please try again or email us directly.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -223,7 +268,52 @@ function ContactPage() {
                       />
                     </div>
 
-                    <div className="sm:col-span-2 pt-4">
+                    <div className="sm:col-span-2 relative overflow-hidden bg-gradient-to-r from-surface-tinted/50 to-white p-5 rounded-2xl border border-brand/20 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-2 group hover:border-brand/40 transition-colors">
+                      <div className="absolute -right-4 -top-4 text-brand/5 pointer-events-none group-hover:scale-110 transition-transform duration-500 group-hover:text-brand/10 transform rotate-12">
+                        <Check size={100} />
+                      </div>
+                      <div className="flex items-center gap-4 relative z-10">
+                        <div className="size-11 rounded-full bg-brand/10 text-brand flex items-center justify-center shrink-0 shadow-inner">
+                          <Check size={20} className="text-brand" />
+                        </div>
+                        <div>
+                          <span className="block text-[13px] font-bold uppercase tracking-wider text-ink mb-0.5">
+                            Security check
+                          </span>
+                          <span className="block text-sm text-ink/65 font-medium">
+                            Please solve:{" "}
+                            <strong className="text-brand text-base ml-1">
+                              {captcha.a} + {captcha.b}
+                            </strong>
+                          </span>
+                        </div>
+                      </div>
+                      <div className="relative z-10">
+                        <input
+                          type="text"
+                          value={captchaInput}
+                          onChange={(e) => setCaptchaInput(e.target.value)}
+                          placeholder="="
+                          className="w-full sm:w-24 h-12 rounded-xl bg-white border border-hairline px-4 text-center font-display font-bold text-xl text-ink outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/20 shadow-sm hover:border-brand/50"
+                        />
+                        {captchaError && (
+                          <span className="absolute -bottom-6 right-0 text-[11px] font-semibold text-destructive whitespace-nowrap bg-white px-2 py-0.5 rounded shadow-sm border border-destructive/20">
+                            {captchaError}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="sm:col-span-2 pt-4 flex flex-col gap-3">
+                      {submitError && (
+                        <div className="flex items-start gap-3 p-4 rounded-2xl bg-destructive/5 border border-destructive/20 text-destructive text-sm animate-in fade-in slide-in-from-top-2 duration-300">
+                          <AlertTriangle
+                            size={16}
+                            className="shrink-0 mt-0.5"
+                          />
+                          <span>{submitError}</span>
+                        </div>
+                      )}
                       <button
                         type="submit"
                         disabled={isSubmitting}

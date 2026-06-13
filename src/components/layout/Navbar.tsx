@@ -1,13 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import {
-  Menu,
-  X,
-  Calendar,
-  ArrowRight,
-  ChevronDown,
-  Zap,
-} from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown, Zap } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
 
 export function Navbar() {
@@ -113,36 +106,16 @@ export function Navbar() {
                 </div>
 
                 <div className="w-[320px] bg-ink relative overflow-hidden p-8 flex flex-col justify-between">
-                  {/* Dot grid texture */}
+                  {/* Dot-grid texture */}
                   <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px] opacity-30 mix-blend-overlay pointer-events-none" />
 
-                  {/* Animated orb 1 - top-right, slow drift */}
-                  <div
-                    className="absolute -top-20 -right-20 w-56 h-56 bg-brand/40 blur-[70px] rounded-full pointer-events-none"
-                    style={{ animation: "orbDrift1 6s ease-in-out infinite alternate" }}
-                  />
-                  {/* Animated orb 2 - bottom-left, offset phase */}
-                  <div
-                    className="absolute -bottom-20 -left-10 w-48 h-48 bg-brand-2/30 blur-[80px] rounded-full pointer-events-none"
-                    style={{ animation: "orbDrift2 8s ease-in-out infinite alternate" }}
-                  />
-
-                  {/* Keyframes injected inline */}
-                  <style>{`
-                    @keyframes orbDrift1 {
-                      from { transform: translate(0, 0) scale(1); }
-                      to   { transform: translate(-20px, 20px) scale(1.25); }
-                    }
-                    @keyframes orbDrift2 {
-                      from { transform: translate(0, 0) scale(1); }
-                      to   { transform: translate(18px, -18px) scale(1.2); }
-                    }
-                  `}</style>
+                  {/* Ambient orbs — keyframes defined in styles.css */}
+                  <div className="absolute -top-20 -right-20 w-56 h-56 bg-brand/40 blur-[70px] rounded-full pointer-events-none animate-orb-drift-1" />
+                  <div className="absolute -bottom-20 -left-10 w-48 h-48 bg-brand-2/30 blur-[80px] rounded-full pointer-events-none animate-orb-drift-2" />
 
                   <div className="relative z-10">
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-medium text-white mb-6">
-                      <Zap size={12} className="text-brand-2" />{" "}
-                      Transformation
+                      <Zap size={12} className="text-brand-2" /> Transformation
                     </div>
                     <h4 className="font-display text-2xl font-bold text-white leading-snug mb-3">
                       Ready to scale your operations?
@@ -187,7 +160,10 @@ export function Navbar() {
             <span className="absolute inset-0 bg-gradient-brand opacity-30 rounded-full group-hover:opacity-50 transition-opacity duration-500" />
             <span className="relative z-10 flex items-center gap-1.5">
               Request ERP demo
-              <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+              <ArrowRight
+                size={14}
+                className="transition-transform duration-300 group-hover:translate-x-0.5"
+              />
             </span>
           </Link>
         </div>
@@ -247,11 +223,7 @@ export function Navbar() {
             label="Case studies"
             onClick={() => setOpen(false)}
           />
-          <MobileLink
-            to="/blog"
-            label="Blog"
-            onClick={() => setOpen(false)}
-          />
+          <MobileLink to="/blog" label="Blog" onClick={() => setOpen(false)} />
           <MobileLink
             to="/contact"
             label="Contact"

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Search } from "lucide-react";
 
-export const COUNTRIES = [
+const COUNTRIES = [
   { name: "Afghanistan", code: "+93", flag: "🇦🇫" },
   { name: "Albania", code: "+355", flag: "🇦🇱" },
   { name: "Algeria", code: "+213", flag: "🇩🇿" },
@@ -217,19 +217,25 @@ export function PhoneInput({
   inputClassName?: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(COUNTRIES.find((c) => c.code === "+971") || COUNTRIES[0]);
+  const [selected, setSelected] = useState(
+    COUNTRIES.find((c) => c.code === "+971") || COUNTRIES[0],
+  );
   const [search, setSearch] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [phoneValue, setPhoneValue] = useState("");
 
-  const filteredCountries = COUNTRIES.filter((c) =>
-    c.name.toLowerCase().includes(search.toLowerCase()) ||
-    c.code.includes(search)
+  const filteredCountries = COUNTRIES.filter(
+    (c) =>
+      c.name.toLowerCase().includes(search.toLowerCase()) ||
+      c.code.includes(search),
   );
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -240,12 +246,17 @@ export function PhoneInput({
   return (
     <div className="relative group">
       <span className={labelClassName}>
-        {label}{required && <span className="text-brand ml-0.5">*</span>}
+        {label}
+        {required && <span className="text-brand ml-0.5">*</span>}
       </span>
-      
+
       {/* Hidden input to combine values for form submission */}
-      <input type="hidden" name={name} value={phoneValue ? `${selected.code} ${phoneValue}` : ""} />
-      
+      <input
+        type="hidden"
+        name={name}
+        value={phoneValue ? `${selected.code} ${phoneValue}` : ""}
+      />
+
       <div className="flex gap-2 relative">
         <div className="relative shrink-0" ref={dropdownRef}>
           <button
@@ -255,14 +266,19 @@ export function PhoneInput({
             style={{ width: "105px" }}
           >
             <span className="text-lg leading-none">{selected.flag}</span>
-            <span className="text-sm font-medium text-ink mr-auto">{selected.code}</span>
+            <span className="text-sm font-medium text-ink mr-auto">
+              {selected.code}
+            </span>
             <ChevronDown size={14} className="text-ink/40" />
           </button>
-          
+
           {isOpen && (
             <div className="absolute top-full left-0 mt-1.5 w-[280px] bg-white rounded-2xl shadow-lift border border-hairline z-50 overflow-hidden flex flex-col">
               <div className="p-2 border-b border-hairline relative">
-                <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/30" />
+                <Search
+                  size={14}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/30"
+                />
                 <input
                   type="text"
                   placeholder="Search countries..."
@@ -286,11 +302,15 @@ export function PhoneInput({
                   >
                     <span className="text-lg">{country.flag}</span>
                     <span className="flex-1 truncate">{country.name}</span>
-                    <span className="text-ink/40 font-mono text-xs">{country.code}</span>
+                    <span className="text-ink/40 font-mono text-xs">
+                      {country.code}
+                    </span>
                   </button>
                 ))}
                 {filteredCountries.length === 0 && (
-                  <div className="py-4 text-center text-sm text-ink/40">No countries found</div>
+                  <div className="py-4 text-center text-sm text-ink/40">
+                    No countries found
+                  </div>
                 )}
               </div>
             </div>
@@ -305,7 +325,7 @@ export function PhoneInput({
           className={`flex-1 rounded-2xl border-2 border-transparent px-4 text-sm text-ink placeholder:text-ink/40 outline-none transition-all duration-300 focus:bg-white focus:border-brand focus:ring-4 focus:ring-brand/10 ${inputClassName} ${error ? "!border-destructive !bg-destructive/5 focus:!ring-destructive/10" : ""}`}
         />
       </div>
-      
+
       {error && (
         <span className="absolute -bottom-6 left-1 text-xs font-medium text-destructive animate-in fade-in slide-in-from-top-1">
           {error}

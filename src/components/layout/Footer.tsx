@@ -1,12 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import {
-  Linkedin,
-  Twitter,
-  Facebook,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { Linkedin, Twitter, Facebook, Mail, Phone, MapPin } from "lucide-react";
 import { SERVICES, COMPANY } from "@/lib/constants";
 
 const SOCIALS = [
@@ -41,7 +34,6 @@ export function Footer() {
       {/* ── Main 4-Column Grid ─────────────────────────────────── */}
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10 pt-16 pb-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-6">
-
           {/* ── Brand Column ── */}
           <div className="lg:col-span-4 lg:pr-8">
             <div className="-mt-2 mb-3">
@@ -64,7 +56,10 @@ export function Footer() {
                   className="group relative size-10 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center text-white/50 hover:text-white transition-all duration-300 overflow-hidden"
                 >
                   <span className="absolute inset-0 bg-gradient-to-br from-brand to-brand-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <Icon size={17} className="relative z-10 group-hover:scale-110 transition-transform" />
+                  <Icon
+                    size={17}
+                    className="relative z-10 group-hover:scale-110 transition-transform"
+                  />
                 </a>
               ))}
             </div>
@@ -105,7 +100,9 @@ export function Footer() {
                   className="group inline-flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors duration-200"
                 >
                   <NavDot />
-                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">About Us</span>
+                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">
+                    About Us
+                  </span>
                 </Link>
               </li>
               <li>
@@ -114,7 +111,9 @@ export function Footer() {
                   className="group inline-flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors duration-200"
                 >
                   <NavDot />
-                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">Services</span>
+                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">
+                    Services
+                  </span>
                 </Link>
               </li>
               <li>
@@ -123,7 +122,9 @@ export function Footer() {
                   className="group inline-flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors duration-200"
                 >
                   <NavDot />
-                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">Contact</span>
+                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">
+                    Contact
+                  </span>
                 </Link>
               </li>
               <li>
@@ -132,7 +133,9 @@ export function Footer() {
                   className="group inline-flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors duration-200"
                 >
                   <NavDot />
-                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">Blog</span>
+                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">
+                    Blog
+                  </span>
                 </Link>
               </li>
               <li>
@@ -141,7 +144,9 @@ export function Footer() {
                   className="group inline-flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors duration-200"
                 >
                   <NavDot />
-                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">Case Studies</span>
+                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">
+                    Case Studies
+                  </span>
                 </Link>
               </li>
             </ul>
@@ -219,7 +224,8 @@ export function Footer() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/28 font-medium">
             © {new Date().getFullYear()}{" "}
-            <span className="text-white/45">{COMPANY.name}</span>. All rights reserved.
+            <span className="text-white/45">{COMPANY.name}</span>. All rights
+            reserved.
           </p>
           <div className="flex items-center gap-1">
             {[
@@ -228,7 +234,9 @@ export function Footer() {
               { label: "Cookie Policy", to: "/cookie-policy" as const },
             ].map((link, i) => (
               <span key={link.label} className="flex items-center gap-1">
-                {i > 0 && <span className="text-white/15 text-xs select-none">·</span>}
+                {i > 0 && (
+                  <span className="text-white/15 text-xs select-none">·</span>
+                )}
                 <Link
                   to={link.to}
                   className="text-xs text-white/28 hover:text-white/65 transition-colors px-2 py-1"
