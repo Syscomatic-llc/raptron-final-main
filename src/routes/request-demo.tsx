@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { findOrCreatePartner, findOrCreateTag, createLead } from "@/lib/odoo";
 import {
   User,
   Globe,
@@ -127,35 +128,52 @@ function RequestDemoPage() {
     setIsSubmitting(true);
 
     try {
-      const payload = {
-        ...result.data,
-        modules: selectedModules
-          .map((m) => {
-            const mod = ERP_MODULES.find((em) => em.id === m);
-            return mod ? mod.label : m;
-          })
-          .join(", "),
-      };
+      const {
+        name,
+        company,
+        email,
+        phone,
+        website,
+        industry,
+        size,
+        requirements,
+      } = result.data;
 
-      console.log("Demo request form submitting:", payload);
-      const response = await fetch("/api/request-demo", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const modules = selectedModules
+        .map((m) => {
+          const mod = ERP_MODULES.find((em) => em.id === m);
+          return mod ? mod.label : m;
+        })
+        .join(", ");
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(
-          errorData.error || `Server responded with status ${response.status}`,
-        );
+      const partnerId = await findOrCreatePartner(name, email, phone);
+
+      let tagIds: [number, boolean, number[]][] = [];
+      if (industry) {
+        const tagId = await findOrCreateTag(industry);
+        if (tagId) tagIds = [[6, false, [tagId]]];
       }
+
+      const description = [
+        `<p>Company Size: ${size || "Not provided"}</p>`,
+        `<p>ERP Modules of Interest: ${modules || "None selected"}</p>`,
+        `<p>Specific Requirements: ${requirements || "None specified"}</p>`,
+      ].join("");
+
+      await createLead({
+        name: `ERP Demo Request: ${company}`,
+        partner_id: partnerId,
+        contact_name: name,
+        email_from: email,
+        phone: phone || "",
+        partner_name: company,
+        website: website || "",
+        tag_ids: tagIds,
+        description,
+      });
 
       setSubmitted(true);
     } catch (err: unknown) {
-      console.error("Submission error:", err);
       setSubmitError(
         err instanceof Error
           ? err.message

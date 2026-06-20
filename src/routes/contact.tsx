@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { findOrCreatePartner, createLead } from "@/lib/odoo";
 import {
   AlertTriangle,
   Mail,
@@ -92,25 +93,22 @@ function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      console.log("Contact form submitting:", result.data);
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(result.data),
-      });
+      const { name, company, email, phone, subject, message } = result.data;
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(
-          errorData.error || `Server responded with status ${response.status}`,
-        );
-      }
+      const partnerId = await findOrCreatePartner(name, email, phone);
+
+      await createLead({
+        name: `Contact Inquiry: ${subject}`,
+        partner_id: partnerId,
+        contact_name: name,
+        email_from: email,
+        phone: phone || "",
+        partner_name: company || "",
+        description: `<p>${message.replace(/\n/g, "<br/>")}</p>`,
+      });
 
       setSubmitted(true);
     } catch (err: unknown) {
-      console.error("Submission error:", err);
       setSubmitError(
         err instanceof Error
           ? err.message

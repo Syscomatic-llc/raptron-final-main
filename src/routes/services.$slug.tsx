@@ -12,11 +12,11 @@ import {
 } from "lucide-react";
 import { SERVICES, type ServiceSlug } from "@/lib/constants";
 import { CTABanner, PageHero } from "@/components/layout/PageHero";
-import { AutomationHero } from "@/components/AutomationHero";
-import { FinanceComplianceHero } from "@/components/FinanceComplianceHero";
-import { AIAgentsHero } from "@/components/AIAgentsHero";
-import { GrowthStrategyHero } from "@/components/GrowthStrategyHero";
-import { CustomSoftwareHero } from "@/components/CustomSoftwareHero";
+import { AutomationHero } from "@/components/services/AutomationHero";
+import { FinanceComplianceHero } from "@/components/services/FinanceComplianceHero";
+import { AIAgentsHero } from "@/components/services/AIAgentsHero";
+import { GrowthStrategyHero } from "@/components/services/GrowthStrategyHero";
+import { CustomSoftwareHero } from "@/components/services/CustomSoftwareHero";
 import { Reveal } from "@/components/Reveal";
 import { useState } from "react";
 

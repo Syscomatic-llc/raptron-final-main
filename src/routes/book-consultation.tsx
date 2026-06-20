@@ -1,6 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
+  findOrCreatePartner,
+  getMainInternalPartner,
+  createCalendarEvent,
+  toOdooDatetime,
+} from "@/lib/odoo";
+import {
   ChevronLeft,
   ChevronRight,
   Calendar,
@@ -105,7 +111,6 @@ function BookConsultationPage() {
       if (!selectedDate || !selectedSlot)
         throw new Error("No time slot selected");
 
-      // Parse "09:30 AM" format
       const [timeMatch, modifier] = selectedSlot.split(" ");
       const timeParts = timeMatch.split(":").map(Number);
       let hours = timeParts[0];
@@ -115,29 +120,38 @@ function BookConsultationPage() {
 
       const dateTime = new Date(selectedDate);
       dateTime.setHours(hours, minutes, 0, 0);
+      const stopDate = new Date(dateTime.getTime() + 45 * 60_000);
 
-      const payload = {
-        ...result.data,
-        dateTime: dateTime.toISOString(),
-      };
+      const { name, company, email, phone, message } = result.data;
 
-      const response = await fetch(
-        "http://localhost:5000/api/book-appointment",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        },
-      );
+      const partnerId = await findOrCreatePartner(name, email, phone);
+      const internalPartnerId = await getMainInternalPartner();
 
-      if (!response.ok) {
-        const errData = await response.json().catch(() => null);
-        throw new Error(errData?.error || "Failed to book appointment");
-      }
+      const attendees: [number, number][] = internalPartnerId
+        ? [
+            [4, partnerId],
+            [4, internalPartnerId],
+          ]
+        : [[4, partnerId]];
+
+      const description = [
+        `<p>Company: ${company || "Not provided"}</p>`,
+        `<p>Message: ${message || "No additional message"}</p>`,
+        `<p>Source: Website Booking</p>`,
+      ].join("");
+
+      await createCalendarEvent({
+        name: `Consultation: ${name}`,
+        start: toOdooDatetime(dateTime),
+        stop: toOdooDatetime(stopDate),
+        allday: false,
+        appointment_type_id: 1,
+        partner_ids: attendees,
+        description,
+      });
 
       setStep("done");
     } catch (err: unknown) {
-      console.error("Booking error:", err);
       setSubmitError(
         err instanceof Error
           ? err.message
@@ -150,26 +164,6 @@ function BookConsultationPage() {
 
   return (
     <>
-      {/* Orb animation keyframes */}
-      <style>{`
-        @keyframes orbFloat1 {
-          0%   { transform: translate(0,0) scale(1); }
-          100% { transform: translate(-30px, 40px) scale(1.3); }
-        }
-        @keyframes orbFloat2 {
-          0%   { transform: translate(0,0) scale(1); }
-          100% { transform: translate(25px,-35px) scale(1.2); }
-        }
-        @keyframes orbFloat3 {
-          0%   { transform: translate(0,0) scale(1); }
-          100% { transform: translate(-15px,-25px) scale(1.15); }
-        }
-        @keyframes shimmer {
-          0%   { background-position: -200% center; }
-          100% { background-position: 200% center; }
-        }
-      `}</style>
-
       <section className="pt-24 pb-16 min-h-screen bg-mist relative overflow-hidden">
         {/* Page-level ambient glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand/10 blur-[140px] rounded-full pointer-events-none" />

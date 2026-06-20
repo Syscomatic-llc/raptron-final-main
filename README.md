@@ -1,61 +1,115 @@
-# RAPTRON Digital Solutions
+# RAPTRON Digital Solutions - Website Deployment Guide
 
-This is the main website and frontend application for RAPTRON Digital Solutions. It features a modern tech stack designed for speed, SEO, and robust CRM integration.
+This document outlines the step-by-step procedure for deploying the RAPTRON website onto a Hostinger VPS managed by aaPanel.
 
-## Tech Stack
-- **Frontend Framework**: React 19
-- **Routing**: TanStack Router (File-based routing)
-- **Styling**: Tailwind CSS v4
-- **Build Tool**: Vite
-- **Backend / Proxy**: Express (Node.js) to securely proxy requests to Odoo CRM.
+## Prerequisites
+- A Hostinger VPS running **aaPanel**.
+- A registered domain name (e.g., `raptron.com`) pointed to your VPS IP address.
+- Node.js installed locally to build the project.
 
-## Getting Started
+---
 
-### Prerequisites
-- Node.js (v20+ recommended)
-- npm or pnpm
+## Step 1: Build the Project Locally
 
-### Installation
-1. Clone the repository and navigate to the project folder:
+Before uploading the files to your VPS, you need to compile the React application into static files.
+
+1. Open a terminal in the root directory of this project.
+2. Install the dependencies (if you haven't already):
    ```bash
    npm install
    ```
-
-2. Set up your environment variables by copying `.env.example` to `.env.local`:
+3. Run the production build command:
    ```bash
-   cp .env.example .env.local
+   npm run build
    ```
-   Fill in the `ODOO_API_KEY` and `ODOO_BASE_URL` with your actual credentials.
+This will generate a `dist/` folder containing the optimized, production-ready static files.
 
-### Running the Application
+---
 
-To run both the Vite frontend and the secure Express proxy server simultaneously, use:
+## Step 2: Set Up the Website in aaPanel
 
-```bash
-npm run dev:full
+1. Log in to your **aaPanel** dashboard.
+2. Navigate to the **Website** tab on the left sidebar.
+3. Click the **Add site** button.
+4. Fill in the details:
+   - **Domain name**: Enter your domain (e.g., `raptron.com` and `www.raptron.com`).
+   - **Database**: Leave as "No" (this is a static frontend).
+   - **PHP version**: Pure static.
+5. Click **Submit** to create the site.
+
+---
+
+## Step 3: Upload the Files
+
+1. In aaPanel, go to the **Files** tab.
+2. Navigate to your website's root directory (usually `/www/wwwroot/raptron.com`).
+3. Upload the *contents* of your local `dist/` folder directly into this directory.
+   *(Alternatively, you can upload the entire `dist` folder and configure Nginx to point to it, as shown in the Nginx configuration below).*
+
+---
+
+## Step 4: Configure SSL (HTTPS)
+
+1. Go back to the **Website** tab in aaPanel.
+2. Click on the domain name or the **Conf** button next to your site.
+3. Select the **SSL** menu.
+4. Choose **Let's Encrypt** and select your domains.
+5. Click **Apply** to generate and install the free SSL certificate.
+6. Enable **Force HTTPS** in the top right corner of the SSL panel.
+
+---
+
+## Step 5: Configure Custom Nginx Settings (SPA & API Proxy)
+
+Because this is a Single Page Application (SPA) utilizing TanStack Router, and because it securely connects to an Odoo backend, you must add custom Nginx rules. 
+
+1. In the Website Configuration window (from Step 4), click on **Config** (or "Config file").
+2. Update the configuration to include the SPA fallback and the Odoo API proxy. 
+
+Locate the `server` block and ensure the `root` points to your files, then paste the following `location` blocks inside:
+
+```nginx
+    # ── Static SPA root ─────────────────────────────────────────────────────
+    # Make sure this path matches where you uploaded the files!
+    # If you uploaded the *contents* of dist, it will be just /www/wwwroot/raptron.com
+    root /www/wwwroot/raptron.com/dist;
+    index index.html;
+
+    # All frontend routes fall back to index.html (React client-side routing)
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # ── Odoo API Proxy ───────────────────────────────────────────────────────
+    # The browser calls /odoo-api/* (same origin — no CORS issues).
+    # Nginx forwards the request to Odoo and INJECTS the Authorization header.
+    # The API key lives HERE on the server — it is NEVER in the JS bundle.
+    location /odoo-api/ {
+        # Strip the /odoo-api prefix and forward to Odoo's JSON REST API v2
+        proxy_pass https://hq.syscomatic.com/json/2/;
+
+        # Inject the Odoo Bearer token (replace with your actual API key)
+        proxy_set_header Authorization "Bearer YOUR_ODOO_API_KEY_HERE";
+
+        # Standard proxy headers
+        proxy_set_header Host $proxy_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # Disable caching for API calls
+        proxy_cache_bypass $http_pragma;
+        proxy_cache_revalidate on;
+        expires off;
+    }
 ```
 
-This will spin up:
-- The Express proxy server on `http://localhost:5000` (handles `/api` requests to Odoo).
-- The Vite development server on `http://localhost:8080`.
+3. Replace `YOUR_ODOO_API_KEY_HERE` with your actual Odoo CRM API key.
+4. Click **Save**. aaPanel will automatically test the syntax and reload Nginx.
 
-Open `http://localhost:8080` in your browser.
+## Step 6: Verify Deployment
 
-## Available Scripts
-
-- `npm run dev`: Starts the Vite dev server only.
-- `npm run server`: Starts the Express proxy server only.
-- `npm run dev:full`: Starts both the proxy server and the Vite dev server concurrently.
-- `npm run build`: Builds the app for production (creates a `dist` folder).
-- `npm run lint`: Runs ESLint to check for code formatting and quality issues.
-- `npm run preview`: Previews the production build locally.
-
-## Project Structure
-- `/src`: Contains the React frontend code.
-  - `/routes`: File-based routes for TanStack Router.
-  - `/components`: Reusable UI components.
-  - `/lib`: Helper functions and constants.
-- `server.cjs`: The Express backend that securely proxies API requests to Odoo.
-
-## Security Note
-This application securely proxies requests to Odoo through `server.cjs`. **Never** expose the `ODOO_API_KEY` or `ODOO_BASE_URL` directly to the frontend. Ensure these variables are stored in your `.env.local` or production environment without the `VITE_` prefix so they are stripped from the frontend bundle.
+1. Visit `https://raptron.com` in your browser.
+2. Verify that the pages load properly.
+3. Refresh on a sub-page (e.g., `https://raptron.com/contact`) to ensure the SPA fallback `try_files` rule is working correctly.
+4. Test a form submission to verify the `/odoo-api/` Nginx proxy is securely routing requests to Odoo without CORS errors.
