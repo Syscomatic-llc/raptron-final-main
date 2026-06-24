@@ -48,8 +48,8 @@ function HomePage() {
   return (
     <main className="w-full bg-white">
       <Hero />
-      <HeroCards />
       <IndustriesTicker />
+      <HeroCards />
       <ValueBento />
       <ServicesShowcase />
       <ProcessTimeline />
@@ -62,7 +62,7 @@ function HomePage() {
 
 function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-mist">
+    <section className="relative min-h-screen flex flex-col items-center overflow-hidden bg-mist pt-32 pb-20">
       {/* Ambient glow orbs */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-brand/12 blur-[130px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[300px] bg-brand-2/8 blur-[100px] rounded-full pointer-events-none" />
@@ -72,7 +72,7 @@ function Hero() {
       {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent z-10" />
 
-      <div className="relative z-20 w-full max-w-7xl px-6 lg:px-10 text-center flex flex-col items-center">
+      <div className="relative z-20 w-full max-w-7xl px-6 lg:px-10 text-center flex flex-col items-center my-auto">
         <Reveal>
           {/* Badge */}
           <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/80 border border-hairline backdrop-blur-md shadow-sm mb-10">
@@ -86,18 +86,21 @@ function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-display font-extrabold leading-[1.06] tracking-tight text-ink mx-auto text-center">
-            <span className="block text-4xl sm:text-5xl lg:text-[4.5rem]">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand via-brand-2 to-violet-500">
-                We automate
-              </span>{" "}
-              what slows
-            </span>
-            <span className="block text-4xl sm:text-5xl lg:text-[4.5rem]">
-              you down,{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 via-brand-2 to-brand">
-                in 4 weeks
-              </span>
+          <h1 className="font-display font-extrabold leading-[1.06] tracking-tight text-ink mx-auto text-center text-[34px] min-[430px]:text-[35px] sm:text-5xl lg:text-[4.5rem]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand via-brand-2 to-violet-500">
+              We automate
+            </span>{" "}
+            what
+            <br className="min-[430px]:hidden" />
+            <span className="max-[429px]:hidden"> </span>
+            slows
+            <br className="hidden min-[430px]:block" />
+            <span className="min-[430px]:hidden"> </span>
+            you down,
+            <br className="min-[430px]:hidden" />
+            <span className="max-[429px]:hidden"> </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 via-brand-2 to-brand">
+              in 4 weeks
             </span>
           </h1>
 
@@ -368,13 +371,16 @@ function HeroCards() {
 function IndustriesTicker() {
   return (
     <div className="w-full border-b border-hairline bg-white py-8 overflow-hidden flex items-center relative z-20">
-      {/* Left side overlay */}
-      <div className="absolute left-0 top-0 bottom-0 z-20 flex items-center bg-white pl-6 lg:pl-10 pr-6">
+      {/* Left side overlay - Desktop */}
+      <div className="absolute left-0 top-0 bottom-0 z-20 hidden md:flex items-center bg-white pl-6 lg:pl-10 pr-6">
         <div className="font-mono text-[10px] tracking-[0.2em] text-ink/40">
           Trusted Across Sectors
         </div>
         <div className="absolute right-0 top-0 bottom-0 w-32 translate-x-full bg-gradient-to-r from-white to-transparent pointer-events-none" />
       </div>
+
+      {/* Left side fade - Mobile */}
+      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none md:hidden" />
 
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
@@ -613,7 +619,7 @@ function ServicesShowcase() {
                       className="w-full flex-shrink-0 px-2 lg:px-4"
                       style={{ width: `${100 / numServices}%` }}
                     >
-                      <div className="bg-white rounded-3xl border border-hairline shadow-sm grid lg:grid-cols-2 overflow-hidden h-full min-h-[420px]">
+                      <div className="bg-white rounded-3xl border border-hairline shadow-sm flex flex-col lg:grid lg:grid-cols-2 overflow-hidden h-full min-h-0 md:min-h-[420px] max-h-[85vh] overflow-y-auto">
                         {/* Left - Info Section */}
                         <div className="p-5 lg:p-8 flex flex-col">
                           <div className="size-10 rounded-xl bg-brand/10 flex items-center justify-center mb-3">
@@ -903,7 +909,7 @@ function TestimonialMarquee() {
           {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
             <div
               key={`${t.name}-${i}`}
-              className="w-[340px] md:w-[380px] shrink-0 whitespace-normal rounded-[1.5rem] bg-surface-tinted p-6 md:p-7 border border-hairline hover:border-brand/40 transition-colors hover:shadow-card group flex flex-col justify-between"
+              className="w-[300px] md:w-[380px] shrink-0 whitespace-normal rounded-[1.5rem] bg-surface-tinted p-6 md:p-7 border border-hairline hover:border-brand/40 transition-colors hover:shadow-card group flex flex-col justify-between"
             >
               <div>
                 <div className="flex gap-1 text-brand mb-4 opacity-80 group-hover:opacity-100 transition-opacity">

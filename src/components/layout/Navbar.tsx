@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X, ArrowRight, ChevronDown, Zap } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
@@ -8,6 +8,10 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const darkHeroRoutes = ["/case-studies", "/blog", "/privacy-policy", "/terms-of-service", "/cookie-policy"];
+  const isDarkHero = darkHeroRoutes.includes(pathname) && !scrolled;
 
   const openServices = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -44,11 +48,15 @@ export function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-          <img src="/logo.png" alt="Raptron Logo" className="h-40 w-auto" />
+          <img 
+            src="/logo.png" 
+            alt="Raptron Logo" 
+            className={`h-40 w-auto transition-all duration-300 ${isDarkHero ? "brightness-0 invert" : ""}`} 
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
-          <NavItem to="/" label="Home" />
+          <NavItem to="/" label="Home" isDark={isDarkHero} />
           <div
             className="relative"
             onMouseEnter={openServices}
@@ -56,7 +64,9 @@ export function Navbar() {
           >
             <Link
               to="/services"
-              className="px-4 h-10 inline-flex items-center gap-1 text-sm font-medium text-ink/80 hover:text-ink rounded-full transition"
+              className={`px-4 h-10 inline-flex items-center gap-1 text-sm font-medium rounded-full transition ${
+                isDarkHero ? "text-white/80 hover:text-white" : "text-ink/80 hover:text-ink"
+              }`}
             >
               Services{" "}
               <ChevronDown
@@ -67,14 +77,14 @@ export function Navbar() {
             {/* Invisible bridge - must be >= the visual gap below the trigger */}
             <div className="absolute left-0 right-0 top-full h-4" />
             <div
-              className={`absolute left-1/2 -translate-x-[40%] top-[calc(100%+0.5rem)] w-[900px] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top-left ${
+              className={`absolute left-1/2 -translate-x-[40%] top-[calc(100%+0.5rem)] w-[calc(100vw-3rem)] max-w-[900px] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top-left ${
                 servicesOpen
                   ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
                   : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
               }`}
             >
-              <div className="rounded-[2.5rem] bg-white border border-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] overflow-hidden flex">
-                <div className="flex-1 p-8">
+              <div className="rounded-[2.5rem] bg-white border border-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col md:flex-row">
+                <div className="flex-1 p-6 md:p-8">
                   <div className="font-mono text-[10px] tracking-[0.2em] text-ink/40 font-semibold mb-6 px-3">
                     Our Capabilities
                   </div>
@@ -82,7 +92,7 @@ export function Navbar() {
                     {SERVICES.map((s) => {
                       const Icon = s.icon;
                       return (
-                        <Link
+                         <Link
                           key={s.slug}
                           to="/services/$slug"
                           params={{ slug: s.slug }}
@@ -105,7 +115,7 @@ export function Navbar() {
                   </div>
                 </div>
 
-                <div className="w-[320px] bg-ink relative overflow-hidden p-8 flex flex-col justify-between">
+                <div className="w-full md:w-[320px] shrink-0 bg-ink relative overflow-hidden p-6 md:p-8 flex flex-col justify-between">
                   {/* Dot-grid texture */}
                   <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px] opacity-30 mix-blend-overlay pointer-events-none" />
 
@@ -145,18 +155,22 @@ export function Navbar() {
               </div>
             </div>
           </div>
-          <NavItem to="/about" label="About us" />
-          <NavItem to="/case-studies" label="Case studies" />
-          <NavItem to="/blog" label="Blog" />
-          <NavItem to="/contact" label="Contact" />
+          <NavItem to="/about" label="About us" isDark={isDarkHero} />
+          <NavItem to="/case-studies" label="Case studies" isDark={isDarkHero} />
+          <NavItem to="/blog" label="Blogs" isDark={isDarkHero} />
+          <NavItem to="/contact" label="Contact" isDark={isDarkHero} />
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
           <Link
             to="/request-demo"
-            className="group relative px-4 h-10 inline-flex items-center gap-1.5 text-sm font-medium text-white rounded-full border-0 overflow-hidden shadow-card transition-all duration-300 hover:shadow-glow hover:scale-105"
+            className={`group relative px-4 h-10 inline-flex items-center gap-1.5 text-sm font-medium rounded-full overflow-hidden transition-all duration-300 hover:scale-105 ${
+              isDarkHero 
+                ? "text-white border border-white/20 hover:border-brand-2/50 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(163,54,255,0.4)]" 
+                : "text-white border-0 shadow-card hover:shadow-glow"
+            }`}
           >
-            <span className="absolute inset-0 bg-ink rounded-full" />
+            <span className={`absolute inset-0 rounded-full transition-colors duration-300 ${isDarkHero ? "bg-white/5" : "bg-ink"}`} />
             <span className="absolute inset-0 bg-gradient-brand opacity-30 rounded-full group-hover:opacity-50 transition-opacity duration-500" />
             <span className="relative z-10 flex items-center gap-1.5">
               Request ERP demo
@@ -170,7 +184,11 @@ export function Navbar() {
 
         <button
           onClick={() => setOpen(true)}
-          className="lg:hidden size-10 rounded-full border border-hairline flex items-center justify-center text-ink"
+          className={`lg:hidden size-10 rounded-full flex items-center justify-center transition-colors ${
+            isDarkHero 
+              ? "border border-white/20 text-white hover:bg-white/10" 
+              : "border border-hairline text-ink hover:bg-ink/5"
+          }`}
           aria-label="Open menu"
         >
           <Menu size={18} />
@@ -223,7 +241,7 @@ export function Navbar() {
             label="Case studies"
             onClick={() => setOpen(false)}
           />
-          <MobileLink to="/blog" label="Blog" onClick={() => setOpen(false)} />
+          <MobileLink to="/blog" label="Blogs" onClick={() => setOpen(false)} />
           <MobileLink
             to="/contact"
             label="Contact"
@@ -246,12 +264,16 @@ export function Navbar() {
   );
 }
 
-function NavItem({ to, label }: { to: string; label: string }) {
+function NavItem({ to, label, isDark }: { to: string; label: string; isDark?: boolean }) {
   return (
     <Link
       to={to}
       activeOptions={{ exact: to === "/" }}
-      className="px-4 h-10 inline-flex items-center text-sm font-medium text-ink/80 hover:text-ink rounded-full transition data-[status=active]:text-brand"
+      className={`px-4 h-10 inline-flex items-center text-sm font-medium rounded-full transition ${
+        isDark 
+          ? "text-white/80 hover:text-white data-[status=active]:text-brand-2" 
+          : "text-ink/80 hover:text-ink data-[status=active]:text-brand"
+      }`}
     >
       {label}
     </Link>

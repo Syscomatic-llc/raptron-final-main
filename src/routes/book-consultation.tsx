@@ -22,6 +22,7 @@ import { z } from "zod";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { SuccessState } from "./contact";
 import { PhoneInput } from "@/components/ui/PhoneInput";
+import { useLoadingMessage } from "@/hooks/useLoadingMessage";
 
 export const Route = createFileRoute("/book-consultation")({
   head: () => ({
@@ -86,6 +87,13 @@ function BookConsultationPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+
+  const loadingMessage = useLoadingMessage([
+    "Securing your slot...",
+    "Checking our calendar...",
+    "Confirming details...",
+    "Almost there..."
+  ], isSubmitting);
 
   const days = useMemo(() => buildMonthGrid(viewMonth), [viewMonth]);
 
@@ -496,10 +504,13 @@ function BookConsultationPage() {
                     className="w-full h-11 rounded-full bg-gradient-brand text-white font-semibold shadow-card hover:shadow-glow transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
-                      <span className="animate-spin size-4 border-2 border-white/20 border-t-white rounded-full" />
+                      <>
+                        <span className="animate-spin size-4 border-2 border-white/20 border-t-white rounded-full" />
+                        {loadingMessage}
+                      </>
                     ) : (
                       <>
-                        <Check size={15} /> Confirm Booking
+                        Confirm booking <Check size={16} />
                       </>
                     )}
                   </button>

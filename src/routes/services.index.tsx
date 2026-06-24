@@ -215,7 +215,7 @@ function Hero() {
               <div className="absolute bottom-10 left-10 w-72 h-72 bg-brand-2 rounded-full mix-blend-multiply filter blur-3xl opacity-40" />
 
               {/* Central capabilities showcase panel */}
-              <div className="relative w-[480px] h-[360px] bg-white/80 backdrop-blur-xl border border-hairline rounded-[2.5rem] shadow-[0_20px_50px_rgba(85,9,217,0.12)] overflow-hidden flex flex-col z-30 transition-all duration-300">
+              <div className="relative w-full max-w-[480px] aspect-[4/3] bg-white/80 backdrop-blur-xl border border-hairline rounded-[2.5rem] shadow-[0_20px_50px_rgba(85,9,217,0.12)] overflow-hidden flex flex-col z-30 transition-all duration-300">
                 {/* Selector Header */}
                 <div className="flex items-center justify-between px-6 py-3 border-b border-hairline bg-white/40">
                   <div className="flex gap-1.5">

@@ -17,6 +17,7 @@ import { z } from "zod";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { COMPANY } from "@/lib/constants";
 import { PhoneInput } from "@/components/ui/PhoneInput";
+import { useLoadingMessage } from "@/hooks/useLoadingMessage";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -56,6 +57,12 @@ function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const loadingMessage = useLoadingMessage([
+    "Sending message...",
+    "Routing to the right team...",
+    "Almost there..."
+  ], isSubmitting);
 
   // Simple math captcha
   const captcha = useMemo(() => {
@@ -121,24 +128,24 @@ function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-20 lg:pt-32 lg:pb-28 px-4 sm:px-6">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div className="mx-auto max-w-5xl">
+        <div className="grid lg:grid-cols-[380px_1fr] rounded-2xl overflow-hidden shadow-[0_32px_80px_-20px_rgba(0,0,0,0.12)] bg-white border border-white/60 min-h-[420px]">
           {/* Left Column: Premium Dark Panel */}
-          <div className="lg:col-span-5 lg:sticky lg:top-32 relative overflow-hidden rounded-[2rem] lg:rounded-[2.5rem] bg-brand-deep text-white p-8 sm:p-10 lg:p-12 shadow-2xl">
+          <div className="relative overflow-hidden bg-brand-deep text-white p-8 flex flex-col justify-between">
             {/* Background Effects */}
             <div className="absolute inset-0 bg-gradient-brand opacity-20 mix-blend-screen pointer-events-none"></div>
             <div className="absolute inset-0 bg-dot-grid opacity-30 mix-blend-overlay pointer-events-none"></div>
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-2/20 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
 
-            <div className="relative z-10 h-full flex flex-col justify-between min-h-[500px] lg:min-h-[600px]">
+            <div className="relative z-10 h-full flex flex-col justify-between">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-mono uppercase tracking-widest mb-8">
                   <MessageCircle size={14} className="text-brand-2" />
                   <span>Get in Touch</span>
                 </div>
 
-                <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-white">
+                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mb-4 text-white">
                   Let's build
                   <br />
                   something
@@ -148,7 +155,7 @@ function ContactPage() {
                   </span>
                 </h1>
 
-                <p className="text-white/70 text-lg max-w-md font-sans mb-8">
+                <p className="text-white/70 text-sm max-w-md font-sans mb-6">
                   Whether you need a complete ERP overhaul or a cutting-edge AI
                   implementation, we're ready to accelerate your business.
                 </p>
@@ -195,29 +202,28 @@ function ContactPage() {
           </div>
 
           {/* Right Column: Interactive Form */}
-          <div className="lg:col-span-7">
-            <div className="bg-white rounded-[2rem] lg:rounded-[2.5rem] p-8 sm:p-10 lg:p-14 shadow-lift border border-hairline relative overflow-hidden">
-              {/* Form background accents */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-surface-tinted rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+          <div className="p-6 lg:p-8 bg-white relative overflow-hidden">
+            {/* Form background accents */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-surface-tinted rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
-              {submitted ? (
-                <SuccessState onReset={() => setSubmitted(false)} />
-              ) : (
-                <div className="relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
-                  <div className="mb-10">
-                    <h2 className="font-display text-3xl font-bold text-ink mb-3">
-                      Send a message
-                    </h2>
-                    <p className="text-ink/60 text-lg">
-                      Fill out the form below and our team will get back to you
-                      within 24 hours.
-                    </p>
-                  </div>
+            {submitted ? (
+              <SuccessState onReset={() => setSubmitted(false)} />
+            ) : (
+              <div className="relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700 h-full flex flex-col">
+                <div className="mb-6">
+                  <h2 className="font-display text-2xl font-bold text-ink mb-2">
+                    Send a message
+                  </h2>
+                  <p className="text-ink/60 text-sm">
+                    Fill out the form below and our team will get back to you
+                    within 24 hours.
+                  </p>
+                </div>
 
-                  <form
-                    onSubmit={onSubmit}
-                    className="grid sm:grid-cols-2 gap-x-6 gap-y-8"
-                  >
+                <form
+                  onSubmit={onSubmit}
+                  className="grid sm:grid-cols-2 gap-x-4 gap-y-4 flex-1"
+                >
                     <Field
                       name="name"
                       label="Full Name"
@@ -237,15 +243,15 @@ function ContactPage() {
                       placeholder="john@example.com"
                       error={errors.email}
                     />
-                    <PhoneInput
-                      name="phone"
-                      label="Phone Number"
-                      placeholder="(555) 000-0000"
-                      error={errors.phone}
-                      labelClassName="block text-sm font-semibold text-ink/80 mb-2 transition-colors group-focus-within:text-brand"
-                      buttonClassName="bg-zinc-100 hover:bg-zinc-50 border-2 border-transparent text-ink placeholder:text-ink/30 h-14"
-                      inputClassName="bg-zinc-100 hover:bg-zinc-50 h-14"
-                    />
+                  <PhoneInput
+                    name="phone"
+                    label="Phone Number"
+                    placeholder="(555) 000-0000"
+                    error={errors.phone}
+                    labelClassName="block text-xs font-semibold text-ink/80 mb-1 transition-colors group-focus-within:text-brand"
+                    buttonClassName="bg-zinc-100 hover:bg-zinc-50 border-2 border-transparent text-ink placeholder:text-ink/30 h-11"
+                    inputClassName="bg-zinc-100 hover:bg-zinc-50 h-11"
+                  />
 
                     <div className="sm:col-span-2">
                       <Field
@@ -266,41 +272,41 @@ function ContactPage() {
                       />
                     </div>
 
-                    <div className="sm:col-span-2 relative overflow-hidden bg-gradient-to-r from-surface-tinted/50 to-white p-5 rounded-2xl border border-brand/20 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-2 group hover:border-brand/40 transition-colors">
-                      <div className="absolute -right-4 -top-4 text-brand/5 pointer-events-none group-hover:scale-110 transition-transform duration-500 group-hover:text-brand/10 transform rotate-12">
-                        <Check size={100} />
+                  <div className="sm:col-span-2 relative overflow-hidden bg-gradient-to-r from-surface-tinted/50 to-white p-3 rounded-xl border border-brand/20 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-1 group hover:border-brand/40 transition-colors">
+                    <div className="absolute -right-4 -top-4 text-brand/5 pointer-events-none group-hover:scale-110 transition-transform duration-500 group-hover:text-brand/10 transform rotate-12">
+                      <Check size={80} />
+                    </div>
+                    <div className="flex items-center gap-3 relative z-10">
+                      <div className="size-9 rounded-full bg-brand/10 text-brand flex items-center justify-center shrink-0 shadow-inner">
+                        <Check size={16} className="text-brand" />
                       </div>
-                      <div className="flex items-center gap-4 relative z-10">
-                        <div className="size-11 rounded-full bg-brand/10 text-brand flex items-center justify-center shrink-0 shadow-inner">
-                          <Check size={20} className="text-brand" />
-                        </div>
-                        <div>
-                          <span className="block text-[13px] font-bold uppercase tracking-wider text-ink mb-0.5">
-                            Security check
-                          </span>
-                          <span className="block text-sm text-ink/65 font-medium">
-                            Please solve:{" "}
-                            <strong className="text-brand text-base ml-1">
-                              {captcha.a} + {captcha.b}
-                            </strong>
-                          </span>
-                        </div>
-                      </div>
-                      <div className="relative z-10">
-                        <input
-                          type="text"
-                          value={captchaInput}
-                          onChange={(e) => setCaptchaInput(e.target.value)}
-                          placeholder="="
-                          className="w-full sm:w-24 h-12 rounded-xl bg-white border border-hairline px-4 text-center font-display font-bold text-xl text-ink outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/20 shadow-sm hover:border-brand/50"
-                        />
-                        {captchaError && (
-                          <span className="absolute -bottom-6 right-0 text-[11px] font-semibold text-destructive whitespace-nowrap bg-white px-2 py-0.5 rounded shadow-sm border border-destructive/20">
-                            {captchaError}
-                          </span>
-                        )}
+                      <div>
+                        <span className="block text-[11px] font-bold uppercase tracking-wider text-ink mb-0.5">
+                          Security check
+                        </span>
+                        <span className="block text-xs text-ink/65 font-medium">
+                          Please solve:{" "}
+                          <strong className="text-brand text-sm ml-1">
+                            {captcha.a} + {captcha.b}
+                          </strong>
+                        </span>
                       </div>
                     </div>
+                    <div className="relative z-10">
+                      <input
+                        type="text"
+                        value={captchaInput}
+                        onChange={(e) => setCaptchaInput(e.target.value)}
+                        placeholder="="
+                        className="w-full sm:w-20 h-10 rounded-lg bg-white border border-hairline px-3 text-center font-display font-bold text-lg text-ink outline-none transition-all focus:border-brand focus:ring-2 focus:ring-brand/20 shadow-sm hover:border-brand/50"
+                      />
+                      {captchaError && (
+                        <span className="absolute -bottom-5 right-0 text-[10px] font-semibold text-destructive whitespace-nowrap bg-white px-2 py-0.5 rounded shadow-sm border border-destructive/20">
+                          {captchaError}
+                        </span>
+                      )}
+                    </div>
+                  </div>
 
                     <div className="sm:col-span-2 pt-4 flex flex-col gap-3">
                       {submitError && (
@@ -312,27 +318,26 @@ function ContactPage() {
                           <span>{submitError}</span>
                         </div>
                       )}
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 h-14 px-8 rounded-full bg-ink text-white font-semibold overflow-hidden transition-all hover:shadow-glow disabled:opacity-70 disabled:cursor-not-allowed"
-                      >
-                        <div className="absolute inset-0 bg-gradient-brand opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <span className="relative z-10 flex items-center gap-2">
-                          {isSubmitting ? "Sending..." : "Send Message"}
-                          {!isSubmitting && (
-                            <ArrowRight
-                              size={18}
-                              className="group-hover:translate-x-1 transition-transform"
-                            />
-                          )}
-                        </span>
-                      </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-8 rounded-full bg-ink text-white text-sm font-semibold overflow-hidden transition-all hover:shadow-glow disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                      <div className="absolute inset-0 bg-gradient-brand opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <span className="relative z-10 flex items-center gap-2">
+                        {isSubmitting ? loadingMessage : "Send Message"}
+                        {!isSubmitting && (
+                          <ArrowRight
+                            size={16}
+                            className="group-hover:translate-x-1 transition-transform"
+                          />
+                        )}
+                      </span>
+                    </button>
                     </div>
-                  </form>
-                </div>
-              )}
-            </div>
+                </form>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -383,13 +388,13 @@ export function Field({
   error?: string;
 }) {
   const baseClasses =
-    "w-full rounded-2xl bg-zinc-100 border-2 border-transparent px-5 text-ink placeholder:text-ink/30 outline-none transition-all duration-300 focus:bg-white focus:border-brand focus:ring-4 focus:ring-brand/10 hover:bg-zinc-50";
-  const inputClasses = `${baseClasses} h-14`;
-  const textareaClasses = `${baseClasses} py-4 min-h-[160px] resize-y`;
+    "w-full rounded-xl bg-zinc-100 border-2 border-transparent px-4 text-xs text-ink placeholder:text-ink/40 outline-none transition-all duration-300 focus:bg-white focus:border-brand focus:ring-2 focus:ring-brand/10 hover:bg-zinc-50";
+  const inputClasses = `${baseClasses} h-11`;
+  const textareaClasses = `${baseClasses} py-3 min-h-[90px] resize-y`;
 
   return (
     <label className="block relative group">
-      <span className="block text-sm font-semibold text-ink/80 mb-2 transition-colors group-focus-within:text-brand">
+      <span className="block text-xs font-semibold text-ink/80 mb-1.5 transition-colors group-focus-within:text-brand">
         {label}
       </span>
       {textarea ? (

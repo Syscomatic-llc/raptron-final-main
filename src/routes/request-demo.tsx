@@ -25,6 +25,7 @@ import { isValidPhoneNumber } from "libphonenumber-js";
 import { SuccessState } from "./contact";
 import { INDUSTRIES } from "@/lib/constants";
 import { PhoneInput } from "@/components/ui/PhoneInput";
+import { useLoadingMessage } from "@/hooks/useLoadingMessage";
 
 export const Route = createFileRoute("/request-demo")({
   head: () => ({
@@ -86,6 +87,13 @@ function RequestDemoPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedModules, setSelectedModules] = useState<string[]>([]);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const loadingMessage = useLoadingMessage([
+    "Preparing request...",
+    "Gathering information...",
+    "Routing to specialists...",
+    "Almost there..."
+  ], isSubmitting);
 
   // Simple math captcha
   const captcha = useMemo(() => {
@@ -186,81 +194,66 @@ function RequestDemoPage() {
 
   return (
     <div className="min-h-screen bg-background pt-20 lg:pt-24 pb-20 lg:pb-28 px-4 sm:px-6">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         {/* Non-demo notice banner */}
-        <div className="mb-6 bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4 flex gap-3 items-start shadow-sm">
-          <AlertCircle size={18} className="text-amber-500 shrink-0 mt-0.5" />
+        <div className="mb-6 bg-brand/5 border border-brand/20 rounded-2xl px-5 py-4 flex gap-3 items-start shadow-sm">
+          <AlertCircle size={18} className="text-brand shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm font-semibold text-amber-800 mb-0.5">
-              Demo available for ERP One only
+            <p className="text-sm font-semibold text-ink mb-0.5">
+              Odoo ERP Implementation Demo
             </p>
-            <p className="text-xs text-amber-700 leading-relaxed">
-              Live demos are currently offered exclusively for{" "}
-              <strong>RAPTRON ERP One</strong>. Our other services -{" "}
-              {NON_DEMO_SERVICES.join(", ")} - are delivered through a
-              structured{" "}
-              <Link
-                to="/book-consultation"
-                className="underline hover:text-amber-900 transition-colors font-semibold"
-              >
-                free consultation
-              </Link>
-              , not a product demo.
+            <p className="text-xs text-ink/70 leading-relaxed">
+              Raptron provides world-class <strong>Odoo ERP</strong> implementations driven by expert consulting and strategy tailored to your industry standards. See how we can transform your business processes.
             </p>
           </div>
         </div>
 
-        <div className="bg-white rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl border border-hairline overflow-hidden flex flex-col lg:flex-row items-stretch">
+        <div className="grid lg:grid-cols-[400px_1fr] rounded-2xl overflow-hidden shadow-[0_32px_80px_-20px_rgba(0,0,0,0.12)] bg-white border border-hairline">
           {/* Left panel: ERP One Brand Experience */}
-          <div className="relative overflow-hidden bg-brand-deep text-white flex flex-col w-full lg:w-5/12 xl:w-[45%] shrink-0">
+          <div className="relative overflow-hidden bg-brand-deep text-white flex flex-col shrink-0">
             {/* Background Effects */}
             <div className="absolute inset-0 bg-gradient-brand opacity-20 mix-blend-screen pointer-events-none"></div>
             <div className="absolute inset-0 bg-dot-grid opacity-30 mix-blend-overlay pointer-events-none"></div>
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-2/20 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
 
-            <div className="relative z-10 flex-1 flex flex-col p-8 sm:p-10 lg:p-14">
-              {/* Logo Section */}
-              <div className="mb-6 lg:mb-8 -mt-6 lg:-mt-10">
+            <div className="relative z-10 flex-1 flex flex-col p-8">
+              <div className="mb-2 lg:mb-4 -mt-2 shrink-0">
                 <img
                   src="/logo.png"
                   alt="RAPTRON Logo"
-                  className="h-20 w-auto scale-[1.5] origin-left filter drop-shadow-lg brightness-0 invert"
+                  className="h-24 md:h-32 lg:h-40 w-auto object-contain origin-left filter drop-shadow-lg brightness-0 invert"
                 />
               </div>
 
-              <div className="flex-1 flex flex-col justify-center">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-mono uppercase tracking-widest mb-6 w-max">
-                  <PlayCircle size={14} className="text-brand-2" />
-                  <span>ERP One - Live Demo</span>
+              <div className="flex flex-col shrink-0 mt-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-[10px] font-mono uppercase tracking-widest mb-4 w-max">
+                  <PlayCircle size={12} className="text-brand-2" />
+                  <span>Odoo ERP - Live Demo</span>
                 </div>
 
-                <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6 text-white">
-                  See ERP One <br />
+                <h1 className="font-display text-3xl font-bold leading-[1.1] tracking-tight mb-4 text-white">
+                  See Odoo <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-mist to-brand-2">
                     in action.
                   </span>
                 </h1>
-                <p className="text-xl text-white/90 italic font-medium mb-6">
-                  One system. Every function. Zero compromise.
-                </p>
-                <p className="text-white/70 text-lg max-w-md font-sans leading-relaxed">
-                  RAPTRON ERP One unifies your accounting, operations,
-                  inventory, HR, and compliance into a single intelligent
-                  platform - built for UAE businesses.
+                <p className="text-white/70 text-sm font-sans leading-relaxed">
+                  We don't just sell software; we implement Odoo to perfection. Get expert consulting, strategic insights, and advice tailored to your specific business needs and industry standards.
                 </p>
               </div>
 
-              <div className="mt-12 bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-8">
-                <div className="font-mono text-[11px] uppercase tracking-widest text-white mb-6">
-                  What your demo covers
-                </div>
-                <ul className="space-y-4">
+              <div className="mt-auto pt-8">
+                <div className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-5">
+                  <div className="font-mono text-[9px] uppercase tracking-widest text-white mb-4">
+                    What your demo covers
+                  </div>
+                <ul className="space-y-3">
                   {[
-                    "Tailored to your industry and company size",
-                    "Live walkthrough of ERP One modules relevant to you",
-                    "Real workflows - not slide decks",
-                    "Q&A with an ERP specialist at the end",
+                    "Strategic advice tailored to your industry",
+                    "Live walkthrough of relevant Odoo modules",
+                    "Implementation planning and consulting",
+                    "Q&A with an Odoo specialist",
                   ].map((b, i) => (
                     <li
                       key={i}
@@ -274,12 +267,13 @@ function RequestDemoPage() {
                   ))}
                 </ul>
               </div>
+              </div>
             </div>
           </div>
 
           {/* Right panel: Premium Form */}
           <div className="flex-1 flex flex-col justify-center bg-white relative z-10">
-            <div className="p-8 sm:p-10 lg:p-12 xl:p-14 relative overflow-hidden h-full flex flex-col">
+            <div className="p-6 lg:p-8 relative overflow-hidden h-full flex flex-col">
               <div className="absolute top-0 right-0 w-72 h-72 bg-surface-tinted rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
               {submitted ? (
@@ -288,15 +282,15 @@ function RequestDemoPage() {
                 </div>
               ) : (
                 <div className="relative z-10 flex-1 flex flex-col justify-center animate-in fade-in slide-in-from-bottom-8 duration-700">
-                  <div className="mb-5">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand/8 border border-brand/15 text-brand text-xs font-semibold mb-3">
-                      <Info size={12} />
-                      ERP One Demo Request
+                  <div className="mb-4">
+                    <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-brand/8 border border-brand/15 text-brand text-[10px] font-semibold mb-2">
+                      <Info size={10} />
+                      Odoo Implementation Demo
                     </div>
-                    <h2 className="font-display text-2xl lg:text-3xl font-bold text-ink mb-2">
+                    <h2 className="font-display text-xl font-bold text-ink mb-1">
                       Book your personalized walkthrough
                     </h2>
-                    <p className="text-ink/60 text-sm lg:text-base">
+                    <p className="text-ink/60 text-xs">
                       Tell us a bit about your business and we'll prepare a demo
                       focused on what matters most to you.
                     </p>
@@ -304,7 +298,7 @@ function RequestDemoPage() {
 
                   <form
                     onSubmit={onSubmit}
-                    className="grid sm:grid-cols-2 gap-x-5 gap-y-4"
+                    className="grid sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-3"
                   >
                     <IconField
                       name="name"
@@ -344,8 +338,8 @@ function RequestDemoPage() {
                       placeholder="(555) 000-0000"
                       error={errors.phone}
                       labelClassName="block text-xs font-semibold text-ink/80 mb-1.5 transition-colors group-focus-within:text-brand"
-                      buttonClassName="bg-ink/5 hover:bg-ink/10 border-transparent h-12"
-                      inputClassName="bg-ink/5 hover:bg-ink/10 h-12 border-transparent"
+                      buttonClassName="bg-ink/5 hover:bg-ink/10 border-transparent h-11"
+                      inputClassName="bg-ink/5 hover:bg-ink/10 h-11 border-transparent"
                     />
 
                     <IconSelect
@@ -363,15 +357,15 @@ function RequestDemoPage() {
                       options={["1–10", "11–50", "51–200", "201–500", "500+"]}
                     />
 
-                    {/* ERP Module Selector */}
-                    <div className="sm:col-span-2">
+                    {/* Odoo Module Selector */}
+                    <div className="sm:col-span-2 md:col-span-3 mt-1">
                       <span className="block text-xs font-semibold text-ink/80 mb-2">
-                        Which ERP modules interest you most?{" "}
+                        Which Odoo modules interest you most?{" "}
                         <span className="text-ink/40 font-normal">
                           (select all that apply)
                         </span>
                       </span>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
                         {ERP_MODULES.map(({ id, label, icon: Icon }) => {
                           const active = selectedModules.includes(id);
                           return (
@@ -399,7 +393,7 @@ function RequestDemoPage() {
                       />
                     </div>
 
-                    <div className="sm:col-span-2">
+                    <div className="sm:col-span-2 md:col-span-3">
                       <IconField
                         name="requirements"
                         label="Anything specific you'd like to see? (optional)"
@@ -410,21 +404,21 @@ function RequestDemoPage() {
                       />
                     </div>
 
-                    <div className="sm:col-span-2 relative overflow-hidden bg-gradient-to-r from-surface-tinted/50 to-white p-5 rounded-2xl border border-brand/20 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-2 group hover:border-brand/40 transition-colors">
+                    <div className="sm:col-span-2 md:col-span-3 relative overflow-hidden bg-gradient-to-r from-surface-tinted/50 to-white p-3 rounded-xl border border-brand/20 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-1 group hover:border-brand/40 transition-colors">
                       <div className="absolute -right-4 -top-4 text-brand/5 pointer-events-none group-hover:scale-110 transition-transform duration-500 group-hover:text-brand/10 transform rotate-12">
-                        <ShieldCheck size={100} />
+                        <ShieldCheck size={80} />
                       </div>
-                      <div className="flex items-center gap-4 relative z-10">
-                        <div className="size-11 rounded-full bg-brand/10 text-brand flex items-center justify-center shrink-0 shadow-inner">
-                          <ShieldCheck size={20} />
+                      <div className="flex items-center gap-3 relative z-10">
+                        <div className="size-9 rounded-full bg-brand/10 text-brand flex items-center justify-center shrink-0 shadow-inner">
+                          <ShieldCheck size={16} />
                         </div>
                         <div>
-                          <span className="block text-[13px] font-bold uppercase tracking-wider text-ink mb-0.5">
+                          <span className="block text-[11px] font-bold uppercase tracking-wider text-ink mb-0.5">
                             Security check
                           </span>
-                          <span className="block text-sm text-ink/60 font-medium">
+                          <span className="block text-xs text-ink/60 font-medium">
                             Please solve:{" "}
-                            <strong className="text-brand text-base ml-1">
+                            <strong className="text-brand text-sm ml-1">
                               {captcha.a} + {captcha.b}
                             </strong>
                           </span>
@@ -436,17 +430,17 @@ function RequestDemoPage() {
                           value={captchaInput}
                           onChange={(e) => setCaptchaInput(e.target.value)}
                           placeholder="="
-                          className="w-full sm:w-24 h-12 rounded-xl bg-white border border-hairline px-4 text-center font-display font-bold text-xl text-ink outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/20 shadow-sm hover:border-brand/50"
+                          className="w-full sm:w-20 h-10 rounded-lg bg-white border border-hairline px-3 text-center font-display font-bold text-lg text-ink outline-none transition-all focus:border-brand focus:ring-2 focus:ring-brand/20 shadow-sm hover:border-brand/50"
                         />
                         {captchaError && (
-                          <span className="absolute -bottom-6 right-0 text-[11px] font-semibold text-destructive whitespace-nowrap bg-white px-2 py-0.5 rounded shadow-sm border border-destructive/20">
+                          <span className="absolute -bottom-5 right-0 text-[10px] font-semibold text-destructive whitespace-nowrap bg-white px-2 py-0.5 rounded shadow-sm border border-destructive/20">
                             {captchaError}
                           </span>
                         )}
                       </div>
                     </div>
 
-                    <div className="sm:col-span-2 mt-2 pt-4 border-t border-hairline flex flex-col gap-3">
+                    <div className="sm:col-span-2 md:col-span-3 mt-1 pt-3 border-t border-hairline flex flex-col gap-3">
                       {submitError && (
                         <div className="flex items-start gap-3 p-4 rounded-2xl bg-destructive/5 border border-destructive/20 text-destructive text-sm animate-in fade-in slide-in-from-top-2 duration-300">
                           <AlertCircle size={16} className="shrink-0 mt-0.5" />
@@ -468,11 +462,11 @@ function RequestDemoPage() {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-ink text-white font-semibold overflow-hidden transition-all hover:shadow-glow disabled:opacity-70 disabled:cursor-not-allowed shrink-0"
+                          className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-8 rounded-full bg-ink text-white font-semibold overflow-hidden transition-all hover:shadow-glow disabled:opacity-70 disabled:cursor-not-allowed shrink-0"
                         >
                           <div className="absolute inset-0 bg-gradient-brand opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           <span className="relative z-10 flex items-center gap-2 text-sm">
-                            {isSubmitting ? "Submitting…" : "Request ERP Demo"}
+                            {isSubmitting ? loadingMessage : "Request Odoo Demo"}
                             {!isSubmitting && (
                               <ArrowRight
                                 size={16}
@@ -527,8 +521,8 @@ function IconField({
 }) {
   const baseClasses =
     "w-full rounded-2xl bg-ink/5 border-2 border-transparent pl-11 pr-4 text-sm text-ink placeholder:text-ink/40 outline-none transition-all duration-300 focus:bg-white focus:border-brand focus:ring-4 focus:ring-brand/10 hover:bg-ink/10";
-  const inputClasses = `${baseClasses} h-12`;
-  const textareaClasses = `${baseClasses} py-3 min-h-[90px] resize-y`;
+  const inputClasses = `${baseClasses} h-11`;
+  const textareaClasses = `${baseClasses} py-2.5 min-h-[70px] resize-y`;
 
   return (
     <label className="block relative group">
@@ -578,7 +572,7 @@ function IconSelect({
   options: string[];
   error?: string;
 }) {
-  const cls = `w-full appearance-none rounded-2xl bg-ink/5 border-2 border-transparent pl-11 pr-10 h-12 text-sm text-ink outline-none transition-all duration-300 focus:bg-white focus:border-brand focus:ring-4 focus:ring-brand/10 hover:bg-ink/10 ${error ? "!border-destructive !bg-destructive/5 focus:!ring-destructive/10" : ""}`;
+  const cls = `w-full appearance-none rounded-2xl bg-ink/5 border-2 border-transparent pl-11 pr-10 h-11 text-sm text-ink outline-none transition-all duration-300 focus:bg-white focus:border-brand focus:ring-4 focus:ring-brand/10 hover:bg-ink/10 ${error ? "!border-destructive !bg-destructive/5 focus:!ring-destructive/10" : ""}`;
   return (
     <label className="block relative group">
       <span className="block text-xs font-semibold text-ink/80 mb-1.5 transition-colors group-focus-within:text-brand">
