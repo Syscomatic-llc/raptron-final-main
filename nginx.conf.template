@@ -1,0 +1,29 @@
+server {
+    listen 9500;
+    server_name localhost;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # React SPA fallback: serve index.html for unknown routes
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Odoo API proxy
+    # The browser calls /odoo-api/*; Nginx forwards to Odoo and injects
+    # the Authorization header from the environment variables.
+    location /odoo-api/ {
+        proxy_pass ${ODOO_BASE_URL}/json/2/;
+
+        proxy_set_header Authorization "Bearer ${ODOO_API_KEY}";
+        proxy_set_header Host $proxy_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_cache_bypass $http_pragma;
+        proxy_cache_revalidate on;
+        expires off;
+    }
+}

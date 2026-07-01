@@ -7,5 +7,6 @@ services:
     ports:
       - "9500:9500"
     restart: unless-stopped
-    # The Odoo API proxy is handled by aaPanel's built-in Nginx,
-    # so no reverse-proxy container or nginx.conf is needed here.
+    environment:
+      - ODOO_API_KEY=02d9da50eab815e491894e0901e798d4762a3ef6
+      - ODOO_BASE_URL=https://hq.syscomatic.com

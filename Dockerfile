@@ -14,19 +14,16 @@ COPY . .
 RUN npm run build
 
 # ── Production stage ──────────────────────────────────────────────────────────
-FROM node:22-alpine AS runner
+FROM nginx:alpine AS runner
 
-WORKDIR /app
+# The official Nginx image has envsubst built-in and will process
+# /etc/nginx/templates/*.template into /etc/nginx/conf.d/*.conf at startup.
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
-# Install a tiny static file server
-RUN npm install -g serve
-
-# Copy only the built static assets from the builder stage
-COPY --from=builder /app/dist ./dist
+# Copy the built static assets into Nginx's web root
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Expose the port aaPanel will reverse-proxy to
 EXPOSE 9500
 
-# Serve the SPA on 0.0.0.0:9500
-# -s = single-page application mode (serves index.html for unknown routes)
-CMD ["serve", "-s", "dist", "-l", "tcp://0.0.0.0:9500"]
+CMD ["nginx", "-g", "daemon off;"]
