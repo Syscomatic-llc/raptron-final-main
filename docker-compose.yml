@@ -1,0 +1,11 @@
+services:
+  raptron:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: raptron-site
+    ports:
+      - "9500:9500"
+    restart: unless-stopped
+    # The Odoo API proxy is handled by aaPanel's built-in Nginx,
+    # so no reverse-proxy container or nginx.conf is needed here.
